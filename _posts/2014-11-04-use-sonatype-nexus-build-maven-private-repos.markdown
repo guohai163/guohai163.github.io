@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  "使用Sonatype Nexus搭建Maven私有仓库
+title:  "使用Sonatype Nexus搭建Maven私有仓库"
 date:   2014-11-04 21:59:06
 categories: java maven
 ---
-
 ###私有仓库的优点###
 
 1. 服务器在内网，下载速度快
