@@ -12,13 +12,13 @@ categories: java gitlab git source-code-manage
 
 ### 步骤1，备份
 gitlab在不同安装方式下备份指令也有所区别
+```shell
+#使用Omnibus包安装的请用
+gitlab-rake gitlab:backup:create
 
-    #使用Omnibus包安装的请用
-    gitlab-rake gitlab:backup:create
-
-    #使用源码安装的请用
-    sudo -u git -H bundle exec rake gitlab:backup:create RAILS_ENV=production
-
+#使用源码安装的请用
+sudo -u git -H bundle exec rake gitlab:backup:create RAILS_ENV=production
+```
 备份文件会产生在config/gitlab.yml所指定的目录，如果未做指定默认存储在 `/home/git/gitlab/tmp/back`下面
 文件名格式 `[TIMESTAMP]_gitlab_backup.tar`
 备份成功后会有如下格式输出
@@ -26,16 +26,17 @@ gitlab在不同安装方式下备份指令也有所区别
 
 ### 步骤2，异地恢复
 将步骤1产生的文件传输到服务器B相同目录即可
+```shell
+#Omnibus安装包恢复方法
+sudo cp 1393513186_gitlab_backup.tar /var/opt/gitlab/backups/
+sudo gitlab-ctl stop unicorn
+sudo gitlab-ctl stop sidekiq
+sudo gitlab-rake gitlab:backup:restore BACKUP=1393513186
+sudo gitlab-ctl start
 
-    #Omnibus安装包恢复方法
-    sudo cp 1393513186_gitlab_backup.tar /var/opt/gitlab/backups/
-    sudo gitlab-ctl stop unicorn
-    sudo gitlab-ctl stop sidekiq
-    sudo gitlab-rake gitlab:backup:restore BACKUP=1393513186
-    sudo gitlab-ctl start
-    #源码安装恢复方法
-    bundle exec rake gitlab:backup:restore RAILS_ENV=production
-
+#源码安装恢复方法
+bundle exec rake gitlab:backup:restore RAILS_ENV=production
+```
   在本次实验中你会得到如下提示
 
       [root@localhost gitlab]# bundle exec rake gitlab:backup:restore RAILS_ENV=production
