@@ -22,7 +22,6 @@ pptp是VPN协议的一种，对我来说和l2tp唯一的优点。当某些运营
 6. 增加ip转发
 
 		iptables -t nat -A POSTROUTING -s 10.30.0.0/24 -o eth0 -j MASQUERADE
-
-iptables -t nat -A POSTROUTING -s 10.30.0.0/24 -o eth0 -j MASQUERADE
-iptables -t nat -A POSTROUTING -s 10.20.0.0/24 -o eth0 -j MASQUERADE
-iptables -I FORWARD -s 10.20.0.0/24 -p tcp --syn -i ppp+ -j TCPMSS --set-mss 1300
+		iptables -t nat -A POSTROUTING -s 10.30.0.0/24 -o eth0 -j MASQUERADE
+		iptables -t nat -A POSTROUTING -s 10.20.0.0/24 -o eth0 -j MASQUERADE
+		iptables -I FORWARD -s 10.20.0.0/24 -p tcp --syn -i ppp+ -j TCPMSS --set-mss 1300
