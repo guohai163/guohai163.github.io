@@ -6,7 +6,7 @@ categories: setup ros use vpn to google
 ---
 墙真的越来越高了,之前跳墙一直在各自设备上使用VPN,但很麻烦 特别是有一些对PPTP或L2TP协议支持不好的设备.一直想全局跳墙,买了个routerboard.实现了全局跳墙。
 
-###科学上网方法###
+### 科学上网方法
 
 1. 创建PPTP连接
 
@@ -41,13 +41,14 @@ categories: setup ros use vpn to google
 
 --
 
-###功能补充###
+### 功能补充
 
 按以上方法可以实现指定IP走VPN。但使用后发现问题
 
 1. 墙上还有一个功能DNS污染。解决方案：DNS污染就是让去国外DNS时也走VPN通道。
-2. 第一问题解决完紧接问题又出现了，因为走的是国外DNS国内网站也会被解析到境外服务器，国内网站 速度会变慢。解决方案：使用第七层协议拦截指定域名的解析，只有指定域名走8.8.8.8的DNS。其它域名正常走ISP的解析服务器。
 
+2. 第一问题解决完紧接问题又出现了，因为走的是国外DNS国内网站也会被解析到境外服务器，国内网站 速度会变慢。解决方案：使用第七层协议拦截指定域名的解析，只有指定域名走8.8.8.8的DNS。其它域名正常走ISP的解析服务器。
+```
 	/ip firewall layer7-protocol
 	add comment="Redirect GFWed based DNS requests to google DNS" name=\
 	    to_google_DNS regexp="google.com|twitter.com|youtube.com|ytimg.com|blogger\
@@ -64,4 +65,5 @@ categories: setup ros use vpn to google
 	    routing-mark=to_google to-addresses=8.8.8.8 to-ports=53
 	add action=dst-nat chain=dstnat protocol=tcp routing-mark=to_google \
 	    to-addresses=8.8.8.8 to-ports=53
+```
 3. VPN毕竟在国外，单个VPN太慢怎么办？解决方案：多VPN负载均衡
