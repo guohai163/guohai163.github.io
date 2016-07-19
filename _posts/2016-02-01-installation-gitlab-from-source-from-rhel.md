@@ -4,12 +4,12 @@ title:  "在RHEL系统上通过源码安装GITLAB"
 date:   2016-2-1 20:59:06
 categories: rhel gitlab source mysql
 ---
-#从源码安装Gitlab
+# 从源码安装Gitlab
 
 　　Gitlab有著名的一键安装包，点一下脚本自动会帮你装ruby、Redis、Postgresql、Gitlab好方便，而且还会帮你解决Sidekiq无限消耗资源定期重启。有这么多优点为毛还要从源码安装Gitlab。1.CE版本无法使用Mysql库来存储用户数据 2.能了解他的``工作机理和细节呗``。
     官方的文档一直在使用Ubuntu来做例子，但在我们的生产环境全都是RHEL的机器所以这篇文档也以RHEL来进行讲解。此文档写于2015年1月31日，软件版本均为当时最新版本。
 
-#安装总览
+# 安装总览
   0. 更新仓库源
   1. 安装必须的软件包
   2. 安装Ruby 2.3
@@ -20,7 +20,7 @@ categories: rhel gitlab source mysql
   7. 安装GitLab 8.4.stable
   8. 安装Nginx
 
-#0. 更新仓库源
+# 0. 更新仓库源
 
 RHEL操作系统默认仓库源在线更新是收费的，如果没有注册还能使用。我们使用CentOS的YUM源来进行。在中国大陆地区因GFW各种被禁。无奈我们使用网易源来安装各种YUM包。
     #删除源仓库
@@ -65,7 +65,7 @@ RHEL操作系统默认仓库源在线更新是收费的，如果没有注册还�
 
 
 
-#1.安装必须的软件包
+# 1.安装必须的软件包
 安装需要如下的软件包
 
     yum -y update
@@ -94,7 +94,7 @@ RHEL操作系统默认仓库源在线更新是收费的，如果没有注册还�
 	yum install -y postfix
 	#Then select 'Internet Site' and press enter to confirm the hostname.
 
-#2.安装Ruby
+# 2.安装Ruby
 Ruby官方要求使用2.1以上版本，如果系统带低版本，请卸载`sudo apt-get remove rubyx.x`。我们使用源码进行安装
 
 	mkdir /tmp/ruby && cd /tmp/ruby
@@ -113,7 +113,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 
 	gem install bundler --no-ri --no-rdoc
 
-#3.安装Go语言支持
+# 3.安装Go语言支持
 在GitLab8.0以后HTTP请求开始依赖Go编译，所以我们要进行安装，这里要注意Go会区分操作系统位数
 
 	mkdir /tmp/golang && cd /tmp/golang
@@ -124,7 +124,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 	tar -C /usr/local -xzf go1.5.3.linux-386.tar.gz
 	sudo ln -sf /usr/local/go/bin/{go,godoc,gofmt} /usr/local/bin/
 
-#4.创建系统用户
+# 4.创建系统用户
 
   adduser --system --shell /bin/bash --comment 'GitLab' --create-home --home-dir /home/git/ git
   #修改git用户的PATH路径
@@ -135,7 +135,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 
 
 
-#5.安装数据库
+# 5.安装数据库
 官方默认推荐为PostgreSQLDB但因为没有使用经验备份经验，这里我们改用MySQL.但官方CE一键包不支持MYSQL这也是我们从源码安装的原因之一
 
 	# Install the database packages
@@ -180,7 +180,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 
 	# You are done installing the database and can go back to the rest of the installation.
 
-#6.安装Redis
+# 6.安装Redis
 
   #设置REDIS为开机启动
   chkconfig redis on
@@ -196,7 +196,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
   usermod -aG redis git
 
 
-#7.安装GitLab
+# 7.安装GitLab
 
 	cd /home/git
 	sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 8-5-stable gitlab
@@ -257,7 +257,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 	# Change the Redis socket path if you are not using the default Debian / Ubuntu configuration
 	sudo -u git -H editor config/resque.yml
 
-###Configure GitLab DB Settings
+### Configure GitLab DB Settings
 下面的步骤因为我们使用Mysql来安装。
 
 	sudo -u git cp config/database.yml.mysql config/database.yml
@@ -267,11 +267,11 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 
 	sudo -u git -H chmod o-rwx config/database.yml
 
-###安装 Gems
+### 安装 Gems
 
 	sudo -u git -H bundle install --deployment --without development test postgres aws kerberos
 
-###安装GitLab Shell
+### 安装GitLab Shell
 此处请一定要修改配置文件里的gitlab_url节点，否则在提交时会报错，禁止提交
 
 	# Run the installation task for gitlab-shell (replace `REDIS_URL` if needed):
@@ -280,14 +280,14 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 	# By default, the gitlab-shell config is generated from your main GitLab config.
 	# You can review (and modify) the gitlab-shell config as follows:
 	sudo -u git -H editor /home/git/gitlab-shell/config.yml
-###安装gitlab-workhorse
+### 安装gitlab-workhorse
 	cd /home/git
 	sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-workhorse.git
 	cd gitlab-workhorse
 	sudo -u git -H git checkout 0.5.4
 	sudo -u git -H make
 
-###初始化数据库
+### 初始化数据库
 
 	# Go to GitLab installation folder
 
@@ -301,7 +301,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
   login.........root
   password......5iveL!fe
 
-###安装初始化脚本
+### 安装初始化脚本
 
     cp lib/support/init.d/gitlab /etc/init.d/gitlab
     chkconfig --add gitlab
@@ -316,7 +316,7 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
     #启动服务
     service gitlab start
 
-#8. 配置WebServer
+# 8. 配置WebServer
 
 这里官方建议使用nginx，当然如果你对apache足够熟悉也可以改用apache。
 
@@ -332,4 +332,10 @@ Gitlab的包使用bundler进行依赖关系管理，所以还得安装。如果�
 
     setenforce 0
 
-#9. 测试
+# 9. 测试
+
+```shell
+cd /home/git/gitlab
+sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
+```
+
