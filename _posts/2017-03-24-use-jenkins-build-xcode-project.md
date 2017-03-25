@@ -81,7 +81,7 @@ sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
         1. 项目必须有xworkspace文件
         2. 项目必须有Scheme文件
 
-* ![jenkins create itme 3](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-create-item-3.png)
+* General build settings![jenkins create itme 3](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-create-item-3.png)
 
     1. Target请写入项目中对应的名字即可
     2. Clean before build建议勾选
@@ -89,4 +89,71 @@ sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
     4. ipa名字，直接直接输入一个就行可以利用环境变量，用不接.ipa
     5. 输出目录我们输出到工作区的build下，${WORKSPACE}/build/
 
-* ![jenkins create itme 4](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-create-item-4.png)
+* Code signing & OS X keychain options![jenkins create itme 4](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-create-item-4.png)
+    0. 先打开Xcode的Preferences,添加好带开发者证书的AppleID,以及下载好相对应的mobileprovision文件。
+    1. 拷贝当前用户下的login.keychain 和 login.keychain-db文件到Jenkins用户下 ``` sudo cp /Users/${username}/Library/Keychains/login.keychain* /Users/Shared/Jenkins/Library/Keychains/ ```
+    2. 拷贝当前用户下的mobileprovision文件到Jenkins用户下 ```sudo cp Provisioning\ Profiles/* /Users/Shared/Jenkins/Library/MobileDevice/Provisioning\ Profiles/```
+    3. 勾选Unlock Keychain否则无法使用保存的证书。Keychain Path填写默认值即可 ```${HOME}/Library/Keychains/login.keychain``` Keychain password 填写当前用户密码
+* Advanced Xcode build options![jenkins create itme 5](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-create-item-5.png)
+    1. 所有空按你的项目适当填写即可。
+* 保存构建，等待成功。![jenkins create itme over](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-create-item-over.png)
+
+### 让QA可以直接从手机上安装应用 ###
+目前我们的测试人员已经可以通过Jenkins网站下载ipa后通过iTunes来安装我们的APP了，但还是比较麻烦，下一步我们要做的就是搭建一个APP下载站点让QA可以直接通过手机自动安装应用。必要条件：你的WEB站点必须是一个HTTPS的站点，iOS7以后系统才可以直接安装
+
+1. 创建manifest.plist文件
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="ver 2013.01.09 1.01.02(.02)">
+  <dict>
+    <key>items</key>
+    <array>
+      <dict>
+        <key>assets</key>
+        <array>
+          <dict>
+            <key>kind</key>
+            <string>software-package</string>
+            <key>url</key>
+            <string>[ipa文件URL地址]</string>
+          </dict>
+          <dict>
+            <key>kind</key>
+            <string>full-size-image</string>
+            <key>needs-shine</key>
+            <false/>
+            <key>url</key>
+            <string>[Icon地址]</string>
+          </dict>
+          <dict>
+            <key>kind</key>
+            <string>display-image</string>
+            <key>needs-shine</key>
+            <false/>
+            <key>url</key>
+            <string>[Icon地址]</string>
+          </dict>
+        </array>
+        <key>metadata</key>
+        <dict>
+          <key>bundle-identifier</key>
+          <string>[应用的bundleid]</string>
+          <key>bundle-version</key>
+          <string>[版本号]</string>
+          <key>kind</key>
+          <string>software</string>
+          <key>subtitle</key>
+          <string></string>
+          <key>title</key>
+          <string>[应用名]</string>
+        </dict>
+      </dict>
+    </array>
+  </dict>
+</plist>
+```
+2. 创建一个HTML文件
+```html
+<a href="itms-services://?action=download-manifest&url=https://guohai.org/manifest.plist">点击安装location</a>
+```
