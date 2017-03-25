@@ -6,7 +6,7 @@ categories: xcode oc ci
 ---
 
 ### 目的 ###
-
+大多APP开发团队都会存在这样一问题，开发人员直接在自己机器上给测试人员安装APP程序。整个代码不会经过源码服务器，甚至开发人员机器硬盘损坏或离职后产生严重后果。为了避免产生这样的问题，我们可以考虑使用CI系统，保证所有二进制包都是经过源码服务器，测试人员直接可以进行测试。
 
 
 ### 需要软件 ###
@@ -102,7 +102,8 @@ sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
 目前我们的测试人员已经可以通过Jenkins网站下载ipa后通过iTunes来安装我们的APP了，但还是比较麻烦，下一步我们要做的就是搭建一个APP下载站点让QA可以直接通过手机自动安装应用。必要条件：你的WEB站点必须是一个HTTPS的站点，iOS7以后系统才可以直接安装
 
 1. 创建manifest.plist文件
-```xml
+
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="ver 2013.01.09 1.01.02(.02)">
@@ -154,6 +155,7 @@ sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
 </plist>
 ```
 2. 创建一个HTML文件
-```html
+
+``` html
 <a href="itms-services://?action=download-manifest&url=https://guohai.org/manifest.plist">点击安装location</a>
 ```
