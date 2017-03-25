@@ -59,3 +59,7 @@ sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
 
 * 解锁Jenkins，请密码在本地文件中 ``` sudo cat /Users/Shared/Jenkins/Home/secrets/initialAdminPassword ```
 ![jenkins init 1](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-init-1.png)
+
+* 安装插件，直接默认使用推荐插件即可，但Jenkins在国内访问会比较慢，插件可能要安装很久
+![jenkins init 1](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-init-2.png)
+![jenkins init 1](http://guohai163.github.io/doc-pic/jenkins4xcode/jenkins-init-3.png)
