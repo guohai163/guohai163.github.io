@@ -8,10 +8,16 @@ categories: swift spritekit game developer xcode iOS
 
 本教程会基于swift3.0语言使用spritekit框架来进行讲解，会涉及到碰撞、纹理管理、互动、音效、按钮、场景、马赛克拼图、自制虚拟摇杆、AppleGameCenter接入、内购流程。基本教程游戏是一款横版射击游戏。学习前请先看一下苹果的官方文档 [SpriteKit](https://developer.apple.com/spritekit/)
 
+先看一下第一课今天的最终学习成果
+![fighter.gif](http://guohai163.github.io/doc-pic/2017-04-17-spritekit/fighter.gif)
+
 ### 开始 ###
 准备工作，首先得有一台装有xcode8以上的macOS机器，SpriteKit框架相对于其它的引擎来说最大优点就是官方原生支持。
 选择创建项目，语言选择swift,游戏引擎选择SpriteKit即可。
-创建好的DEMO项目默认长这样。![null project](http://guohai163.github.io/doc-pic/2017-04-17-spritekit/nullproject.png)
+创建好的DEMO项目默认长这样。
+
+![null project](http://guohai163.github.io/doc-pic/2017-04-17-spritekit/nullproject.png)
+
 ` command+r `运行你的项目吧。DEMO项目中的场景使用的是sks，这里我们先不做分析直接删除，我们从代码开始学习。
 删除整理后的代码差不多是这个样子，Support主要放辅助类文件，scenes下放几个场景类，Sprites是核心，所有的精灵类都会放到这里。
 ![init project](http://guohai163.github.io/doc-pic/2017-04-17-spritekit/initproject.png)
@@ -101,3 +107,91 @@ private func spawnFighter() {
 ![fighteratios.png](http://guohai163.github.io/doc-pic/2017-04-17-spritekit/fighteratios.png)
 🤦‍♂️这比例，有够惨，但为了看的清楚，我们先这样了
 ### 操控小飞机移动 ###
+说到操控，触屏手机第一想到的就是直接点击控制小飞机的飞行方位。但第一版试验后不是很理想，手指头会挡住部分画面，以及部分飞过来的子弹。这里我们来模拟个遥感，使用虚拟摇杆操控飞机。
+
+关于摇杆的实现我参考了 叶流月 的[一篇文章](http://www.jianshu.com/p/c108372d5adb)，
+
+首先创建我们的遥控器类 MoveConSpriteNode.swift 首先我们创建两个圆
+``` swift3
+//实心圆
+private var movePoint : SKShapeNode = SKShapeNode(circleOfRadius: 10)
+//大空心
+private var moveController = SKShapeNode(rectOf: CGSize(width:106, height:106), cornerRadius: 53)
+
+public func setup() {
+    //实心
+    movePoint.fillColor = SKColor(red: 1, green: 1, blue: 1, alpha: 0.8)
+    movePoint.position = CGPoint(x: 70, y: 70)
+    addChild(movePoint)
+
+    moveController.lineWidth = 2
+    moveController.position = CGPoint(x: 70, y: 70)
+    addChild(moveController)
+}
+```
+然后我们来处理touchesBegang事件
+``` swfit3
+override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    DLLog(message: "控制器被按下")
+    for t in touches {
+        isMoveTouch = true
+        //取出按下坐标
+        let position  = t.location(in: self)
+        let x1 = position.x - 70
+        let y1 = position.y - 70
+        //计算是否在摇杆内,如果不在直接退出
+        if abs(x1)<=15 && abs(y1)<=15 {
+            return
+        }
+        if abs(x1) >= 35 && abs(y1) >= 35 {
+            isMoveTouch = false
+            return
+        }
+
+        var ys:CGFloat
+        var xs:CGFloat
+        if x1*x1 + y1*y1 > 2500 {
+            let z = x1 / y1
+            let temp = 2500 / (1+z*z)
+            ys = sqrt(temp)
+            xs = abs(ys * z)
+            if y1 < 0 {
+                ys = ys * -1
+            }
+            if x1 < 0 {
+                xs = -xs
+            }
+            let newPoi = CGPoint(x: 70 + xs, y: 70 + ys)
+            movePoint.position = newPoi
+        } else {
+            let newPoi = CGPoint(x: 70 + x1, y: 70 + y1)
+            movePoint.position = newPoi
+        }
+
+    }
+}
+```
+最后我们增加一个 公有方法返回控制点偏移量
+``` swift3
+//返回控制点相对偏移量
+public func MovePosition() -> CGPoint {
+    return CGPoint(x: movePoint.position.x - 70, y: movePoint.position.y - 70)
+
+}
+```
+
+回到我们的游戏主场景 增加相应的 `touchesBegan touchesMoved touchesEnded` 三个方法的转发操作。
+
+运行试一下，摇杆已经可以感应手指的操作了。最后的最后，我们来让小飞机也听我们的控制,增加一个update方法
+``` swfit3
+override func update(_ currentTime: TimeInterval) {
+    //获取摇杆偏移量
+    let poi = moveCon.MovePosition()
+    //增加小飞机动画飞往目标位置
+    let moveAction = SKAction.move(to: CGPoint(x: fighterNode.position.x + poi.x,y: fighterNode.position.y + poi.y), duration: 0.1)
+    fighterNode.run(moveAction)    
+}
+```
+运行起来试试，糟糕我的小飞机飞出屏幕找不到了，这个留给大家来想办法吧。今天的文档先到这里。明天[下一次]我们会增加一些陨石碎片。
+
+完整源码请访问 [https://github.com/guohai163/Fighter4iOS](https://github.com/guohai163/Fighter4iOS)
