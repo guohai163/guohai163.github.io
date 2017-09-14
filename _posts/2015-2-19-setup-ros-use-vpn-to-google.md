@@ -48,6 +48,7 @@ categories: setup ros use vpn to google
 1. 墙上还有一个功能DNS污染。解决方案：DNS污染就是让去国外DNS时也走VPN通道。
 
 2. 第一问题解决完紧接问题又出现了，因为走的是国外DNS国内网站也会被解析到境外服务器，国内网站 速度会变慢。解决方案：使用第七层协议拦截指定域名的解析，只有指定域名走8.8.8.8的DNS。其它域名正常走ISP的解析服务器。
+
 ```
 	/ip firewall layer7-protocol
 	add comment="Redirect GFWed based DNS requests to google DNS" name=\
@@ -67,3 +68,12 @@ categories: setup ros use vpn to google
 	    to-addresses=8.8.8.8 to-ports=53
 ```
 3. VPN毕竟在国外，单个VPN太慢怎么办？解决方案：多VPN负载均衡
+
+4. 更新chinaip脚本
+
+```
+wget http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
+echo "/ip firewall address-list" > address-list_`date +"%Y%m%d"`.rsc
+grep "|CN|ipv4" delegated-apnic-latest | awk -F'|' '{print "add address="$4"/"32-int(log(int($5))/log(2))" disabled=no list=china-ip"}' >> address-list_`date +"%Y%m%d"`.rsc
+rm delegated-apnic-latest
+```
