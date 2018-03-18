@@ -5,7 +5,7 @@ date: 2018-03-18 23:00
 categories: ethereum solidity demo
 ---
 # 以太坊
-![256px-Ethereum_logo_2014.png](256px-Ethereum_logo_2014.png)
+![256px-Ethereum_logo_2014.png](http://guohai163.github.io/doc-pic/2018-03-18/256px-Ethereum_logo_2014.png)
 
 **以太坊**（英语：Ethereum）是一个开源的有智能合约功能的公共区块链平台。通过其专用加密货币以太币（Ether，又称“以太币”）提供去中心化的虚拟机（称为“以太虚拟机”Ethereum Virtual Machine）来处理点对点合约。
 
@@ -85,7 +85,7 @@ npm install -g truffle
 
 网上很多旧的教程还在用truffle init在初始化，这是官方已经抛弃的旧方法。目前官方推荐使用
 [Truffle Boxes](http://truffleframework.com/boxes/) 来创建项目。是官方已经做好的一些模板项目，方便我们的快速开发.
-![trufflebox](trufflebox.png)
+![trufflebox](http://guohai163.github.io/doc-pic/2018-03-18/trufflebox.png)
 ```
 guohai•Developer/ethereum/vote» truffle unbox react
 Downloading...
@@ -102,7 +102,7 @@ Commands:
   Run dev server:       npm run start
   Build for production: npm run build
 ```
-![project-build](project-build.png)
+![project-build](http://guohai163.github.io/doc-pic/2018-03-18/project-build.png)
 执行完上面的命令会帮我们创建一个项目目录。
 * contracts：编写智能合约的文件夹，所有的智能合约文件都放置在这里
 * migrations：部署合约配置的文件夹
@@ -151,9 +151,9 @@ contract Voting {
 
 ~~~
 ## 发布合约到我们的私有链上
-![vote1](vote1.png)
+![vote1](http://guohai163.github.io/doc-pic/2018-03-18/vote1.png)
 在以太网的区块链上发布合约也是要消耗GAS的，为矿工支付报酬。我们需要先安装chrome的一个钱包插件[MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn).安装好后切换下钱包的网络到你的私有链上。打开Remix我们在进行合约的发布。提交后我会得到合约的地址，拷贝下来 “0x0d8cc4b8d15d4c3ef1d70af0071376fb26b5669b”
-![vote2](vote2.png)
+![vote2](http://guohai163.github.io/doc-pic/2018-03-18/vote2.png)
 当 合约发布完后，我们可以直接在Remix里对合约的方法进行调用测试。当测试无问题后我们再开发APP程序。在测试程序的时候我们可以看到粉红色的投票方法按钮因为要写数据到区块中是要消耗GAS的。而我们的查询按钮全是蓝色，因为不用写入全是免费的。
 
 ## 友好的网页界面程序
@@ -330,7 +330,7 @@ export default App
 
 接下来运行我们的项目 ```npm run start ```
 
-![over](over.png)
+![over](http://guohai163.github.io/doc-pic/2018-03-18/over.png)
 
 
 
