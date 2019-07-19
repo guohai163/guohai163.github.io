@@ -4,6 +4,10 @@ title:  "哪些二类疫苗比较值得打？"
 date:   2019-07-19 22:59:06
 categories: vaccine calculator
 ---
+## 
+![IMG_0890.PNG](http://blog.guohai.org/doc-pic/2019-07/IMG_0890.PNG)
+
+
 
 
 ## 附实用小程序-新生儿疫苗接种时间表
@@ -21,3 +25,5 @@ categories: vaccine calculator
 ![vaccine-p3](http://blog.guohai.org/doc-pic/2019-07/vaccine-p3.png)
 
 最终页面会按您选择的二类疫苗和一类疫苗进行整合出一个新的列表，列表中的蓝色列为已过日期，红色列为当前月份需要接种的时间，绿色列表为未来要接种的疫苗。
+
+整个程序使用Spring boot框架进行快速开发，源码已经放在github上。[https://github.com/guohai163/vaccine](https://github.com/guohai163/vaccine)
