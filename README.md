@@ -1,4 +1,4 @@
 guohai163.github.io
 ===================
 
-page 
+[http://blog.guohai.org](http://blog.guohai.org)
