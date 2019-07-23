@@ -69,5 +69,35 @@ pipeline {
 
 ## 设置下github仓库
 
+仓库这块设置就比较简单了，去github创建一个空仓库。将本地代码push上来，然后去配置下webhooks。Payload URL里配置上你的Jenkins的通知地址。图片中遮挡部位是jenkins的IP或域名。默认是push事件会触发这个规则。你可以修改为自定义其它事件。
+ ![webhook](http://blog.guohai.org/doc-pic/2019-07/github-webhook.png)
 
 ## Jenkins的配置
+
+如果你不需要在一台机器上跑多分Jenkins建议还是尽量用包的方式来安装。比用war包形式省事很多，因我的派上装的是debian系统，这里我就用Debian/Ubuntu来举例。
+
+``` shell
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
+```
+安装完后会默认监听8080口，[这里有坑]但上一步的github回调在8080口上一直没有成功。派上的80口已经被nginx占用了，这里就不用修改jenkins的端口了，直接在nginx上配置一下反向代理即可。安装过程一路下一步就行，插件看你的情况适量安装。
+
+1. 配置Jenkins的Maven：maven可以手工安装，然后给jenkins配置环境变量就行，这里想偷懒直接让jenkins帮我下载安装。选择 系统管理->全局工具配置，在Maven分类下点击Maven安装勾选自动安装选择一个比较新的版本号。在Name标签中填写一个名字。这个名字要和Jenkinsfile里的一致。
+ ![j-maven](http://blog.guohai.org/doc-pic/2019-07/j-maven.png)
+2. 配置连接远程服务器私钥：SSH服务器的连接建议尽量全用私钥的形式，不要使用用户名+密码不安全。在Jenkins里点击凭据->添加凭据。类型选择[SSH Username with private key],ID起一个唯一好记的名字就行，比如服务器IP或域名。用户名为远程主机用户名。在PrivateKey里选择Enter directly点击Add后选择你的私钥文件即可
+![j-credentials](http://blog.guohai.org/doc-pic/2019-07/j-credentials.png)
+3. 都配置完了我们来创建构建任务：名字，按你的项目起就行，类型选择流水线/Pipelines。在构建触发器要勾选下 [GitHub hook trigger for GITScm polling]这样上一步的提交钩子就能触发本地构建了。
+4. 将流水线内的定义切成 [Pipeline script from SCM] 配置好你的仓库地址和分支名字，脚本路径如果上次无变化保持默认即可。
+![j-pipeline](http://blog.guohai.org/doc-pic/2019-07/j-pipeline.png)
+
+Jenkins的部分到此结束。
+
+## 线上服务器的配置
+
+线上只要配置好权限，放一个[脚本](http://blog.guohai.org/doc-pic/2019-07/spring-boot.sh)上去即可，脚本的功能是帮你重启jar包的。路径要和第一步里的Jenkinsfile里配置的一致。
+
+## 结束语
+
+至此整个过程1个小时左右，就全部搞定了。奉劝各位团队们不要在手工部署了太不安全了。
