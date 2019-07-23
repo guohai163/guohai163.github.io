@@ -19,7 +19,7 @@ Java项目的IDE目前得推荐下[IntelliJ IDEA](https://www.jetbrains.com/idea
 
 为了配合Jenkins做构建，我们还要在项目中加点料。目前Jenkins主推是使用Pipelines来定义构建中的每一步，Pipelines又分为声明式和脚本化。相比脚本化的流水线语法，声明式提供更丰富的语法特性。声明式需要在项目的根目前创建一个 `Jenkinsfile`文件，来存放构建的脚本。具体的语法可以参考官方文档 [流水线语法](https://jenkins.io/zh/doc/book/pipeline/syntax/) 我们直接用一个成品脚本来讲解。
 
-​```pipelines
+``` java
 pipeline {
   agent any
   environment {
@@ -64,7 +64,8 @@ pipeline {
     }
   }
 }
-​```
+```
+
 
 ## 设置下github仓库
 
