@@ -13,11 +13,11 @@ categories: idea github jenkins debian CI Java
 ![flow](http://blog.guohai.org/doc-pic/2019-07/flow_chart.png)
 
 ## 创建Spring Boot项目，并生成Jenkinsfile文件
-Java项目的IDE目前得推荐下[IntelliJ IDEA](https://www.jetbrains.com/idea/)按官方的解释Ultimate主要适合做WEB和企业应用比如支持Spring，而Community比较适合JVM和Android开发。但因为Spring Boot的出现，现在社区版本对web的支持也不错，也可以断点调试。只是对于模板引擎支持真的比较惨。Java语言是主力开发的就花钱买Ultimate吧，玩一玩的用Community就够了。
+Java项目的IDE目前得推荐下[IntelliJ IDEA](https://www.jetbrains.com/idea/),IJ分为两个版本按官方的解释Ultimate主要适合做WEB和企业应用比如支持Spring，而Community比较适合JVM和Android开发。但因为Spring Boot，现在社区版本对spring boot web的支持也不错，也可以断点调试。只是对于模板引擎支持真的比较惨。Java语言是主力开发的就花钱买Ultimate吧支持下人家团队，玩一玩的用Community就够了。
 
-想让社区版使用向导创建Spring项目就需要先安装“Spring Assistant”这个插件，之后就可以使用File->Project->Spring Assistant->Next->给项目起个名字,选择下项目类型和项目要使用的语言->Next->勾选下你要依赖的组件比如Spring Boot->Next->确定下项目的目录->Finish。一个最简单的SB项目创建好了。
+想让社区版使用向导创建Spring项目就需要先安装“Spring Assistant”这个插件，之后就可以使用向导来创建了，过程是：File->Project->Spring Assistant->Next->给项目起个名字,选择下项目类型和项目要使用的语言->Next->勾选下你要依赖的组件比如Spring Boot->Next->确定下项目的目录->Finish。一个最简单的SB项目创建好了。
 
-为了配合Jenkins做构建，我们还要在项目中加点料。目前Jenkins主推是使用Pipelines来定义构建中的每一步，Pipelines又分为声明式和脚本化。相比脚本化的流水线语法，声明式提供更丰富的语法特性。声明式需要在项目的根目前创建一个 `Jenkinsfile`文件，来存放构建的脚本。具体的语法可以参考官方文档 [流水线语法](https://jenkins.io/zh/doc/book/pipeline/syntax/) 我们直接用一个成品脚本来讲解。
+为了配合Jenkins做构建，我们还要在项目中加点料。目前Jenkins主推是使用Pipelines来定义构建中的每一步，Pipelines又分为声明式和脚本化。相比脚本化的流水线语法，声明式提供更丰富的语法特性。声明式需要在项目的根目录创建一个 `Jenkinsfile`文件，来存放构建的脚本。具体的语法可以参考官方文档 [流水线语法](https://jenkins.io/zh/doc/book/pipeline/syntax/) 我们直接用一个成品脚本来讲解。
 
 ``` java
 pipeline {
@@ -45,7 +45,7 @@ pipeline {
 
       }
     }
-    //联署块
+    //部署块
     stage ('deploy') {
         steps {
             //计算本地文件MD5
@@ -74,7 +74,7 @@ pipeline {
 
 ## Jenkins的配置
 
-如果你不需要在一台机器上跑多分Jenkins建议还是尽量用包的方式来安装。比用war包形式省事很多，因我的派上装的是debian系统，这里我就用Debian/Ubuntu来举例。
+如果你不需要在一台机器上跑多份Jenkins，建议还是尽量用系统包的方式来安装。比用war包形式省事很多，因我的派上装的是debian系统，这里我就用Debian/Ubuntu来举例。
 
 ``` shell
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
@@ -82,7 +82,7 @@ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sour
 sudo apt-get update
 sudo apt-get install jenkins
 ```
-安装完后会默认监听8080口，[这里有坑]但上一步的github回调在8080口上一直没有成功。派上的80口已经被nginx占用了，这里就不用修改jenkins的端口了，直接在nginx上配置一下反向代理即可。安装过程一路下一步就行，插件看你的情况适量安装。
+安装完后会默认监听8080口，[这里有坑]但上一步的github回调在8080口上一直没有成功。派上的80口已经被nginx占用了，这里就不能修改jenkins的端口了，直接在nginx上配置一下反向代理即可。安装过程一路下一步就行，插件看你的情况适量安装。
 
 1. 配置Jenkins的Maven：maven可以手工安装，然后给jenkins配置环境变量就行，这里想偷懒直接让jenkins帮我下载安装。选择 系统管理->全局工具配置，在Maven分类下点击Maven安装勾选自动安装选择一个比较新的版本号。在Name标签中填写一个名字。这个名字要和Jenkinsfile里的一致。
  ![j-maven](http://blog.guohai.org/doc-pic/2019-07/j-maven.png)
@@ -100,4 +100,4 @@ Jenkins的部分到此结束。
 
 ## 结束语
 
-至此整个过程1个小时左右，就全部搞定了。奉劝各位团队们不要在手工部署了太不安全了。
+至此整个过程1个小时左右，就全部搞定了。奉劝各位团队们不要在手工部署了太不安全了。也真的累啊
