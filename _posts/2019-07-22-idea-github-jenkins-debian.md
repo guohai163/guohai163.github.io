@@ -15,7 +15,56 @@ categories: idea github jenkins debian CI Java
 ## 创建Spring Boot项目，并生成Jenkinsfile文件
 Java项目的IDE目前得推荐下[IntelliJ IDEA](https://www.jetbrains.com/idea/)按官方的解释Ultimate主要适合做WEB和企业应用比如支持Spring，而Community比较适合JVM和Android开发。但因为Spring Boot的出现，现在社区版本对web的支持也不错，也可以断点调试。只是对于模板引擎支持真的比较惨。Java语言是主力开发的就花钱买Ultimate吧，玩一玩的用Community就够了。
 
+想让社区版使用向导创建Spring项目就需要先安装“Spring Assistant”这个插件，之后就可以使用File->Project->Spring Assistant->Next->给项目起个名字,选择下项目类型和项目要使用的语言->Next->勾选下你要依赖的组件比如Spring Boot->Next->确定下项目的目录->Finish。一个最简单的SB项目创建好了。
 
+为了配合Jenkins做构建，我们还要在项目中加点料。目前Jenkins主推是使用Pipelines来定义构建中的每一步，Pipelines又分为声明式和脚本化。相比脚本化的流水线语法，声明式提供更丰富的语法特性。声明式需要在项目的根目前创建一个 `Jenkinsfile`文件，来存放构建的脚本。具体的语法可以参考官方文档 [流水线语法](https://jenkins.io/zh/doc/book/pipeline/syntax/) 我们直接用一个成品脚本来讲解。
+
+​```pipelines
+pipeline {
+  agent any
+  environment {
+    //目标服务器IP以及登陆名
+    TAG_SERVER = 'guohai@guohai.org'
+    //目标服务器程序部署路径
+    TAG_PATH = '/data/vaccine.guohai.org'
+    //目标服务器启动停止springboot脚本路径
+    TAG_SCRIPT = '/data/spring-boot.sh'
+  }
+
+  stages {
+    //构建块
+    stage ('build') {
+      steps {
+         script{
+            //获得maven程序路径
+            def mvnHome = tool 'maven 3.6.0'
+            //打包
+            sh "${mvnHome}/bin/mvn clean package"
+            echo "build over"
+         }
+
+      }
+    }
+    //联署块
+    stage ('deploy') {
+        steps {
+            //计算本地文件MD5
+            sh "md5sum ${WORKSPACE}/target/*.jar"
+            //因为我们要使用私钥来操作远程服务器内容，下面的代码块需要使用withCredentials括起来，其中credentialsId为在Jenkins里配置的证书。keyFileVariable为代码块中可以使用的变量名
+            withCredentials([sshUserPrivateKey(credentialsId: 'guohai.org', keyFileVariable: 'guohai_org_key', passphraseVariable: '', usernameVariable: '')]) {
+                //拷贝本地JAR文件到服务器上
+                sh "scp -i ${guohai_org_key} ${WORKSPACE}/target/*.jar ${TAG_SERVER}:${TAG_PATH}/${JOB_BASE_NAME}.jar"
+                //计算拷贝到服务器上的文件 MD5，确保与本地一致。避免因传输产生的错误。
+                sh "ssh -i ${guohai_org_key} ${TAG_SERVER} md5sum ${TAG_PATH}/${JOB_BASE_NAME}.jar"
+                //使用脚本重启spring boot
+                sh "ssh -i ${guohai_org_key} ${TAG_SERVER} ${TAG_SCRIPT} restart ${TAG_PATH}/${JOB_BASE_NAME}.jar"
+            }
+
+        }
+    }
+  }
+}
+​```
 
 ## 设置下github仓库
 
