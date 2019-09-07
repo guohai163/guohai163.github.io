@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "为了方便的查询疫苗批次号，我用了一个周末做了个小程序"
-date:   2019-07-19 22:59:06
+date:   2019-09-09 22:59:06
 categories: wechat miniprogram vaccine batchno
 ---
 
