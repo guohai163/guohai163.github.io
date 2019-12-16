@@ -166,10 +166,18 @@ class SocketUser(SocketLocust):
     # 目标地址
     host = "127.0.0.1"
     # 目标端口
-    port = 32102
+    port = 40000
     task_set = UserBehavior
     wait_time = between(0.1, 1)
 ~~~
 
+我们模拟200用户启动下试试脚本。``locust -f locust_tcptest.py --no-web -c 200 -r 50 -t 10m``
 
 ![simulation 200 user](http://blog.guohai.org/doc-pic/2019-12/Locust-1.png)
+
+## 参考资料
+
+* [完整代码](https://github.com/guohai163/earth-server/blob/master/tools/locustscript.py)
+* [超快地球物理坐标服务器](https://github.com/guohai163/earth-server)
+* [Locust官网文档](https://docs.locust.io/en/stable/)
+* [Python2教程](https://docs.python.org/2/tutorial/index.html)
