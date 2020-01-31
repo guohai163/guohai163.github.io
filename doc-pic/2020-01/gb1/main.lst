@@ -1,0 +1,238 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Sat Feb  1 00:14:09 2020
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module lcc25170
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _main
+                             12 	.globl _st
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ; special function bits 
+                             18 ;--------------------------------------------------------
+                             19 ;--------------------------------------------------------
+                             20 ; internal ram data
+                             21 ;--------------------------------------------------------
+                             22 	.area _DATA
+   0000                      23 _st::
+   0000                      24 	.ds 16
+                             25 ;--------------------------------------------------------
+                             26 ; overlayable items in internal ram 
+                             27 ;--------------------------------------------------------
+                             28 	.area _OVERLAY
+                             29 ;--------------------------------------------------------
+                             30 ; indirectly addressable internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area _ISEG
+                             33 ;--------------------------------------------------------
+                             34 ; bit data
+                             35 ;--------------------------------------------------------
+                             36 	.area _BSEG
+                             37 ;--------------------------------------------------------
+                             38 ; external ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area _XSEG
+                             41 ;--------------------------------------------------------
+                             42 ; global & static initialisations
+                             43 ;--------------------------------------------------------
+                             44 	.area _GSINIT
+                             45 	.area _GSFINAL
+                             46 	.area _GSINIT
+                             47 ;	main.c 4
+                             48 ;	main.c 30
+                             49 ;	genArrayInit
+                             50 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0000 21 00 00             51 	ld	hl,#_st
+   0003 CD 00 00             52 	call	__initrleblock
+   0006 10                   53 	.db	16
+   0007 18 18 18 18 00 18    54 	.db	0x18, 0x18, 0x18, 0x18, 0x00, 0x18, 0x7E, 0x7E
+        7E 7E
+   000F 18 18 18 18 24 24    55 	.db	0x18, 0x18, 0x18, 0x18, 0x24, 0x24, 0x42, 0x42
+        42 42
+   0017 00                   56 	.db	0
+                             57 ;--------------------------------------------------------
+                             58 ; Home
+                             59 ;--------------------------------------------------------
+                             60 	.area _HOME
+                             61 	.area _CODE
+                             62 ;--------------------------------------------------------
+                             63 ; code
+                             64 ;--------------------------------------------------------
+                             65 	.area _CODE
+                             66 ;	main.c 10
+                             67 ;	genLabel
+                             68 ;	genFunction
+                             69 ;	---------------------------------
+                             70 ; Function main
+                             71 ; ---------------------------------
+   0000                      72 ___main_start:
+   0000                      73 _main:
+   0000 E8 FD                74 	lda	sp,-3(sp)
+                             75 ;	main.c 12
+                             76 ;	genIpush
+                             77 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0002 21 00 00             78 	ld	hl,#_st
+   0005 E5                   79 	push	hl
+                             80 ;	genIpush
+   0006 21 00 01             81 	ld	hl,#0x0100
+   0009 E5                   82 	push	hl
+                             83 ;	genCall
+   000A CD 00 00             84 	call	_set_sprite_data
+   000D E8 04                85 	lda	sp,4(sp)
+                             86 ;	main.c 13
+                             87 ;	genIpush
+                             88 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   000F 21 00 00             89 	ld	hl,#0x0000
+   0012 E5                   90 	push	hl
+                             91 ;	genCall
+   0013 CD 00 00             92 	call	_set_sprite_tile
+   0016 E8 02                93 	lda	sp,2(sp)
+                             94 ;	main.c 14
+                             95 ;	genIpush
+                             96 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0018 21 14 14             97 	ld	hl,#0x1414
+   001B E5                   98 	push	hl
+                             99 ;	genIpush
+   001C 3E 00               100 	ld	a,#0x00
+   001E F5                  101 	push	af
+   001F 33                  102 	inc	sp
+                            103 ;	genCall
+   0020 CD 00 00            104 	call	_move_sprite
+   0023 E8 03               105 	lda	sp,3(sp)
+                            106 ;	main.c 15
+                            107 ;	genAssign
+   0025 01 40 FF            108 	ld	bc,#0xFF40
+                            109 ;	genAssign
+                            110 ;	AOP_STK for _main_sloc0_1_0
+   0028 F8 01               111 	lda	hl,1(sp)
+   002A 36 40               112 	ld	(hl),#0x40
+   002C 23                  113 	inc	hl
+   002D 36 FF               114 	ld	(hl),#0xFF
+                            115 ;	genPointerGet
+                            116 ;	AOP_STK for _main_sloc0_1_0
+                            117 ;	AOP_STK for _main_sloc1_1_0
+   002F 2B                  118 	dec	hl
+   0030 5E                  119 	ld	e,(hl)
+   0031 23                  120 	inc	hl
+   0032 56                  121 	ld	d,(hl)
+   0033 1A                  122 	ld	a,(de)
+   0034 2B                  123 	dec	hl
+   0035 2B                  124 	dec	hl
+                            125 ;	genOr
+                            126 ;	AOP_STK for _main_sloc1_1_0
+   0036 77                  127 	ld      (hl),a
+                            128 ; Removed redundent load
+   0037 F6 02               129 	or	a,#0x02
+                            130 ;	genAssign (pointer)
+   0039 02                  131 	ld	(bc),a
+                            132 ;	main.c 16
+                            133 ;	genLabel
+   003A                     134 00106$:
+                            135 ;	main.c 18
+                            136 ;	genCall
+                            137 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   003A CD 00 00            138 	call	_joypad
+   003D 4B                  139 	ld	c,e
+                            140 ;	genCmpEq
+                            141 ; genCmpEq: left 1, right 1, result 0
+   003E 79                  142 	ld	a,c
+   003F FE 01               143 	cp	a,#0x01
+   0041 C2 56 00            144 	jp	nz,00102$
+   0044 18 03               145 	jr	00114$
+   0046                     146 00113$:
+   0046 C3 56 00            147 	jp	00102$
+   0049                     148 00114$:
+                            149 ;	main.c 20
+                            150 ;	genIpush
+                            151 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0049 21 02 00            152 	ld	hl,#0x0002
+   004C E5                  153 	push	hl
+                            154 ;	genIpush
+   004D 3E 00               155 	ld	a,#0x00
+   004F F5                  156 	push	af
+   0050 33                  157 	inc	sp
+                            158 ;	genCall
+   0051 CD 00 00            159 	call	_scroll_sprite
+   0054 E8 03               160 	lda	sp,3(sp)
+                            161 ;	genLabel
+   0056                     162 00102$:
+                            163 ;	main.c 22
+                            164 ;	genCall
+                            165 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0056 CD 00 00            166 	call	_joypad
+   0059 4B                  167 	ld	c,e
+                            168 ;	genCmpEq
+                            169 ; genCmpEq: left 1, right 1, result 0
+   005A 79                  170 	ld	a,c
+   005B FE 02               171 	cp	a,#0x02
+   005D C2 72 00            172 	jp	nz,00104$
+   0060 18 03               173 	jr	00116$
+   0062                     174 00115$:
+   0062 C3 72 00            175 	jp	00104$
+   0065                     176 00116$:
+                            177 ;	main.c 24
+                            178 ;	genIpush
+                            179 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0065 21 FE 00            180 	ld	hl,#0x00FE
+   0068 E5                  181 	push	hl
+                            182 ;	genIpush
+   0069 3E 00               183 	ld	a,#0x00
+   006B F5                  184 	push	af
+   006C 33                  185 	inc	sp
+                            186 ;	genCall
+   006D CD 00 00            187 	call	_scroll_sprite
+   0070 E8 03               188 	lda	sp,3(sp)
+                            189 ;	genLabel
+   0072                     190 00104$:
+                            191 ;	main.c 26
+                            192 ;	genIpush
+                            193 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0072 21 32 00            194 	ld	hl,#0x0032
+   0075 E5                  195 	push	hl
+                            196 ;	genCall
+   0076 CD 00 00            197 	call	_delay
+   0079 E8 02               198 	lda	sp,2(sp)
+                            199 ;	genGoto
+   007B C3 3A 00            200 	jp	00106$
+                            201 ;	genLabel
+   007E                     202 00108$:
+                            203 ;	genEndFunction
+   007E E8 03               204 	lda	sp,3(sp)
+   0080 C9                  205 	ret
+   0081                     206 ___main_end:
+                            207 	.area _CODE
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 1.
+
+Symbol Table
+
+  0 ___main_end                        0081 R
+  0 ___main_start                      0000 R
+    __initrleblock                     **** GX
+    _delay                             **** GX
+    _joypad                            **** GX
+  0 _main                              0000 GR
+    _move_sprite                       **** GX
+    _scroll_sprite                     **** GX
+    _set_sprite_data                   **** GX
+    _set_sprite_tile                   **** GX
+  1 _st                                0000 GR
+
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 2.
+
+Area Table
+
+   0 _CODE                              size   81   flags 0
+   1 _DATA                              size   10   flags 0
+   2 _OVERLAY                           size    0   flags 0
+   3 _ISEG                              size    0   flags 0
+   4 _BSEG                              size    0   flags 0
+   5 _XSEG                              size    0   flags 0
+   6 _GSINIT                            size   18   flags 0
+   7 _GSFINAL                           size    0   flags 0
+   8 _HOME                              size    0   flags 0

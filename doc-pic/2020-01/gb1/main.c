@@ -19,6 +19,10 @@ void main()
         {
             scroll_sprite(0, 2, 0);
         }
+        if(joypad()==J_LEFT)
+        {
+            scroll_sprite(0, -2, 0);
+        }
         delay(50);
     }
     
