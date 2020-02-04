@@ -10,8 +10,10 @@ categories: gameboy game develop
 
 gbtd是个免费的绿色程序下载回来即可使用，macOS的用户可以通过wine来进行使用。运行GBTD后首先我们点击View选择Tile size,8x16。这里要做下解释GB的标准瓦块大小为8x8像素，但精灵特殊可以支持8x16的像素。GB的性能一个屏幕最多支持256个独立瓦块，GBC支持512个。大多游戏内一个主角都会使用掉16x16的像素来进行展示，也就是要同时控制4个瓦块，同屏幕精灵多了性能就会下降，所以我们要尽量使用8x16的精灵。
 ![gbtd](//blog.guohai.org/doc-pic/2020-02/gbtd.png)
+
 这个截图是一个我已经做好的Mario的瓦块文件，前两个坐标的是mario静止时的状态，后几个下标是mario跑起来时的瓦块。我在附录里会把这个文件放出来，大家可以直接使用。接下来我们要导出gbdk可以用的.c文件。选择File->Export to->文件类型选择gbdk，filename我们使用mario.c，Label是我们数组变量的名字，我们也写上Mario。From会导出的瓦块下标，我们写入从0到9导出10个瓦块。
 ![gbtd](//blog.guohai.org/doc-pic/2020-02/gbtd-export.png)
+
 导出后会生成一个mario.c的文件，我们打开看一下这就是我们后续要用到的瓦块。
 ~~~ c
 unsigned char mario[] =
@@ -60,6 +62,73 @@ unsigned char mario[] =
 ~~~
 
 ### 导入精灵到我们的程序中
+我们打开上节课的main.c文件，把这次的mario.c文件导入进来，并修改暂时的瓦块看一下效果。
+~~~ c
+#include <gb/gb.h>
+#include <stdio.h>
+//导入新文件进来
+#include "mario.c"
+
+
+void main()
+{
+    //使用mario数组来展示数据，并且修改导入的下标大小，按8x8计算，我们需要导入20个瓦块进来。
+    set_sprite_data(0, 20, mario);
+    set_sprite_tile(0, 0);
+    move_sprite(0, 20, 20);
+    SHOW_SPRITES;
+    while (1)
+    {
+        if(joypad()==J_RIGHT)
+        {
+            scroll_sprite(0, 2, 0);
+        }
+        if(joypad()==J_LEFT)
+        {
+            scroll_sprite(0, -2, 0);
+        }
+        delay(50);
+    }
+    
+}
+~~~
+保存文件make运行。可以看到结果在游戏界面内只显示了马里奥的左上角，其他并没有显示，但在调试程序中可以看到其它的瓦块也已经加载进来了。
+![bgb-mario](//blog.guohai.org/doc-pic/2020-02/bgb-mario.png)
+
+这是因为我们还没有告诉gbdk我们的精灵要按8x16来显示，以及我们要组成我们的马里奥还要同时显示两组瓦块，我们再次修改程序试一试。
+~~~ c
+#include <gb/gb.h>
+#include <stdio.h>
+#include "mario.c"
+
+
+void main()
+{
+    SPRITES_8x16;
+    set_sprite_data(0, 20, mario);
+    set_sprite_tile(0, 0);
+    move_sprite(0, 20, 20);
+    set_sprite_tile(1, 2);
+    move_sprite(1,20+8, 20);
+    SHOW_SPRITES;
+    while (1)
+    {
+        if(joypad()==J_RIGHT)
+        {
+            scroll_sprite(0, 2, 0);
+            scroll_sprite(1, 2, 0);
+        }
+        if(joypad()==J_LEFT)
+        {
+            scroll_sprite(0, -2, 0);
+            scroll_sprite(1, -2, 0);
+        }
+        delay(50);
+    }
+    
+}
+~~~
+![ezgif-2-a33da2875bbf.gif](//blog.guohai.org/doc-pic/2020-02/ezgif-2-a33da2875bbf.gif)
 
 ### 机器介绍
 要想做出GB下的游戏得先了解一下游戏机的基本性能。这里的GB只包含 第一代厚Gameboy,第二代超薄Gameboy Pocket,第三代最短暂的Gameboy Light,第四代Gameboy Color。再往后的GBA并不包含在内。CPU全系列均为z80cpu，只是不同的GB频率有区别。屏幕分辨率160x144像素，背景或窗体块大小8x8像素，对象/精灵块大小可以是8x8或8x16为了性能考虑建议使用8x16的块。大多游戏实际的角色都是16x16的像素块，当年的解决方案都是使用2个8x16拼接出来的，也就是每次角色的移动都要移动两组精灵。说到这里我们再来提下GB的层，GB一共有三个层分别是最下侧的背景层GB最多支持256个独立的块、GBC支持512个，再往上是精灵层也就是咱们一般放置在场景内移动的主角或敌人的层，如果使用8x8最多分别支持256/512个块。两个往上的是窗体层一般都是用来展示记分板，与背景层共用图像块。说完图像我们再来说颜色，最基本的GB是灰度的背景最多支持4级灰度，GBC支持4种颜色8种调色板，同一块上最多使用一种调色方案。

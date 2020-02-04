@@ -1,0 +1,387 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Tue Feb  4 16:45:25 2020
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module lcc44020
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _main
+                             12 	.globl _mario
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ; special function bits 
+                             18 ;--------------------------------------------------------
+                             19 ;--------------------------------------------------------
+                             20 ; internal ram data
+                             21 ;--------------------------------------------------------
+                             22 	.area _DATA
+   0000                      23 _mario::
+   0000                      24 	.ds 320
+                             25 ;--------------------------------------------------------
+                             26 ; overlayable items in internal ram 
+                             27 ;--------------------------------------------------------
+                             28 	.area _OVERLAY
+                             29 ;--------------------------------------------------------
+                             30 ; indirectly addressable internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area _ISEG
+                             33 ;--------------------------------------------------------
+                             34 ; bit data
+                             35 ;--------------------------------------------------------
+                             36 	.area _BSEG
+                             37 ;--------------------------------------------------------
+                             38 ; external ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area _XSEG
+                             41 ;--------------------------------------------------------
+                             42 ; global & static initialisations
+                             43 ;--------------------------------------------------------
+                             44 	.area _GSINIT
+                             45 	.area _GSFINAL
+                             46 	.area _GSINIT
+                             47 ;	main.c 26
+                             48 ;	main.c 31
+                             49 ;	genArrayInit
+                             50 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0000 21 00 00             51 	ld	hl,#_mario
+   0003 CD 00 00             52 	call	__initrleblock
+   0006 7F                   53 	.db	127
+   0007 07 07 0F 0F 01 0E    54 	.db	0x07, 0x07, 0x0F, 0x0F, 0x01, 0x0E, 0x0B, 0x14
+        0B 14
+   000F 09 16 07 18 07 00    55 	.db	0x09, 0x16, 0x07, 0x18, 0x07, 0x00, 0x02, 0x0F
+        02 0F
+   0017 02 1F 03 3F 37 0D    56 	.db	0x02, 0x1F, 0x03, 0x3F, 0x37, 0x0D, 0x3F, 0x07
+        3F 07
+   001F 3F 0F 0E 0E 00 1C    57 	.db	0x3F, 0x0F, 0x0E, 0x0E, 0x00, 0x1C, 0x00, 0x3C
+        00 3C
+   0027 C0 C0 F8 F8 A0 40    58 	.db	0xC0, 0xC0, 0xF8, 0xF8, 0xA0, 0x40, 0xB8, 0x40
+        B8 40
+   002F DC 20 80 78 F0 00    59 	.db	0xDC, 0x20, 0x80, 0x78, 0xF0, 0x00, 0x00, 0xC0
+        00 C0
+   0037 40 F8 C0 FC EC B0    60 	.db	0x40, 0xF8, 0xC0, 0xFC, 0xEC, 0xB0, 0xFC, 0xE0
+        FC E0
+   003F FC F0 70 70 00 38    61 	.db	0xFC, 0xF0, 0x70, 0x70, 0x00, 0x38, 0x00, 0x3C
+        00 3C
+   0047 07 07 0F 1F 00 3F    62 	.db	0x07, 0x07, 0x0F, 0x1F, 0x00, 0x3F, 0x6D, 0x12
+        6D 12
+   004F 6C 13 37 08 1C 1F    63 	.db	0x6C, 0x13, 0x37, 0x08, 0x1C, 0x1F, 0x3E, 0x31
+        3E 31
+   0057 2E 31 3E 39 1F 1F    64 	.db	0x2E, 0x31, 0x3E, 0x39, 0x1F, 0x1F, 0x11, 0x1F
+        11 1F
+   005F 00 0F 0C 5F 02 7E    65 	.db	0x00, 0x0F, 0x0C, 0x5F, 0x02, 0x7E, 0x00, 0x3C
+        00 3C
+   0067 C0 C0 F0 F0 A0 40    66 	.db	0xC0, 0xC0, 0xF0, 0xF0, 0xA0, 0x40, 0xF8, 0x00
+        F8 00
+   006F CC 30 E0 18 70 C0    67 	.db	0xCC, 0x30, 0xE0, 0x18, 0x70, 0xC0, 0xC0, 0xF8
+        C0 F8
+   0077 00 F8 00 F8 00 F0    68 	.db	0x00, 0xF8, 0x00, 0xF8, 0x00, 0xF0, 0xE0, 0xE0
+        E0 E0
+   007F E0 E0 40 C0 00 00    69 	.db	0xE0, 0xE0, 0x40, 0xC0, 0x00, 0x00, 0x00
+        00
+   0086 7F                   70 	.db	127
+   0087 00 07 07 0F 0F 01    71 	.db	0x00, 0x07, 0x07, 0x0F, 0x0F, 0x01, 0x0E, 0x0B
+        0E 0B
+   008F 14 09 16 07 18 07    72 	.db	0x14, 0x09, 0x16, 0x07, 0x18, 0x07, 0x00, 0x02
+        00 02
+   0097 07 01 1F 03 1F 01    73 	.db	0x07, 0x01, 0x1F, 0x03, 0x1F, 0x01, 0x1F, 0x13
+        1F 13
+   009F 1C 0B 0C 07 07 00    74 	.db	0x1C, 0x0B, 0x0C, 0x07, 0x07, 0x00, 0x03, 0x00
+        03 00
+   00A7 03 C0 C0 F8 F8 A0    75 	.db	0x03, 0xC0, 0xC0, 0xF8, 0xF8, 0xA0, 0x40, 0xB8
+        40 B8
+   00AF 40 DC 20 80 78 F0    76 	.db	0x40, 0xDC, 0x20, 0x80, 0x78, 0xF0, 0x00, 0x00
+        00 00
+   00B7 C0 80 E0 E0 60 F0    77 	.db	0xC0, 0x80, 0xE0, 0xE0, 0x60, 0xF0, 0xF0, 0xF0
+        F0 F0
+   00BF 70 E0 E0 00 E0 00    78 	.db	0x70, 0xE0, 0xE0, 0x00, 0xE0, 0x00, 0xF0, 0x00
+        F0 00
+   00C7 80 03 03 07 07 00    79 	.db	0x80, 0x03, 0x03, 0x07, 0x07, 0x00, 0x07, 0x05
+        07 05
+   00CF 0A 04 0B 03 0C 03    80 	.db	0x0A, 0x04, 0x0B, 0x03, 0x0C, 0x03, 0x00, 0x00
+        00 00
+   00D7 07 08 07 1C 07 07    81 	.db	0x07, 0x08, 0x07, 0x1C, 0x07, 0x07, 0x1F, 0x0F
+        1F 0F
+   00DF 1F 0E 3E 00 21 00    82 	.db	0x1F, 0x0E, 0x3E, 0x00, 0x21, 0x00, 0x01, 0x00
+        01 00
+   00E7 00 E0 E0 FC FC D0    83 	.db	0x00, 0xE0, 0xE0, 0xFC, 0xFC, 0xD0, 0x20, 0xDC
+        20 DC
+   00EF 20 EE 10 C0 3C F8    84 	.db	0x20, 0xEE, 0x10, 0xC0, 0x3C, 0xF8, 0x00, 0x48
+        00 48
+   00F7 E0 1C E0 18 E0 F0    85 	.db	0xE0, 0x1C, 0xE0, 0x18, 0xE0, 0xF0, 0xF0, 0xF0
+        F0 F0
+   00FF F0 E0 E0 00 C0 00    86 	.db	0xF0, 0xE0, 0xE0, 0x00, 0xC0, 0x00, 0xE0
+        E0
+   0106 42                   87 	.db	66
+   0107 00 00 07 07 0F 0F    88 	.db	0x00, 0x00, 0x07, 0x07, 0x0F, 0x0F, 0x01, 0x0E
+        01 0E
+   010F 0B 14 09 16 07 18    89 	.db	0x0B, 0x14, 0x09, 0x16, 0x07, 0x18, 0x07, 0x00
+        07 00
+   0117 03 3F C3 3F E2 0E    90 	.db	0x03, 0x3F, 0xC3, 0x3F, 0xE2, 0x0E, 0xCF, 0x0F
+        CF 0F
+   011F 1F 1F 3F 3F 1C 7C    91 	.db	0x1F, 0x1F, 0x3F, 0x3F, 0x1C, 0x7C, 0x00, 0x70
+        00 70
+   0127 00 38 C0 C0 F8 F8    92 	.db	0x00, 0x38, 0xC0, 0xC0, 0xF8, 0xF8, 0xA0, 0x40
+        A0 40
+   012F B8 40 DC 20 80 78    93 	.db	0xB8, 0x40, 0xDC, 0x20, 0x80, 0x78, 0xF0, 0x00
+        F0 00
+   0137 00 C0 8E F0 E6 F8    94 	.db	0x00, 0xC0, 0x8E, 0xF0, 0xE6, 0xF8, 0xE0, 0xE4
+        E0 E4
+   013F F0 FC F0 FC 70 7C    95 	.db	0xF0, 0xFC, 0xF0, 0xFC, 0x70, 0x7C, 0x00, 0x00
+        00 00
+   0147 00 00                96 	.db	0x00, 0x00
+   0149 00                   97 	.db	0
+                             98 ;--------------------------------------------------------
+                             99 ; Home
+                            100 ;--------------------------------------------------------
+                            101 	.area _HOME
+                            102 	.area _CODE
+                            103 ;--------------------------------------------------------
+                            104 ; code
+                            105 ;--------------------------------------------------------
+                            106 	.area _CODE
+                            107 ;	main.c 6
+                            108 ;	genLabel
+                            109 ;	genFunction
+                            110 ;	---------------------------------
+                            111 ; Function main
+                            112 ; ---------------------------------
+   0000                     113 ___main_start:
+   0000                     114 _main:
+   0000 E8 FD               115 	lda	sp,-3(sp)
+                            116 ;	main.c 8
+                            117 ;	genAssign
+   0002 01 40 FF            118 	ld	bc,#0xFF40
+                            119 ;	genAssign
+                            120 ;	AOP_STK for _main_sloc0_1_0
+   0005 F8 01               121 	lda	hl,1(sp)
+   0007 36 40               122 	ld	(hl),#0x40
+   0009 23                  123 	inc	hl
+   000A 36 FF               124 	ld	(hl),#0xFF
+                            125 ;	genPointerGet
+                            126 ;	AOP_STK for _main_sloc0_1_0
+                            127 ;	AOP_STK for _main_sloc1_1_0
+   000C 2B                  128 	dec	hl
+   000D 5E                  129 	ld	e,(hl)
+   000E 23                  130 	inc	hl
+   000F 56                  131 	ld	d,(hl)
+   0010 1A                  132 	ld	a,(de)
+   0011 2B                  133 	dec	hl
+   0012 2B                  134 	dec	hl
+                            135 ;	genOr
+                            136 ;	AOP_STK for _main_sloc1_1_0
+   0013 77                  137 	ld      (hl),a
+                            138 ; Removed redundent load
+   0014 F6 04               139 	or	a,#0x04
+                            140 ;	genAssign (pointer)
+   0016 02                  141 	ld	(bc),a
+                            142 ;	main.c 9
+                            143 ;	genIpush
+                            144 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0017 21 00 00            145 	ld	hl,#_mario
+   001A E5                  146 	push	hl
+                            147 ;	genIpush
+   001B 21 00 14            148 	ld	hl,#0x1400
+   001E E5                  149 	push	hl
+                            150 ;	genCall
+   001F CD 00 00            151 	call	_set_sprite_data
+   0022 E8 04               152 	lda	sp,4(sp)
+                            153 ;	main.c 10
+                            154 ;	genIpush
+                            155 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0024 21 00 00            156 	ld	hl,#0x0000
+   0027 E5                  157 	push	hl
+                            158 ;	genCall
+   0028 CD 00 00            159 	call	_set_sprite_tile
+   002B E8 02               160 	lda	sp,2(sp)
+                            161 ;	main.c 11
+                            162 ;	genIpush
+                            163 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   002D 21 14 14            164 	ld	hl,#0x1414
+   0030 E5                  165 	push	hl
+                            166 ;	genIpush
+   0031 3E 00               167 	ld	a,#0x00
+   0033 F5                  168 	push	af
+   0034 33                  169 	inc	sp
+                            170 ;	genCall
+   0035 CD 00 00            171 	call	_move_sprite
+   0038 E8 03               172 	lda	sp,3(sp)
+                            173 ;	main.c 12
+                            174 ;	genIpush
+                            175 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   003A 21 01 02            176 	ld	hl,#0x0201
+   003D E5                  177 	push	hl
+                            178 ;	genCall
+   003E CD 00 00            179 	call	_set_sprite_tile
+   0041 E8 02               180 	lda	sp,2(sp)
+                            181 ;	main.c 13
+                            182 ;	genIpush
+                            183 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0043 21 1C 14            184 	ld	hl,#0x141C
+   0046 E5                  185 	push	hl
+                            186 ;	genIpush
+   0047 3E 01               187 	ld	a,#0x01
+   0049 F5                  188 	push	af
+   004A 33                  189 	inc	sp
+                            190 ;	genCall
+   004B CD 00 00            191 	call	_move_sprite
+   004E E8 03               192 	lda	sp,3(sp)
+                            193 ;	main.c 14
+                            194 ;	genAssign
+   0050 01 40 FF            195 	ld	bc,#0xFF40
+                            196 ;	genAssign
+                            197 ;	AOP_STK for _main_sloc0_1_0
+   0053 F8 01               198 	lda	hl,1(sp)
+   0055 36 40               199 	ld	(hl),#0x40
+   0057 23                  200 	inc	hl
+   0058 36 FF               201 	ld	(hl),#0xFF
+                            202 ;	genPointerGet
+                            203 ;	AOP_STK for _main_sloc0_1_0
+                            204 ;	AOP_STK for _main_sloc1_1_0
+   005A 2B                  205 	dec	hl
+   005B 5E                  206 	ld	e,(hl)
+   005C 23                  207 	inc	hl
+   005D 56                  208 	ld	d,(hl)
+   005E 1A                  209 	ld	a,(de)
+   005F 2B                  210 	dec	hl
+   0060 2B                  211 	dec	hl
+                            212 ;	genOr
+                            213 ;	AOP_STK for _main_sloc1_1_0
+   0061 77                  214 	ld      (hl),a
+                            215 ; Removed redundent load
+   0062 F6 02               216 	or	a,#0x02
+                            217 ;	genAssign (pointer)
+   0064 02                  218 	ld	(bc),a
+                            219 ;	main.c 15
+                            220 ;	genLabel
+   0065                     221 00106$:
+                            222 ;	main.c 17
+                            223 ;	genCall
+                            224 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0065 CD 00 00            225 	call	_joypad
+   0068 4B                  226 	ld	c,e
+                            227 ;	genCmpEq
+                            228 ; genCmpEq: left 1, right 1, result 0
+   0069 79                  229 	ld	a,c
+   006A FE 01               230 	cp	a,#0x01
+   006C C2 8E 00            231 	jp	nz,00102$
+   006F 18 03               232 	jr	00114$
+   0071                     233 00113$:
+   0071 C3 8E 00            234 	jp	00102$
+   0074                     235 00114$:
+                            236 ;	main.c 19
+                            237 ;	genIpush
+                            238 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0074 21 02 00            239 	ld	hl,#0x0002
+   0077 E5                  240 	push	hl
+                            241 ;	genIpush
+   0078 3E 00               242 	ld	a,#0x00
+   007A F5                  243 	push	af
+   007B 33                  244 	inc	sp
+                            245 ;	genCall
+   007C CD 00 00            246 	call	_scroll_sprite
+   007F E8 03               247 	lda	sp,3(sp)
+                            248 ;	main.c 20
+                            249 ;	genIpush
+                            250 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0081 21 02 00            251 	ld	hl,#0x0002
+   0084 E5                  252 	push	hl
+                            253 ;	genIpush
+   0085 3E 01               254 	ld	a,#0x01
+   0087 F5                  255 	push	af
+   0088 33                  256 	inc	sp
+                            257 ;	genCall
+   0089 CD 00 00            258 	call	_scroll_sprite
+   008C E8 03               259 	lda	sp,3(sp)
+                            260 ;	genLabel
+   008E                     261 00102$:
+                            262 ;	main.c 22
+                            263 ;	genCall
+                            264 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   008E CD 00 00            265 	call	_joypad
+   0091 4B                  266 	ld	c,e
+                            267 ;	genCmpEq
+                            268 ; genCmpEq: left 1, right 1, result 0
+   0092 79                  269 	ld	a,c
+   0093 FE 02               270 	cp	a,#0x02
+   0095 C2 B7 00            271 	jp	nz,00104$
+   0098 18 03               272 	jr	00116$
+   009A                     273 00115$:
+   009A C3 B7 00            274 	jp	00104$
+   009D                     275 00116$:
+                            276 ;	main.c 24
+                            277 ;	genIpush
+                            278 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   009D 21 FE 00            279 	ld	hl,#0x00FE
+   00A0 E5                  280 	push	hl
+                            281 ;	genIpush
+   00A1 3E 00               282 	ld	a,#0x00
+   00A3 F5                  283 	push	af
+   00A4 33                  284 	inc	sp
+                            285 ;	genCall
+   00A5 CD 00 00            286 	call	_scroll_sprite
+   00A8 E8 03               287 	lda	sp,3(sp)
+                            288 ;	main.c 25
+                            289 ;	genIpush
+                            290 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   00AA 21 FE 00            291 	ld	hl,#0x00FE
+   00AD E5                  292 	push	hl
+                            293 ;	genIpush
+   00AE 3E 01               294 	ld	a,#0x01
+   00B0 F5                  295 	push	af
+   00B1 33                  296 	inc	sp
+                            297 ;	genCall
+   00B2 CD 00 00            298 	call	_scroll_sprite
+   00B5 E8 03               299 	lda	sp,3(sp)
+                            300 ;	genLabel
+   00B7                     301 00104$:
+                            302 ;	main.c 27
+                            303 ;	genIpush
+                            304 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   00B7 21 32 00            305 	ld	hl,#0x0032
+   00BA E5                  306 	push	hl
+                            307 ;	genCall
+   00BB CD 00 00            308 	call	_delay
+   00BE E8 02               309 	lda	sp,2(sp)
+                            310 ;	genGoto
+   00C0 C3 65 00            311 	jp	00106$
+                            312 ;	genLabel
+   00C3                     313 00108$:
+                            314 ;	genEndFunction
+   00C3 E8 03               315 	lda	sp,3(sp)
+   00C5 C9                  316 	ret
+   00C6                     317 ___main_end:
+                            318 	.area _CODE
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 1.
+
+Symbol Table
+
+  0 ___main_end                        00C6 R
+  0 ___main_start                      0000 R
+    __initrleblock                     **** GX
+    _delay                             **** GX
+    _joypad                            **** GX
+  0 _main                              0000 GR
+  1 _mario                             0000 GR
+    _move_sprite                       **** GX
+    _scroll_sprite                     **** GX
+    _set_sprite_data                   **** GX
+    _set_sprite_tile                   **** GX
+
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 2.
+
+Area Table
+
+   0 _CODE                              size   C6   flags 0
+   1 _DATA                              size  140   flags 0
+   2 _OVERLAY                           size    0   flags 0
+   3 _ISEG                              size    0   flags 0
+   4 _BSEG                              size    0   flags 0
+   5 _XSEG                              size    0   flags 0
+   6 _GSINIT                            size  14A   flags 0
+   7 _GSFINAL                           size    0   flags 0
+   8 _HOME                              size    0   flags 0
