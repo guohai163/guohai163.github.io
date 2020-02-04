@@ -108,3 +108,7 @@ clean:
 ![run demo](//blog.guohai.org/doc-pic/2020-01/demo.gif)
 
 第一课就到这里我们只是搭建了构建环境，后续课程会进行详细的讲解。
+
+### 参考资料
+* [gbdk官网](http://gbdk.sourceforge.net/)
+* [gbdk mac版本](http://static.guohai.org/gbdk-mac.zip)
