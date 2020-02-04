@@ -133,6 +133,7 @@ void main()
 }
 ~~~
 `make`我们来实验下效果。
+
 ![ezgif-2-a33da2875bbf.gif](//blog.guohai.org/doc-pic/2020-02/ezgif-2-a33da2875bbf.gif)
 
 目前我们的马里奥还是在屏幕上硬飘，没有跑起来怎么办？
@@ -207,9 +208,9 @@ void main()
 `make`运行，这次我们烧录到卡带用真机试试效果。
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KcWVf_MBNDg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-可以看到我们的马里奥奔跑的起来，但是向左跑的时候人物并没有转向。最笨的方法是编辑瓦块的时候再做3针向左的动画出来，但这样会大量占用我们宝贵的存储空间。怎么办？
+可以看到我们的马里奥奔跑起来了，但是向左跑的时候人物并没有转向。最笨的方法是编辑瓦块的时候再做3针向左的动画出来，但这样会大量占用我们宝贵的存储空间。怎么办？
 
-下一课我们会讲解精灵进阶，如果实现两个方向的跑动，又不需要重复画瓦块。并会产生一个方便使用的Role类，来操作复杂的精灵。同时我们还会讲解GBC上的上色方案“调色板”。
+下一课我们会讲解精灵进阶，如何实现两个方向的跑动，又不需要重复画瓦块。并会产生一个方便使用的Role类，来操作复杂的精灵。同时我们还会讲解GBC上的上色方案“调色板”。
 
 ### 附注
 * [程序中用到的马里奥文件](//blog.guohai.org/doc-pic/2020-02/mario.gbr)
