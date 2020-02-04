@@ -104,17 +104,21 @@ void main()
 
 void main()
 {
+    //设置精灵为8x16
     SPRITES_8x16;
     set_sprite_data(0, 20, mario);
     set_sprite_tile(0, 0);
     move_sprite(0, 20, 20);
+    //设置精灵1，从下标2开始
     set_sprite_tile(1, 2);
+    //移动右半部分到正确的位置
     move_sprite(1,20+8, 20);
     SHOW_SPRITES;
     while (1)
     {
         if(joypad()==J_RIGHT)
         {
+            //每次移动要两个精灵同时移动，否则马里奥会分体。这也是刚说的为什么如果使用大像素人物尽量使用8x16的精灵
             scroll_sprite(0, 2, 0);
             scroll_sprite(1, 2, 0);
         }
@@ -128,27 +132,85 @@ void main()
     
 }
 ~~~
+`make`我们来实验下效果。
 ![ezgif-2-a33da2875bbf.gif](//blog.guohai.org/doc-pic/2020-02/ezgif-2-a33da2875bbf.gif)
 
-### 机器介绍
-要想做出GB下的游戏得先了解一下游戏机的基本性能。这里的GB只包含 第一代厚Gameboy,第二代超薄Gameboy Pocket,第三代最短暂的Gameboy Light,第四代Gameboy Color。再往后的GBA并不包含在内。CPU全系列均为z80cpu，只是不同的GB频率有区别。屏幕分辨率160x144像素，背景或窗体块大小8x8像素，对象/精灵块大小可以是8x8或8x16为了性能考虑建议使用8x16的块。大多游戏实际的角色都是16x16的像素块，当年的解决方案都是使用2个8x16拼接出来的，也就是每次角色的移动都要移动两组精灵。说到这里我们再来提下GB的层，GB一共有三个层分别是最下侧的背景层GB最多支持256个独立的块、GBC支持512个，再往上是精灵层也就是咱们一般放置在场景内移动的主角或敌人的层，如果使用8x8最多分别支持256/512个块。两个往上的是窗体层一般都是用来展示记分板，与背景层共用图像块。说完图像我们再来说颜色，最基本的GB是灰度的背景最多支持4级灰度，GBC支持4种颜色8种调色板，同一块上最多使用一种调色方案。
-![gameboy layer](//blog.guohai.org/doc-pic/2020-01/gb_layer.png)
+目前我们的马里奥还是在屏幕上硬飘，没有跑起来怎么办？
 
-
-以上的讲解太抽象我们来看一个实例：
-
-![Pokémon Gold Version](//blog.guohai.org/doc-pic/2020-01/pokemon_gold.png)
-
-这是一个宝可梦金的截图，为了便于初期理解我去掉了调色板，左上角的框是屏幕内可以看到的范围，可以看到是由20x18个块(Tile)组成，其中每个块内有8x8个像素点。合起来也就是160x144个像素。那么每个视图内可以显示20x18也就是360个块已经超过了GB的256个限制是怎么解决的呢，答案是重复利用。仔细看画面里是大量重复的色块，组成色块的数组我们叫做map,map数组里标记的就是每一个色块的下标。
+### 马里奥跑起来吧
+让马里奥跑起来其实要做的就是不停的切动画，边看代码边看注释。
 ~~~ c
-unsigned char rcmap[] =
+#include <gb/gb.h>
+#include <stdio.h>
+#include "mario.c"
+//设置一个全局变量循环动画
+UINT8 run_index = 0;
+
+void main()
 {
-  0x0D,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,
-  0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x0F,
-  0x12,0x00,0x01,0x09,0x08,0x02,0x0B,0x01,0x02,0x0C,
-  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x12,
-  0x0E,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,
-  0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x10
-};
+    SPRITES_8x16;
+    set_sprite_data(0, 20, mario);
+    set_sprite_tile(0, 0);
+    move_sprite(0, 20, 20);
+    set_sprite_tile(1, 2);
+    move_sprite(1,20+8, 20);
+    SHOW_SPRITES;
+    while (1)
+    {
+        if(joypad()==J_RIGHT)
+        {
+            //每次动态修改要展示的瓦块下标
+            set_sprite_tile(0, (run_index+4)*2);
+            set_sprite_tile(1, (run_index+4)*2+2);
+
+            scroll_sprite(0, 2, 0);
+            scroll_sprite(1, 2, 0);
+            //当循环到达上限时重置到0
+            if(run_index==4)
+            {
+                run_index = 0;
+            }
+            else
+            {
+                run_index+=2;
+            }
+            
+        }
+        else if(joypad()==J_LEFT)
+        {
+            set_sprite_tile(0, (run_index+4)*2);
+            set_sprite_tile(1, (run_index+4)*2+2);
+
+            scroll_sprite(0, -2, 0);
+            scroll_sprite(1, -2, 0);
+
+            if(run_index==4)
+            {
+                run_index = 0;
+            }
+            else
+            {
+                run_index+=2;
+            }
+        }
+        else 
+        {
+            //当人物静止时恢复静止状体
+            set_sprite_tile(0, 0);
+            set_sprite_tile(1, 2);
+        }
+        delay(80);
+    }
+    
+}
 ~~~
-是的当年的8位机就是这么多的限制，好处就是游戏在画面上没法有太大的提升下各公司会理解注重游戏性和乐趣。以及不需要太复杂美术、建模几人的小团队也能做出很棒的游戏，可惜中国在2000年时放出了游戏禁令，错过了这个机会，即使今天在家用机上中国还可以说是空白。目前所有公司都希望在手游上可以实现弯道超车。
+`make`运行，这次我们烧录到卡带用真机试试效果。
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KcWVf_MBNDg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+可以看到我们的马里奥奔跑的起来，但是向左跑的时候人物并没有转向。最笨的方法是编辑瓦块的时候再做3针向左的动画出来，但这样会大量占用我们宝贵的存储空间。怎么办？
+
+下一课我们会讲解精灵进阶，如果实现两个方向的跑动，又不需要重复画瓦块。并会产生一个方便使用的Role类，来操作复杂的精灵。同时我们还会讲解GBC上的上色方案“调色板”。
+
+### 附注
+* [程序中用到的马里奥文件](//blog.guohai.org/doc-pic/2020-02/mario.gbr)
+* 为了剪短文章的长度，每次示例代码只有新增部分有注释，实际开发中请写清所有注释。
