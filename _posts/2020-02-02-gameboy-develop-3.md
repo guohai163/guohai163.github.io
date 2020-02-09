@@ -4,32 +4,32 @@ title:  "Gameboy游戏开发-精灵高阶"
 date:   2020-02-04 04:02:02
 categories: gameboy game develop
 --- 
-上节课聊到了精灵的反向问题，GB因为卡带容量的限制不可能每表方向都画，一般ACT类游戏只需要一个侧面，另一个方向时是通过瓦块的镜像的来实现的。我们使用的gbdk类库提供了一个`set_sprite_prop`方法看文档可以知道，改方法会接收一个8位的值，其中第5位为1时对应的精灵会做水平翻转。我们来看一下例子。
+上节课聊到了精灵的反向问题，GB因为卡带容量的限制不可能每个方向都单独制作，一般ACT类游戏只需要一个侧面，另一个方向是通过瓦块的镜像的来实现的。我们使用的gbdk类库提供了一个`set_sprite_prop`方法，看文档该方法会接收一个8位的值，其中第5位为1时对应的精灵会做水平翻转。我们来看一下例子。
 
 ### 精灵的水平翻转
 我们还是用上节课的例子来继续修改，我们的精灵当时做的是向右侧的。现在我们来修改一下当摇杆操作向左的时候进行镜像操作。
 ~~~ c
-        else if(joypad()==J_LEFT)
-        {
-            set_sprite_tile(0, (run_index+4)*2);
-            set_sprite_tile(1, (run_index+4)*2+2);
+else if(joypad()==J_LEFT)
+{
+    set_sprite_tile(0, (run_index+4)*2);
+    set_sprite_tile(1, (run_index+4)*2+2);
 
-            //向左走时，水平镜像精灵。因为我们的角色是两个精灵拼合出来的，所以需要分别进行镜像。
-            set_sprite_prop(0, S_FLIPX);
-            set_sprite_prop(1, S_FLIPX);
+    //向左走时，水平镜像精灵。因为我们的角色是两个精灵拼合出来的，所以需要分别进行镜像。
+    set_sprite_prop(0, S_FLIPX);
+    set_sprite_prop(1, S_FLIPX);
 
-            scroll_sprite(0, -2, 0);
-            scroll_sprite(1, -2, 0);
+    scroll_sprite(0, -2, 0);
+    scroll_sprite(1, -2, 0);
 
-            if(run_index==4)
-            {
-                run_index = 0;
-            }
-            else
-            {
-                run_index+=2;
-            }
-        }
+    if(run_index==4)
+    {
+        run_index = 0;
+    }
+    else
+    {
+        run_index+=2;
+    }
+}
 ~~~
 
 运行看看效果，人物被镜像了。但.....恩对我们是原地镜像的。所以左右侧两个精灵没有调整位置。
@@ -60,9 +60,9 @@ struct GameRole
     //精灵的x坐标
     UINT8 x;
     //精灵的y坐标
-	UINT8 y;
+	  UINT8 y;
     //精灵的面部朝向
-    //1上，2右，3下，4左。我们这次只用左右和即可
+    //1上，2右，3下，4左。我们这次只用左右方向即可
     UINT8 direction;
 };
 
@@ -192,7 +192,7 @@ void main()
 
 ~~~
 
-这会咱们的main方法重构完更简洁了。因为我们增加了一个类文件进来，在make前，我们还要修改下Makefile文件。
+这会儿咱们的main方法重构完更简洁了。因为我们增加了一个类文件进来，在make前，我们还要修改下Makefile文件。
 
 ~~~ Makefile
 CC = /opt/gbdk/bin/lcc -Wa-l -Wl-m -Wl-j
