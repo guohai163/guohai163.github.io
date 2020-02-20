@@ -66,7 +66,7 @@
 #define marioCGBPal2c0 6076
 #define marioCGBPal2c1 2783
 #define marioCGBPal2c2 6574
-#define marioCGBPal2c3 704
+#define marioCGBPal2c3 32767
 
 /* Gameboy Color palette 3 */
 #define marioCGBPal3c0 6076

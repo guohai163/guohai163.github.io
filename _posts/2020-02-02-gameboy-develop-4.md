@@ -58,7 +58,7 @@ clean:
 ~~~
 
 ### 为我们的人物上色
-先看一下我们需要用到的两个函数，`void 	set_sprite_palette (UINT8 first_palette, UINT8 nb_palettes, UINT16 *rgb_data)` 该方法可以把我们的配置好的调色板方案加载到内存中，第三个参数是要加载的数组，第一个参数是数组的的起始位置，第二个参数是要加载的大小。`void set_sprite_prop (UINT8 nb, UINT8 prop)`第二个方法是给们的指定精灵使用哪一个调色方案。第二参数是一个复合属性。我们来看一下表格
+先看一下我们需要用到的两个函数，`void 	set_sprite_palette (UINT8 first_palette, UINT8 nb_palettes, UINT16 *rgb_data)` 该方法可以把我们的配置好的调色板方案加载到内存中，第三个参数是要加载的数组，第一个参数是数组的的起始位置，第二个参数是要加载的大小。第二个方法`void set_sprite_prop (UINT8 nb, UINT8 prop)`在上一节课的精灵翻转时就有用过，但没有细讲第二参数的具体含义。第二参数是一个复合属性。我们来看一下表格：
 
 |  位   | 7  | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |  ----  | ----  |----  |----  |----  |----  |----  |----  |
@@ -66,3 +66,50 @@ clean:
 | 0  | 在前 | 不翻转 | 不翻转 | 单色调色板0 | 使用块0 | 0 | 0 | 0 | 
 | 1 | 在后 | 进行翻转 | 进行翻转 | 单色调色板1 | 使用块1 | 1 | 1 | 1 |
 
+上一节课我们用的是第5位按X轴翻转，这次我们要用的是低三位。通过计算我们可以知道3位最多能表示8种颜色，这也是为什么在GBTD里我们只能配置8种调色方案。现在我们来看一下具体的实现方案。我们继续在之前课程的基础上进行修改。我省略了之前课程的代码，更全的代码我会放在课程结尾。
+~~~ c
+//首先我们创建set_sprite_palette方法要用到的数组
+const UWORD spritepalette[] = {
+    marioCGBPal1c0,
+    marioCGBPal1c1,
+    marioCGBPal1c2,
+    marioCGBPal1c3
+};
+void initRole(UINT8 x, UINT8 y) 
+{
+    //TODO 省略部分代码
+    //设置精灵使用
+    set_sprite_prop(0,0x00u);
+    set_sprite_prop(1,0x00u);
+}
+void mian()
+{
+    //TODO 省略部分代码
+    //引入调色板数据
+    set_sprite_palette(0, 1, spritepalette);
+}
+~~~
+打开我们的game_role.c文件，将之前的set_sprite_prop方法进行一下修改
+~~~ c
+    if(x<character->x && character->direction==2) {
+        //向左移动
+        set_sprite_prop(character->spritids[0], get_sprite_prop(character->spritids[0]) | 0x20u);
+        set_sprite_prop(character->spritids[1], get_sprite_prop(character->spritids[1]) | 0x20u);
+        character->direction = 4;
+    }
+
+    if(x>character->x && character->direction == 4) {
+        //向右移动
+        set_sprite_prop(character->spritids[0],get_sprite_prop(character->spritids[0]) & 0xdfu);
+        set_sprite_prop(character->spritids[1],get_sprite_prop(character->spritids[1]) & 0xdfu);
+        character->direction = 2;
+    }
+~~~
+
+`make`来重新编译运行我们的项目。DEMO中还实现了马里奥大叔的无敌功能，大家考虑下如何实现？
+
+![mario-color.gif](//blog.guohai.org/doc-pic/2020-02/mario-color.gif)
+
+
+### 资料
+* [源码下载](//blog.guohai.org/doc-pic/2020-02/gb4.zip)
