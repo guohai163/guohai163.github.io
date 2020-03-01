@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "远程办公如果全局连回公司网络"
+title:  "远程办公如何全局连回公司网络"
 date:   2020-02-07 04:02:02
 categories: 2019-nCov china telecommuting
 ---
