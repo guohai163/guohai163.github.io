@@ -13,7 +13,7 @@ categories: gameboy game develop
 ### 给我们的Mario一个奔跑的平台
 首先打开我们的GBTD先画出我们的背景里的平地，然后保存为`background.gbr`。注意做为背景用的瓦块文件下标0的一定要是空白的，下标0的瓦块会做为后续背景的默认瓦块来使用。
 
-![background](//blog.guohai.org/doc-pic/2020-01/gbtd-background.png)
+![background](//blog.guohai.org/doc-pic/2020-03/gbtd-background.png)
 
 接下来打开我们的新工具GBMB，选择`File->Map properties`把我们的背景大小先设置为20和18，并加载刚刚保存的`background.gbr`文件，我们在第14行循环的把做好的4个背景瓦块分别添加上去。
 
