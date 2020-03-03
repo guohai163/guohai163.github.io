@@ -3,6 +3,9 @@
 #include "game_role.h"
 #include "mario.h"
 
+#include "background.h"
+#include "mario_bg.h"
+
 
 UINT8 run_index = 0;
 BOOLEAN falsh_switch = FALSE;
@@ -26,6 +29,13 @@ const UWORD spritepalette[] = {
     marioCGBPal3c1,
     marioCGBPal3c2,
     marioCGBPal3c3
+};
+
+const UWORD bkgpalette[] = {
+    marioCGBPal0c0,
+    marioCGBPal0c1,
+    marioCGBPal0c2,
+    marioCGBPal0c3
 };
 
 /**
@@ -59,6 +69,13 @@ void main()
     set_sprite_palette(0, 3, spritepalette);
     initRole(28,112);
     SHOW_SPRITES;
+
+    //设置背景瓦块
+    set_bkg_data(0,23,bg);
+    set_bkg_tiles(0,0,marioBgWidth,marioBgHeight,marioBg);
+    set_bkg_palette(0, 1, bkgpalette);
+    SHOW_BKG;
+    DISPLAY_ON;
     while (1)
     {
         if(joypad()==J_RIGHT)

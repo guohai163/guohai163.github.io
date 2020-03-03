@@ -1,6 +1,6 @@
 /*
 
- MARIO_BACKGROUND.C
+ MARIO_BG.C
 
  Map Source File.
 
@@ -8,7 +8,7 @@
    Section       : 
    Bank          : 0
    Map size      : 20 x 18
-   Tile set      : Z:\Users\guohai\Developer\git-work\guohai163.github.io\doc-pic\2020-03\backgound.gbr
+   Tile set      : D:\Develop\GameboyProject\gb5\backgound.gbr
    Plane count   : 1 plane (8 bits)
    Plane order   : Tiles are continues
    Tile offset   : 0
@@ -18,11 +18,11 @@
 
 */
 
-#define mariobackgroundWidth 20
-#define mariobackgroundHeight 18
-#define mariobackgroundBank 0
+#define marioBgWidth 20
+#define marioBgHeight 18
+#define marioBgBank 0
 
-unsigned char mariobackground[] =
+unsigned char marioBg[] =
 {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -62,4 +62,4 @@ unsigned char mariobackground[] =
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
 
-/* End of MARIO_BACKGROUND.C */
+/* End of MARIO_BG.C */

@@ -17,5 +17,33 @@ categories: gameboy game develop
 
 接下来打开我们的新工具GBMB，选择`File->Map properties`把我们的背景大小先设置为20和18，并加载刚刚保存的`background.gbr`文件，我们在第14行循环的把做好的4个背景瓦块分别添加上去。
 
-160×144 
-20  18
+![bg-gdmb](//blog.guohai.org/doc-pic/2020-03/bg-gdmb.png)
+
+接下来我们进行导出操作，选择 `File->Export to` `Standard`标签下没有什么特别的选好路径即可，我们在`Location Format`标签下要选为`Tile number`为7bit，并在Plane count下选为1 Plane(8 bits)。详细的可以看图
+
+![bg-export](//blog.guohai.org/doc-pic/2020-03/gdmb-export.png)
+
+现在我们手里应该有两对背景.c.h文件，分别是gbtd和gbmb产生的。
+
+### 编译我们的项目
+在我们上节课的例子里的main方法中加入如下代码,这里要注意因为上节课我们把ROM已经编译成了CGB的，所以 我们今天加背景的时候也要加上调色方案，否则背景不会显示出来。
+
+~~~ c
+    //设置背景数据源
+    set_bkg_data(0,23,bg);
+    //加载背景数据
+    set_bkg_tiles(0,0,marioBgWidth,marioBgHeight,marioBg);
+    //加载背景配色方案
+    set_bkg_palette(0, 1, bkgpalette);
+    //调用显示背景方法
+    SHOW_BKG;
+~~~
+
+`make run`
+
+![color-bkg.gif](//blog.guohai.org/doc-pic/2020-03/color-bkg.gif)
+
+
+### 源码下载
+
+* [彩色背景源码](//blog.guohai.org/doc-pic/2020-03/gb5.zip)
