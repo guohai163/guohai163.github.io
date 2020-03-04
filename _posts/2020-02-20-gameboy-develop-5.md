@@ -19,7 +19,7 @@ categories: gameboy game develop
 
 ![bg-gdmb](//blog.guohai.org/doc-pic/2020-03/bg-gdmb.png)
 
-接下来我们进行导出操作，选择 `File->Export to` `Standard`标签下没有什么特别的选好路径即可，我们在`Location Format`标签下要选为`Tile number`为7bit，并在Plane count下选为1 Plane(8 bits)。详细的可以看图
+接下来我们进行导出操作，选择 `File->Export to` `Standard`标签下没有什么特别的选好路径即可，我们在Location Format标签下要新增一个Tile number属性并把Bits设置为8bit，在`Map Layout`下我们选为按`Rows`进行排列   在`Plane count`下选为`1 Plane(8 bits)`。详细的可以看图
 
 ![bg-export](//blog.guohai.org/doc-pic/2020-03/gdmb-export.png)
 
