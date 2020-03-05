@@ -1,0 +1,168 @@
+; no$gmb format .sym file
+; Generated automagically by ASxxxx linker V01.75 (SDK 3.0.0)
+; Area: .  .ABS.
+00:0000 s__HEADER
+00:0000 .init
+00:0200 s__CODE
+00:099E s__HOME
+00:0B71 s__BASE
+00:0DDB s__LIT
+00:0DDB s__GSINIT
+00:1195 s__GSINITTAIL
+00:1196 s__GSFINAL
+00:C000 .OAM
+00:C0A0 s__DATA
+00:C878 s__BSS
+00:C8D4 s__HEAP
+00:C8D4 s__BSEG
+00:C8D4 s__ISEG
+00:C8D4 s__XSEG
+00:C8D4 s__OVERLAY
+00:E000 .STACK
+00:FF80 .refresh_OAM
+; Area: _CODE
+00:0200 _initRole
+00:02F4 _spritepalette
+00:030C _bkgpalette
+00:0324 _main
+00:052B _movegamecharacter
+00:07E1 _set_bkg_palette_entry
+00:0809 _set_sprite_palette_entry
+00:0831 _cpu_slow
+00:084C _cpu_fast
+00:0853 _cgb_compatibility
+00:089C __divschar_rrx_s
+00:08A3 __divschar_rrx_hds
+00:08AA __modschar_rrx_s
+00:08B1 __modschar_rrx_hds
+00:08B6 __divsint_rrx_s
+00:08C2 __divsint_rrx_hds
+00:08CA __modsint_rrx_s
+00:08D6 __modsint_rrx_hds
+00:08DC __divuchar_rrx_s
+00:08E3 __divuchar_rrx_hds
+00:08EA __moduchar_rrx_s
+00:08F1 __moduchar_rrx_hds
+00:08F6 __divuint_rrx_s
+00:0902 __divuint_rrx_hds
+00:090A __moduint_rrx_s
+00:0916 __moduint_rrx_hds
+00:091C .mod8
+00:091C .div8
+00:0924 .mod16
+00:0924 .div16
+00:095E .modu8
+00:095E .divu8
+00:0961 .modu16
+00:0961 .divu16
+; Area: _HEADER
+00:01D2 _exit
+; Area: _HOME
+00:099E .set_mode
+00:09AE .remove_VBL
+00:09B4 .remove_LCD
+00:09BA .remove_TIM
+00:09C0 .remove_SIO
+00:09C6 .remove_JOY
+00:09CC .add_VBL
+00:09D2 .add_LCD
+00:09D8 .add_TIM
+00:09DE .add_SIO
+00:09E4 .add_JOY
+00:09EA .remove_int
+00:0A0A .add_int
+00:0A26 .wait_vbl_done
+00:0A26 _wait_vbl_done
+00:0A3D _display_off
+00:0A3D .display_off
+00:0A5E .serial_IO
+00:0A8D _mode
+00:0A96 _get_mode
+00:0A9B _enable_interrupts
+00:0A9D _disable_interrupts
+00:0A9F _reset
+00:0A9F .reset
+00:0AA5 _set_interrupts
+00:0AB0 _remove_VBL
+00:0ABB _remove_LCD
+00:0AC6 _remove_TIM
+00:0AD1 _remove_SIO
+00:0ADC _remove_JOY
+00:0AE7 _add_VBL
+00:0AF2 _add_LCD
+00:0AFD _add_TIM
+00:0B08 _add_SIO
+00:0B13 _add_JOY
+00:0B1E _clock
+00:0B27 __printTStates
+00:0B28 banked_call
+00:0B41 banked_ret
+00:0B4A __initrleblock
+; Area: _BASE
+00:0B71 .set_sprite_prop
+00:0B7E _set_sprite_prop
+00:0B89 .mv_sprite
+00:0B98 _move_sprite
+00:0BA5 _set_bkg_palette
+00:0BD0 _set_sprite_palette
+00:0BFB _set_win_data
+00:0BFB _set_bkg_data
+00:0C48 _set_sprite_data
+00:0C77 .padup
+00:0C77 _waitpadup
+00:0C87 .jpad
+00:0CB4 .wait_pad
+00:0CBB _joypad
+00:0CC0 _waitpad
+00:0CCA .set_sprite_tile
+00:0CD7 _set_sprite_tile
+00:0CE2 .delay
+00:0D1C _delay
+00:0D25 .get_sprite_prop
+00:0D32 _get_sprite_prop
+00:0D3B .copy_vram
+00:0D4A _get_data
+00:0D4A _set_data
+00:0D5D _set_bkg_tiles
+00:0D71 .set_xy_wtt
+00:0D82 .set_xy_btt
+00:0D91 .set_xy_tt
+00:0DC2 _set_tiles
+; Area: _LIT
+; Area: _GSINIT
+00:0DDB gsinit
+; Area: _GSINITTAIL
+; Area: _GSFINAL
+; Area: _DATA
+00:C0A1 _run_index
+00:C0A2 _falsh_switch
+00:C0A3 _falsh_index
+00:C0A4 _role
+00:C0AD _sprite_size
+00:C0AE _marioCGB
+00:C0B8 _mario
+00:C1F8 _backgroundCGB
+00:C208 _background
+00:C3F8 _marioBGPLN0
+00:C638 _marioBGPLN1
+; Area: _BSS
+00:C878 __cpu
+00:C879 .mode
+00:C87A __io_out
+00:C87B __io_in
+00:C87C __io_status
+00:C87D .vbl_done
+00:C87E __current_bank
+00:C87F _sys_time
+00:C87F .sys_time
+00:C881 .int_0x40
+00:C891 .int_0x48
+00:C8A1 .int_0x50
+00:C8B1 .int_0x58
+00:C8C1 .int_0x60
+; Area: _HEAP
+00:C8D4 _malloc_heap_start
+; Area: _OVERLAY
+; Area: _ISEG
+; Area: _BSEG
+; Area: _XSEG

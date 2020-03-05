@@ -1,0 +1,1024 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : FreeWare ANSI-C Compiler
+                              3 ; Version 2.3.1 Thu Mar  5 15:49:15 2020
+                              4 
+                              5 ;--------------------------------------------------------
+                              6 	.module lcc69470
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _main
+                             12 	.globl _initRole
+                             13 	.globl _role
+                             14 	.globl _falsh_index
+                             15 	.globl _falsh_switch
+                             16 	.globl _run_index
+                             17 	.globl _sprite_size
+                             18 	.globl _bkgpalette
+                             19 	.globl _spritepalette
+                             20 ;--------------------------------------------------------
+                             21 ; special function registers
+                             22 ;--------------------------------------------------------
+                             23 ;--------------------------------------------------------
+                             24 ; special function bits 
+                             25 ;--------------------------------------------------------
+                             26 ;--------------------------------------------------------
+                             27 ; internal ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _DATA
+   0000                      30 _sprite_size::
+   0000                      31 	.ds 1
+   0001                      32 _run_index::
+   0001                      33 	.ds 1
+   0002                      34 _falsh_switch::
+   0002                      35 	.ds 1
+   0003                      36 _falsh_index::
+   0003                      37 	.ds 1
+   0004                      38 _role::
+   0004                      39 	.ds 9
+                             40 ;--------------------------------------------------------
+                             41 ; overlayable items in internal ram 
+                             42 ;--------------------------------------------------------
+                             43 	.area _OVERLAY
+                             44 ;--------------------------------------------------------
+                             45 ; indirectly addressable internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area _ISEG
+                             48 ;--------------------------------------------------------
+                             49 ; bit data
+                             50 ;--------------------------------------------------------
+                             51 	.area _BSEG
+                             52 ;--------------------------------------------------------
+                             53 ; external ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area _XSEG
+                             56 ;--------------------------------------------------------
+                             57 ; global & static initialisations
+                             58 ;--------------------------------------------------------
+                             59 	.area _GSINIT
+                             60 	.area _GSFINAL
+                             61 	.area _GSINIT
+                             62 ;	main.c 25
+                             63 ;	genAssign
+                             64 ;	AOP_HL for _sprite_size
+   0000 21 00 00             65 	ld	hl,#_sprite_size
+   0003 36 08                66 	ld	(hl),#0x08
+                             67 ;	main.c 10
+                             68 ;	genAssign
+                             69 ;	AOP_HL for _run_index
+   0005 21 01 00             70 	ld	hl,#_run_index
+   0008 36 00                71 	ld	(hl),#0x00
+                             72 ;	main.c 11
+                             73 ;	genAssign
+                             74 ;	AOP_HL for _falsh_switch
+   000A 21 02 00             75 	ld	hl,#_falsh_switch
+   000D 36 00                76 	ld	(hl),#0x00
+                             77 ;	main.c 12
+                             78 ;	genAssign
+                             79 ;	AOP_HL for _falsh_index
+   000F 21 03 00             80 	ld	hl,#_falsh_index
+   0012 36 01                81 	ld	(hl),#0x01
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area _HOME
+                             86 	.area _CODE
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area _CODE
+                             91 ;	main.c 54
+                             92 ;	genLabel
+                             93 ;	genFunction
+                             94 ;	---------------------------------
+                             95 ; Function initRole
+                             96 ; ---------------------------------
+   0000                      97 ___initRole_start:
+   0000                      98 _initRole:
+   0000 E8 F7                99 	lda	sp,-9(sp)
+                            100 ;	main.c 56
+                            101 ;	genPlus
+                            102 ;	genPlusIncr
+   0002 01 0A 00            103 	ld	bc,#_role + 6
+                            104 ;	genAssign (pointer)
+   0005 3E 00               105 	ld	a,#0x00
+   0007 02                  106 	ld	(bc),a
+                            107 ;	main.c 57
+                            108 ;	genPlus
+                            109 ;	AOP_STK for _initRole_sloc0_1_0
+                            110 ;	genPlusIncr
+                            111 ;	Can't optimise plus by inc, falling back to the normal way
+   0008 11 04 00            112 	ld	de,#_role
+   000B 21 07 00            113 	ld	hl,#0x0007
+   000E 19                  114 	add	hl,de
+   000F 7D                  115 	ld	a,l
+   0010 54                  116 	ld	d,h
+   0011 F8 07               117 	lda	hl,7(sp)
+   0013 22                  118 	ld	(hl+),a
+   0014 72                  119 	ld	(hl),d
+                            120 ;	genAssign (pointer)
+                            121 ;	AOP_STK for _initRole_sloc0_1_0
+   0015 2B                  122 	dec	hl
+   0016 5E                  123 	ld	e,(hl)
+   0017 23                  124 	inc	hl
+   0018 56                  125 	ld	d,(hl)
+   0019 3E 00               126 	ld	a,#0x00
+   001B 12                  127 	ld	(de),a
+                            128 ;	main.c 58
+                            129 ;	genPlus
+                            130 ;	AOP_STK for _initRole_sloc1_1_0
+                            131 ;	genPlusIncr
+                            132 ;	Can't optimise plus by inc, falling back to the normal way
+   001C 11 04 00            133 	ld	de,#_role
+   001F 21 02 00            134 	ld	hl,#0x0002
+   0022 19                  135 	add	hl,de
+   0023 7D                  136 	ld	a,l
+   0024 54                  137 	ld	d,h
+   0025 F8 05               138 	lda	hl,5(sp)
+   0027 22                  139 	ld	(hl+),a
+   0028 72                  140 	ld	(hl),d
+                            141 ;	genAssign (pointer)
+                            142 ;	AOP_STK for _initRole_sloc1_1_0
+   0029 2B                  143 	dec	hl
+   002A 5E                  144 	ld	e,(hl)
+   002B 23                  145 	inc	hl
+   002C 56                  146 	ld	d,(hl)
+   002D 3E 08               147 	ld	a,#0x08
+   002F 12                  148 	ld	(de),a
+                            149 ;	main.c 59
+                            150 ;	genPlus
+                            151 ;	genPlusIncr
+   0030 21 07 00            152 	ld	hl,#_role + 3
+                            153 ;	genAssign (pointer)
+   0033 36 0C               154 	ld	(hl),#0x0C
+                            155 ;	main.c 60
+                            156 ;	genPlus
+                            157 ;	genPlusIncr
+   0035 23                  158 	inc	hl
+                            159 ;	genAssign (pointer)
+   0036 36 10               160 	ld	(hl),#0x10
+                            161 ;	main.c 61
+                            162 ;	genPlus
+                            163 ;	AOP_STK for _initRole_sloc2_1_0
+                            164 ;	genPlusIncr
+                            165 ;	Can't optimise plus by inc, falling back to the normal way
+   0038 11 04 00            166 	ld	de,#_role
+   003B 21 05 00            167 	ld	hl,#0x0005
+   003E 19                  168 	add	hl,de
+   003F 7D                  169 	ld	a,l
+   0040 54                  170 	ld	d,h
+   0041 F8 03               171 	lda	hl,3(sp)
+   0043 22                  172 	ld	(hl+),a
+   0044 72                  173 	ld	(hl),d
+                            174 ;	genAssign (pointer)
+                            175 ;	AOP_STK for _initRole_sloc2_1_0
+   0045 2B                  176 	dec	hl
+   0046 5E                  177 	ld	e,(hl)
+   0047 23                  178 	inc	hl
+   0048 56                  179 	ld	d,(hl)
+   0049 3E 00               180 	ld	a,#0x00
+   004B 12                  181 	ld	(de),a
+                            182 ;	main.c 62
+                            183 ;	genPointerGet
+                            184 ;	AOP_STK for _initRole_sloc2_1_0
+                            185 ;	AOP_STK for _initRole_sloc3_1_0
+   004C 2B                  186 	dec	hl
+   004D 5E                  187 	ld	e,(hl)
+   004E 23                  188 	inc	hl
+   004F 56                  189 	ld	d,(hl)
+   0050 1A                  190 	ld	a,(de)
+   0051 2B                  191 	dec	hl
+   0052 2B                  192 	dec	hl
+   0053 77                  193 	ld	(hl),a
+                            194 ;	genPlus
+                            195 ;	AOP_STK for _initRole_sloc1_1_0
+                            196 ;	AOP_STK for _initRole_sloc3_1_0
+                            197 ;	AOP_STK for _initRole_sloc4_1_0
+                            198 ;	Can't optimise plus by inc, falling back to the normal way
+   0054 F8 05               199 	lda	hl,5(sp)
+   0056 5E                  200 	ld	e,(hl)
+   0057 23                  201 	inc	hl
+   0058 56                  202 	ld	d,(hl)
+   0059 F8 02               203 	lda	hl,2(sp)
+   005B 6E                  204 	ld	l,(hl)
+   005C 26 00               205 	ld	h,#0x00
+   005E 19                  206 	add	hl,de
+   005F 7D                  207 	ld	a,l
+   0060 54                  208 	ld	d,h
+   0061 F8 00               209 	lda	hl,0(sp)
+                            210 ;	genPointerGet
+                            211 ;	AOP_STK for _initRole_sloc4_1_0
+                            212 ;	AOP_STK for _initRole_sloc3_1_0
+   0063 22                  213 	ld	(hl+),a
+   0064 72                  214 	ld	(hl),d
+   0065 5F                  215 	ld	e,a
+   0066 1A                  216 	ld	a,(de)
+   0067 23                  217 	inc	hl
+   0068 77                  218 	ld	(hl),a
+                            219 ;	genIpush
+                            220 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0069 C5                  221 	push	bc
+                            222 ;	AOP_STK for _initRole_sloc3_1_0
+   006A 7E                  223 	ld	a,(hl)
+   006B F5                  224 	push	af
+   006C 33                  225 	inc	sp
+                            226 ;	genIpush
+   006D 3E 00               227 	ld	a,#0x00
+   006F F5                  228 	push	af
+   0070 33                  229 	inc	sp
+                            230 ;	genCall
+   0071 CD 00 00            231 	call	_set_sprite_tile
+   0074 E8 02               232 	lda	sp,2(sp)
+   0076 C1                  233 	pop	bc
+                            234 ;	main.c 63
+                            235 ;	genAssign (pointer)
+   0077 11 04 00            236 	ld	de,#_role
+   007A 3E 00               237 	ld	a,#0x00
+   007C 12                  238 	ld	(de),a
+                            239 ;	main.c 64
+                            240 ;	genIpush
+                            241 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   007D C5                  242 	push	bc
+   007E 21 00 00            243 	ld	hl,#0x0000
+   0081 E5                  244 	push	hl
+                            245 ;	genCall
+   0082 CD 00 00            246 	call	_set_sprite_prop
+   0085 E8 02               247 	lda	sp,2(sp)
+   0087 C1                  248 	pop	bc
+                            249 ;	main.c 65
+                            250 ;	genPointerGet
+                            251 ;	AOP_STK for _initRole_sloc2_1_0
+                            252 ;	AOP_STK for _initRole_sloc4_1_0
+   0088 F8 03               253 	lda	hl,3(sp)
+   008A 5E                  254 	ld	e,(hl)
+   008B 23                  255 	inc	hl
+   008C 56                  256 	ld	d,(hl)
+   008D 1A                  257 	ld	a,(de)
+   008E F8 00               258 	lda	hl,0(sp)
+   0090 77                  259 	ld	(hl),a
+                            260 ;	genPlus
+                            261 ;	AOP_STK for _initRole_sloc1_1_0
+                            262 ;	AOP_STK for _initRole_sloc4_1_0
+                            263 ;	AOP_STK for _initRole_sloc2_1_0
+                            264 ;	Can't optimise plus by inc, falling back to the normal way
+   0091 F8 05               265 	lda	hl,5(sp)
+   0093 5E                  266 	ld	e,(hl)
+   0094 23                  267 	inc	hl
+   0095 56                  268 	ld	d,(hl)
+   0096 F8 00               269 	lda	hl,0(sp)
+   0098 6E                  270 	ld	l,(hl)
+   0099 26 00               271 	ld	h,#0x00
+   009B 19                  272 	add	hl,de
+   009C 7D                  273 	ld	a,l
+   009D 54                  274 	ld	d,h
+   009E F8 03               275 	lda	hl,3(sp)
+                            276 ;	genPointerGet
+                            277 ;	AOP_STK for _initRole_sloc2_1_0
+                            278 ;	AOP_STK for _initRole_sloc4_1_0
+   00A0 22                  279 	ld	(hl+),a
+   00A1 72                  280 	ld	(hl),d
+   00A2 5F                  281 	ld	e,a
+   00A3 1A                  282 	ld	a,(de)
+   00A4 F8 00               283 	lda	hl,0(sp)
+                            284 ;	genPlus
+                            285 ;	AOP_STK for _initRole_sloc4_1_0
+                            286 ;	AOP_STK for _initRole_sloc3_1_0
+                            287 ;	genPlusIncr
+                            288 ;	Can't optimise plus by inc, falling back to the normal way
+   00A6 77                  289 	ld      (hl),a
+   00A7 7F                  290 	ld      a,a
+   00A8 C6 02               291 	add	a,#0x02
+   00AA 23                  292 	inc	hl
+   00AB 23                  293 	inc	hl
+   00AC 77                  294 	ld	(hl),a
+                            295 ;	genIpush
+                            296 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   00AD C5                  297 	push	bc
+                            298 ;	AOP_STK for _initRole_sloc3_1_0
+   00AE 7E                  299 	ld	a,(hl)
+   00AF F5                  300 	push	af
+   00B0 33                  301 	inc	sp
+                            302 ;	genIpush
+   00B1 3E 01               303 	ld	a,#0x01
+   00B3 F5                  304 	push	af
+   00B4 33                  305 	inc	sp
+                            306 ;	genCall
+   00B5 CD 00 00            307 	call	_set_sprite_tile
+   00B8 E8 02               308 	lda	sp,2(sp)
+   00BA C1                  309 	pop	bc
+                            310 ;	main.c 66
+                            311 ;	genPlus
+                            312 ;	genPlusIncr
+   00BB 21 05 00            313 	ld	hl,#_role + 1
+                            314 ;	genAssign (pointer)
+   00BE 36 01               315 	ld	(hl),#0x01
+                            316 ;	main.c 67
+                            317 ;	genPlus
+                            318 ;	genPlusIncr
+   00C0 21 0C 00            319 	ld	hl,#_role + 8
+                            320 ;	genAssign (pointer)
+   00C3 36 02               321 	ld	(hl),#0x02
+                            322 ;	main.c 68
+                            323 ;	genIpush
+                            324 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   00C5 C5                  325 	push	bc
+   00C6 21 01 00            326 	ld	hl,#0x0001
+   00C9 E5                  327 	push	hl
+                            328 ;	genCall
+   00CA CD 00 00            329 	call	_set_sprite_prop
+   00CD E8 02               330 	lda	sp,2(sp)
+   00CF C1                  331 	pop	bc
+                            332 ;	main.c 69
+                            333 ;	genIpush
+                            334 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   00D0 C5                  335 	push	bc
+                            336 ;	AOP_STK for 
+   00D1 F8 0E               337 	lda	hl,14(sp)
+   00D3 7E                  338 	ld	a,(hl)
+   00D4 F5                  339 	push	af
+   00D5 33                  340 	inc	sp
+                            341 ;	genIpush
+                            342 ;	AOP_STK for 
+   00D6 2B                  343 	dec	hl
+   00D7 7E                  344 	ld	a,(hl)
+   00D8 F5                  345 	push	af
+   00D9 33                  346 	inc	sp
+                            347 ;	genIpush
+   00DA 21 04 00            348 	ld	hl,#_role
+   00DD E5                  349 	push	hl
+                            350 ;	genCall
+   00DE CD 00 00            351 	call	_movegamecharacter
+   00E1 E8 04               352 	lda	sp,4(sp)
+   00E3 C1                  353 	pop	bc
+                            354 ;	main.c 70
+                            355 ;	genAssign (pointer)
+                            356 ;	AOP_STK for 
+   00E4 F8 0B               357 	lda	hl,11(sp)
+   00E6 7E                  358 	ld	a,(hl)
+   00E7 02                  359 	ld	(bc),a
+                            360 ;	main.c 71
+                            361 ;	genAssign (pointer)
+                            362 ;	AOP_STK for _initRole_sloc0_1_0
+                            363 ;	AOP_STK for 
+   00E8 F8 07               364 	lda	hl,7(sp)
+   00EA 5E                  365 	ld	e,(hl)
+   00EB 23                  366 	inc	hl
+   00EC 56                  367 	ld	d,(hl)
+   00ED F8 0C               368 	lda	hl,12(sp)
+   00EF 7E                  369 	ld	a,(hl)
+   00F0 12                  370 	ld	(de),a
+                            371 ;	genLabel
+   00F1                     372 00101$:
+                            373 ;	genEndFunction
+   00F1 E8 09               374 	lda	sp,9(sp)
+   00F3 C9                  375 	ret
+   00F4                     376 ___initRole_end:
+   00F4                     377 _spritepalette:
+   00F4 BC 17               378 	.dw #0x17BC
+   00F6 DF 0A               379 	.dw #0x0ADF
+   00F8 AE 19               380 	.dw #0x19AE
+   00FA 1B 00               381 	.dw #0x001B
+   00FC BC 17               382 	.dw #0x17BC
+   00FE DF 0A               383 	.dw #0x0ADF
+   0100 AE 19               384 	.dw #0x19AE
+   0102 FF 7F               385 	.dw #0x7FFF
+   0104 BC 17               386 	.dw #0x17BC
+   0106 1F 4F               387 	.dw #0x4F1F
+   0108 33 01               388 	.dw #0x0133
+   010A 00 00               389 	.dw #0x0000
+   010C                     390 _bkgpalette:
+   010C FF 7F               391 	.dw #0x7FFF
+   010E E7 22               392 	.dw #0x22E7
+   0110 C4 19               393 	.dw #0x19C4
+   0112 E0 14               394 	.dw #0x14E0
+   0114 2D 7E               395 	.dw #0x7E2D
+   0116 FF 7F               396 	.dw #0x7FFF
+   0118 86 7E               397 	.dw #0x7E86
+   011A 00 00               398 	.dw #0x0000
+   011C 2D 7E               399 	.dw #0x7E2D
+   011E EE 1B               400 	.dw #0x1BEE
+   0120 22 02               401 	.dw #0x0222
+   0122 00 00               402 	.dw #0x0000
+                            403 ;	main.c 74
+                            404 ;	genLabel
+                            405 ;	genFunction
+                            406 ;	---------------------------------
+                            407 ; Function main
+                            408 ; ---------------------------------
+   0124                     409 ___main_start:
+   0124                     410 _main:
+   0124 E8 FD               411 	lda	sp,-3(sp)
+                            412 ;	main.c 76
+                            413 ;	genAssign
+   0126 01 40 FF            414 	ld	bc,#0xFF40
+                            415 ;	genAssign
+                            416 ;	AOP_STK for _main_sloc0_1_0
+   0129 F8 01               417 	lda	hl,1(sp)
+   012B 36 40               418 	ld	(hl),#0x40
+   012D 23                  419 	inc	hl
+   012E 36 FF               420 	ld	(hl),#0xFF
+                            421 ;	genPointerGet
+                            422 ;	AOP_STK for _main_sloc0_1_0
+                            423 ;	AOP_STK for _main_sloc1_1_0
+   0130 2B                  424 	dec	hl
+   0131 5E                  425 	ld	e,(hl)
+   0132 23                  426 	inc	hl
+   0133 56                  427 	ld	d,(hl)
+   0134 1A                  428 	ld	a,(de)
+   0135 2B                  429 	dec	hl
+   0136 2B                  430 	dec	hl
+                            431 ;	genOr
+                            432 ;	AOP_STK for _main_sloc1_1_0
+   0137 77                  433 	ld      (hl),a
+                            434 ; Removed redundent load
+   0138 F6 04               435 	or	a,#0x04
+                            436 ;	genAssign (pointer)
+   013A 02                  437 	ld	(bc),a
+                            438 ;	main.c 77
+                            439 ;	genIpush
+                            440 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   013B 21 00 00            441 	ld	hl,#_mario
+   013E E5                  442 	push	hl
+                            443 ;	genIpush
+   013F 21 00 14            444 	ld	hl,#0x1400
+   0142 E5                  445 	push	hl
+                            446 ;	genCall
+   0143 CD 00 00            447 	call	_set_sprite_data
+   0146 E8 04               448 	lda	sp,4(sp)
+                            449 ;	main.c 79
+                            450 ;	genIpush
+                            451 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0148 21 F4 00            452 	ld	hl,#_spritepalette
+   014B E5                  453 	push	hl
+                            454 ;	genIpush
+   014C 21 00 03            455 	ld	hl,#0x0300
+   014F E5                  456 	push	hl
+                            457 ;	genCall
+   0150 CD 00 00            458 	call	_set_sprite_palette
+   0153 E8 04               459 	lda	sp,4(sp)
+                            460 ;	main.c 80
+                            461 ;	genIpush
+                            462 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0155 21 1C 70            463 	ld	hl,#0x701C
+   0158 E5                  464 	push	hl
+                            465 ;	genCall
+   0159 CD 00 00            466 	call	_initRole
+   015C E8 02               467 	lda	sp,2(sp)
+                            468 ;	main.c 81
+                            469 ;	genAssign
+   015E 01 40 FF            470 	ld	bc,#0xFF40
+                            471 ;	genAssign
+                            472 ;	AOP_STK for _main_sloc0_1_0
+   0161 F8 01               473 	lda	hl,1(sp)
+   0163 36 40               474 	ld	(hl),#0x40
+   0165 23                  475 	inc	hl
+   0166 36 FF               476 	ld	(hl),#0xFF
+                            477 ;	genPointerGet
+                            478 ;	AOP_STK for _main_sloc0_1_0
+                            479 ;	AOP_STK for _main_sloc1_1_0
+   0168 2B                  480 	dec	hl
+   0169 5E                  481 	ld	e,(hl)
+   016A 23                  482 	inc	hl
+   016B 56                  483 	ld	d,(hl)
+   016C 1A                  484 	ld	a,(de)
+   016D 2B                  485 	dec	hl
+   016E 2B                  486 	dec	hl
+                            487 ;	genOr
+                            488 ;	AOP_STK for _main_sloc1_1_0
+   016F 77                  489 	ld      (hl),a
+                            490 ; Removed redundent load
+   0170 F6 02               491 	or	a,#0x02
+                            492 ;	genAssign (pointer)
+   0172 02                  493 	ld	(bc),a
+                            494 ;	main.c 84
+                            495 ;	genIpush
+                            496 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0173 21 00 00            497 	ld	hl,#_background
+   0176 E5                  498 	push	hl
+                            499 ;	genIpush
+   0177 21 00 1F            500 	ld	hl,#0x1F00
+   017A E5                  501 	push	hl
+                            502 ;	genCall
+   017B CD 00 00            503 	call	_set_bkg_data
+   017E E8 04               504 	lda	sp,4(sp)
+                            505 ;	main.c 85
+                            506 ;	genAssign
+   0180 01 4F FF            507 	ld	bc,#0xFF4F
+                            508 ;	genAssign (pointer)
+   0183 3E 01               509 	ld	a,#0x01
+   0185 02                  510 	ld	(bc),a
+                            511 ;	main.c 87
+                            512 ;	genIpush
+                            513 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0186 21 00 00            514 	ld	hl,#_marioBGPLN1
+   0189 E5                  515 	push	hl
+                            516 ;	genIpush
+   018A 21 20 12            517 	ld	hl,#0x1220
+   018D E5                  518 	push	hl
+                            519 ;	genIpush
+   018E 21 00 00            520 	ld	hl,#0x0000
+   0191 E5                  521 	push	hl
+                            522 ;	genCall
+   0192 CD 00 00            523 	call	_set_bkg_tiles
+   0195 E8 06               524 	lda	sp,6(sp)
+                            525 ;	main.c 88
+                            526 ;	genAssign
+   0197 01 4F FF            527 	ld	bc,#0xFF4F
+                            528 ;	genAssign (pointer)
+   019A 3E 00               529 	ld	a,#0x00
+   019C 02                  530 	ld	(bc),a
+                            531 ;	main.c 89
+                            532 ;	genIpush
+                            533 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   019D 21 00 00            534 	ld	hl,#_marioBGPLN0
+   01A0 E5                  535 	push	hl
+                            536 ;	genIpush
+   01A1 21 20 12            537 	ld	hl,#0x1220
+   01A4 E5                  538 	push	hl
+                            539 ;	genIpush
+   01A5 21 00 00            540 	ld	hl,#0x0000
+   01A8 E5                  541 	push	hl
+                            542 ;	genCall
+   01A9 CD 00 00            543 	call	_set_bkg_tiles
+   01AC E8 06               544 	lda	sp,6(sp)
+                            545 ;	main.c 91
+                            546 ;	genIpush
+                            547 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   01AE 21 0C 01            548 	ld	hl,#_bkgpalette
+   01B1 E5                  549 	push	hl
+                            550 ;	genIpush
+   01B2 21 00 03            551 	ld	hl,#0x0300
+   01B5 E5                  552 	push	hl
+                            553 ;	genCall
+   01B6 CD 00 00            554 	call	_set_bkg_palette
+   01B9 E8 04               555 	lda	sp,4(sp)
+                            556 ;	main.c 93
+                            557 ;	genAssign
+   01BB 01 40 FF            558 	ld	bc,#0xFF40
+                            559 ;	genAssign
+                            560 ;	AOP_STK for _main_sloc0_1_0
+   01BE F8 01               561 	lda	hl,1(sp)
+   01C0 36 40               562 	ld	(hl),#0x40
+   01C2 23                  563 	inc	hl
+   01C3 36 FF               564 	ld	(hl),#0xFF
+                            565 ;	genPointerGet
+                            566 ;	AOP_STK for _main_sloc0_1_0
+                            567 ;	AOP_STK for _main_sloc1_1_0
+   01C5 2B                  568 	dec	hl
+   01C6 5E                  569 	ld	e,(hl)
+   01C7 23                  570 	inc	hl
+   01C8 56                  571 	ld	d,(hl)
+   01C9 1A                  572 	ld	a,(de)
+   01CA 2B                  573 	dec	hl
+   01CB 2B                  574 	dec	hl
+                            575 ;	genOr
+                            576 ;	AOP_STK for _main_sloc1_1_0
+   01CC 77                  577 	ld      (hl),a
+                            578 ; Removed redundent load
+   01CD F6 01               579 	or	a,#0x01
+                            580 ;	genAssign (pointer)
+   01CF 02                  581 	ld	(bc),a
+                            582 ;	main.c 94
+                            583 ;	genAssign
+   01D0 01 40 FF            584 	ld	bc,#0xFF40
+                            585 ;	genAssign
+                            586 ;	AOP_STK for _main_sloc0_1_0
+   01D3 23                  587 	inc	hl
+   01D4 36 40               588 	ld	(hl),#0x40
+   01D6 23                  589 	inc	hl
+   01D7 36 FF               590 	ld	(hl),#0xFF
+                            591 ;	genPointerGet
+                            592 ;	AOP_STK for _main_sloc0_1_0
+                            593 ;	AOP_STK for _main_sloc1_1_0
+   01D9 2B                  594 	dec	hl
+   01DA 5E                  595 	ld	e,(hl)
+   01DB 23                  596 	inc	hl
+   01DC 56                  597 	ld	d,(hl)
+   01DD 1A                  598 	ld	a,(de)
+   01DE 2B                  599 	dec	hl
+   01DF 2B                  600 	dec	hl
+                            601 ;	genOr
+                            602 ;	AOP_STK for _main_sloc1_1_0
+   01E0 77                  603 	ld      (hl),a
+                            604 ; Removed redundent load
+   01E1 F6 80               605 	or	a,#0x80
+                            606 ;	genAssign (pointer)
+   01E3 02                  607 	ld	(bc),a
+                            608 ;	main.c 95
+                            609 ;	genLabel
+   01E4                     610 00113$:
+                            611 ;	main.c 97
+                            612 ;	genCall
+                            613 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   01E4 CD 00 00            614 	call	_joypad
+   01E7 4B                  615 	ld	c,e
+                            616 ;	genCmpEq
+                            617 ; genCmpEq: left 1, right 1, result 0
+   01E8 79                  618 	ld	a,c
+   01E9 FE 01               619 	cp	a,#0x01
+   01EB C2 2A 02            620 	jp	nz,00105$
+   01EE 18 03               621 	jr	00126$
+   01F0                     622 00125$:
+   01F0 C3 2A 02            623 	jp	00105$
+   01F3                     624 00126$:
+                            625 ;	main.c 99
+                            626 ;	genPlus
+                            627 ;	genPlusIncr
+   01F3 01 0B 00            628 	ld	bc,#_role + 7
+                            629 ;	genPointerGet
+   01F6 0A                  630 	ld	a,(bc)
+   01F7 4F                  631 	ld	c,a
+                            632 ;	genPlus
+                            633 ;	AOP_STK for _main_sloc0_1_0
+                            634 ;	genPlusIncr
+                            635 ;	Can't optimise plus by inc, falling back to the normal way
+   01F8 11 04 00            636 	ld	de,#_role
+   01FB 21 06 00            637 	ld	hl,#0x0006
+   01FE 19                  638 	add	hl,de
+   01FF 7D                  639 	ld	a,l
+   0200 54                  640 	ld	d,h
+   0201 F8 01               641 	lda	hl,1(sp)
+                            642 ;	genPointerGet
+                            643 ;	AOP_STK for _main_sloc0_1_0
+   0203 22                  644 	ld	(hl+),a
+   0204 72                  645 	ld	(hl),d
+   0205 5F                  646 	ld	e,a
+   0206 1A                  647 	ld	a,(de)
+   0207 47                  648 	ld	b,a
+                            649 ;	genPlus
+                            650 ;	genPlusIncr
+                            651 ; Removed redundent load
+   0208 04                  652 	inc	b
+   0209 04                  653 	inc	b
+                            654 ;	genIpush
+                            655 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   020A 79                  656 	ld	a,c
+   020B F5                  657 	push	af
+   020C 33                  658 	inc	sp
+                            659 ;	genIpush
+   020D 78                  660 	ld	a,b
+   020E F5                  661 	push	af
+   020F 33                  662 	inc	sp
+                            663 ;	genIpush
+   0210 21 04 00            664 	ld	hl,#_role
+   0213 E5                  665 	push	hl
+                            666 ;	genCall
+   0214 CD 00 00            667 	call	_movegamecharacter
+   0217 E8 04               668 	lda	sp,4(sp)
+                            669 ;	main.c 100
+                            670 ;	genPointerGet
+                            671 ;	AOP_STK for _main_sloc0_1_0
+   0219 F8 01               672 	lda	hl,1(sp)
+   021B 5E                  673 	ld	e,(hl)
+   021C 23                  674 	inc	hl
+   021D 56                  675 	ld	d,(hl)
+   021E 1A                  676 	ld	a,(de)
+                            677 ;	genPlus
+                            678 ;	genPlusIncr
+                            679 ;	Can't optimise plus by inc, falling back to the normal way
+   021F 4F                  680 	ld	c,a
+   0220 C6 02               681 	add	a,#0x02
+                            682 ;	genAssign (pointer)
+                            683 ;	AOP_STK for _main_sloc0_1_0
+   0222 2B                  684 	dec	hl
+   0223 5E                  685 	ld	e,(hl)
+   0224 23                  686 	inc	hl
+   0225 56                  687 	ld	d,(hl)
+   0226 12                  688 	ld	(de),a
+                            689 ;	genGoto
+   0227 C3 83 02            690 	jp	00106$
+                            691 ;	genLabel
+   022A                     692 00105$:
+                            693 ;	main.c 103
+                            694 ;	genCall
+                            695 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   022A CD 00 00            696 	call	_joypad
+   022D 4B                  697 	ld	c,e
+                            698 ;	genCmpEq
+                            699 ; genCmpEq: left 1, right 1, result 0
+   022E 79                  700 	ld	a,c
+   022F FE 02               701 	cp	a,#0x02
+   0231 C2 71 02            702 	jp	nz,00102$
+   0234 18 03               703 	jr	00128$
+   0236                     704 00127$:
+   0236 C3 71 02            705 	jp	00102$
+   0239                     706 00128$:
+                            707 ;	main.c 105
+                            708 ;	genPlus
+                            709 ;	genPlusIncr
+   0239 01 0B 00            710 	ld	bc,#_role + 7
+                            711 ;	genPointerGet
+   023C 0A                  712 	ld	a,(bc)
+   023D 4F                  713 	ld	c,a
+                            714 ;	genPlus
+                            715 ;	AOP_STK for _main_sloc0_1_0
+                            716 ;	genPlusIncr
+                            717 ;	Can't optimise plus by inc, falling back to the normal way
+   023E 11 04 00            718 	ld	de,#_role
+   0241 21 06 00            719 	ld	hl,#0x0006
+   0244 19                  720 	add	hl,de
+   0245 7D                  721 	ld	a,l
+   0246 54                  722 	ld	d,h
+   0247 F8 01               723 	lda	hl,1(sp)
+                            724 ;	genPointerGet
+                            725 ;	AOP_STK for _main_sloc0_1_0
+   0249 22                  726 	ld	(hl+),a
+   024A 72                  727 	ld	(hl),d
+   024B 5F                  728 	ld	e,a
+   024C 1A                  729 	ld	a,(de)
+   024D 47                  730 	ld	b,a
+                            731 ;	genMinus
+   024E 05                  732 	dec	b
+   024F 05                  733 	dec	b
+                            734 ;	genIpush
+                            735 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0250 79                  736 	ld	a,c
+   0251 F5                  737 	push	af
+   0252 33                  738 	inc	sp
+                            739 ;	genIpush
+   0253 78                  740 	ld	a,b
+   0254 F5                  741 	push	af
+   0255 33                  742 	inc	sp
+                            743 ;	genIpush
+   0256 21 04 00            744 	ld	hl,#_role
+   0259 E5                  745 	push	hl
+                            746 ;	genCall
+   025A CD 00 00            747 	call	_movegamecharacter
+   025D E8 04               748 	lda	sp,4(sp)
+                            749 ;	main.c 106
+                            750 ;	genPointerGet
+                            751 ;	AOP_STK for _main_sloc0_1_0
+   025F F8 01               752 	lda	hl,1(sp)
+   0261 5E                  753 	ld	e,(hl)
+   0262 23                  754 	inc	hl
+   0263 56                  755 	ld	d,(hl)
+   0264 1A                  756 	ld	a,(de)
+   0265 4F                  757 	ld	c,a
+                            758 ;	genMinus
+   0266 0D                  759 	dec	c
+   0267 0D                  760 	dec	c
+                            761 ;	genAssign (pointer)
+                            762 ;	AOP_STK for _main_sloc0_1_0
+   0268 2B                  763 	dec	hl
+   0269 5E                  764 	ld	e,(hl)
+   026A 23                  765 	inc	hl
+   026B 56                  766 	ld	d,(hl)
+   026C 79                  767 	ld	a,c
+   026D 12                  768 	ld	(de),a
+                            769 ;	genGoto
+   026E C3 83 02            770 	jp	00106$
+                            771 ;	genLabel
+   0271                     772 00102$:
+                            773 ;	main.c 110
+                            774 ;	genIpush
+                            775 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0271 21 00 00            776 	ld	hl,#0x0000
+   0274 E5                  777 	push	hl
+                            778 ;	genCall
+   0275 CD 00 00            779 	call	_set_sprite_tile
+   0278 E8 02               780 	lda	sp,2(sp)
+                            781 ;	main.c 111
+                            782 ;	genIpush
+                            783 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   027A 21 01 02            784 	ld	hl,#0x0201
+   027D E5                  785 	push	hl
+                            786 ;	genCall
+   027E CD 00 00            787 	call	_set_sprite_tile
+   0281 E8 02               788 	lda	sp,2(sp)
+                            789 ;	genLabel
+   0283                     790 00106$:
+                            791 ;	main.c 113
+                            792 ;	genCall
+                            793 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0283 CD 00 00            794 	call	_joypad
+   0286 4B                  795 	ld	c,e
+                            796 ;	genCmpEq
+                            797 ; genCmpEq: left 1, right 1, result 0
+   0287 79                  798 	ld	a,c
+   0288 FE 10               799 	cp	a,#0x10
+   028A C2 A5 02            800 	jp	nz,00108$
+   028D 18 03               801 	jr	00130$
+   028F                     802 00129$:
+   028F C3 A5 02            803 	jp	00108$
+   0292                     804 00130$:
+                            805 ;	main.c 115
+                            806 ;	genIfx
+                            807 ;	AOP_HL for _falsh_switch
+   0292 AF                  808 	xor	a,a
+   0293 21 02 00            809 	ld	hl,#_falsh_switch
+   0296 B6                  810 	or	a,(hl)
+   0297 CA 9F 02            811 	jp	z,00117$
+                            812 ;	genAssign
+   029A 0E 00               813 	ld	c,#0x00
+                            814 ;	genGoto
+   029C C3 A1 02            815 	jp	00118$
+                            816 ;	genLabel
+   029F                     817 00117$:
+                            818 ;	genAssign
+   029F 0E 01               819 	ld	c,#0x01
+                            820 ;	genLabel
+   02A1                     821 00118$:
+                            822 ;	genAssign
+                            823 ;	AOP_HL for _falsh_switch
+   02A1 21 02 00            824 	ld	hl,#_falsh_switch
+   02A4 71                  825 	ld	(hl),c
+                            826 ;	genLabel
+   02A5                     827 00108$:
+                            828 ;	main.c 117
+                            829 ;	genIfx
+                            830 ;	AOP_HL for _falsh_switch
+   02A5 AF                  831 	xor	a,a
+   02A6 21 02 00            832 	ld	hl,#_falsh_switch
+   02A9 B6                  833 	or	a,(hl)
+   02AA CA F3 02            834 	jp	z,00110$
+                            835 ;	main.c 119
+                            836 ;	genIpush
+                            837 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   02AD 3E 00               838 	ld	a,#0x00
+   02AF F5                  839 	push	af
+   02B0 33                  840 	inc	sp
+                            841 ;	genCall
+   02B1 CD 00 00            842 	call	_get_sprite_prop
+   02B4 4B                  843 	ld	c,e
+   02B5 E8 01               844 	lda	sp,1(sp)
+                            845 ;	genAssign
+                            846 ;	(registers are the same)
+                            847 ;	main.c 120
+                            848 ;	genAnd
+   02B7 79                  849 	ld	a,c
+   02B8 E6 F8               850 	and	a,#0xF8
+                            851 ;	main.c 121
+                            852 ;	genOr
+                            853 ;	AOP_HL for _falsh_index
+   02BA 4F                  854 	ld	c,a
+   02BB 21 03 00            855 	ld	hl,#_falsh_index
+   02BE B6                  856 	or	a,(hl)
+   02BF 4F                  857 	ld	c,a
+                            858 ;	main.c 122
+                            859 ;	genIpush
+                            860 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   02C0 C5                  861 	push	bc
+   02C1 79                  862 	ld	a,c
+   02C2 F5                  863 	push	af
+   02C3 33                  864 	inc	sp
+                            865 ;	genIpush
+   02C4 3E 00               866 	ld	a,#0x00
+   02C6 F5                  867 	push	af
+   02C7 33                  868 	inc	sp
+                            869 ;	genCall
+   02C8 CD 00 00            870 	call	_set_sprite_prop
+   02CB E8 02               871 	lda	sp,2(sp)
+   02CD E1                  872 	pop	hl
+   02CE 4D                  873 	ld	c,l
+                            874 ;	main.c 123
+                            875 ;	genIpush
+                            876 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   02CF 79                  877 	ld	a,c
+   02D0 F5                  878 	push	af
+   02D1 33                  879 	inc	sp
+                            880 ;	genIpush
+   02D2 3E 01               881 	ld	a,#0x01
+   02D4 F5                  882 	push	af
+   02D5 33                  883 	inc	sp
+                            884 ;	genCall
+   02D6 CD 00 00            885 	call	_set_sprite_prop
+   02D9 E8 02               886 	lda	sp,2(sp)
+                            887 ;	main.c 125
+                            888 ;	genPlus
+                            889 ;	AOP_HL for _falsh_index
+                            890 ;	genPlusIncr
+   02DB 21 03 00            891 	ld	hl,#_falsh_index
+   02DE 4E                  892 	ld	c,(hl)
+   02DF 0C                  893 	inc	c
+                            894 ;	genIpush
+                            895 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   02E0 3E 03               896 	ld	a,#0x03
+   02E2 F5                  897 	push	af
+   02E3 33                  898 	inc	sp
+                            899 ;	genIpush
+   02E4 79                  900 	ld	a,c
+   02E5 F5                  901 	push	af
+   02E6 33                  902 	inc	sp
+                            903 ;	genCall
+   02E7 CD 00 00            904 	call	__moduchar_rrx_s
+                            905 ;	AOP_HL for _falsh_index
+   02EA 21 03 00            906 	ld	hl,#_falsh_index
+   02ED 73                  907 	ld	(hl),e
+   02EE E8 02               908 	lda	sp,2(sp)
+                            909 ;	genGoto
+   02F0 C3 1C 03            910 	jp	00111$
+                            911 ;	genLabel
+   02F3                     912 00110$:
+                            913 ;	main.c 129
+                            914 ;	genIpush
+                            915 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   02F3 3E 00               916 	ld	a,#0x00
+   02F5 F5                  917 	push	af
+   02F6 33                  918 	inc	sp
+                            919 ;	genCall
+   02F7 CD 00 00            920 	call	_get_sprite_prop
+   02FA 4B                  921 	ld	c,e
+   02FB E8 01               922 	lda	sp,1(sp)
+                            923 ;	genAssign
+                            924 ;	(registers are the same)
+                            925 ;	main.c 130
+                            926 ;	genAnd
+   02FD 79                  927 	ld	a,c
+   02FE E6 F8               928 	and	a,#0xF8
+   0300 4F                  929 	ld	c,a
+                            930 ;	main.c 131
+                            931 ;	genIpush
+                            932 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 1 deSending: 0
+   0301 C5                  933 	push	bc
+   0302 79                  934 	ld	a,c
+   0303 F5                  935 	push	af
+   0304 33                  936 	inc	sp
+                            937 ;	genIpush
+   0305 3E 00               938 	ld	a,#0x00
+   0307 F5                  939 	push	af
+   0308 33                  940 	inc	sp
+                            941 ;	genCall
+   0309 CD 00 00            942 	call	_set_sprite_prop
+   030C E8 02               943 	lda	sp,2(sp)
+   030E E1                  944 	pop	hl
+   030F 4D                  945 	ld	c,l
+                            946 ;	main.c 132
+                            947 ;	genIpush
+                            948 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   0310 79                  949 	ld	a,c
+   0311 F5                  950 	push	af
+   0312 33                  951 	inc	sp
+                            952 ;	genIpush
+   0313 3E 01               953 	ld	a,#0x01
+   0315 F5                  954 	push	af
+   0316 33                  955 	inc	sp
+                            956 ;	genCall
+   0317 CD 00 00            957 	call	_set_sprite_prop
+   031A E8 02               958 	lda	sp,2(sp)
+                            959 ;	genLabel
+   031C                     960 00111$:
+                            961 ;	main.c 135
+                            962 ;	genIpush
+                            963 ; _saveRegsForCall: sendSetSize: 0 deInUse: 0 bcInUse: 0 deSending: 0
+   031C 21 50 00            964 	ld	hl,#0x0050
+   031F E5                  965 	push	hl
+                            966 ;	genCall
+   0320 CD 00 00            967 	call	_delay
+   0323 E8 02               968 	lda	sp,2(sp)
+                            969 ;	genGoto
+   0325 C3 E4 01            970 	jp	00113$
+                            971 ;	genLabel
+   0328                     972 00115$:
+                            973 ;	genEndFunction
+   0328 E8 03               974 	lda	sp,3(sp)
+   032A C9                  975 	ret
+   032B                     976 ___main_end:
+                            977 	.area _CODE
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 1.
+
+Symbol Table
+
+  0 ___initRole_end                    00F4 R
+  0 ___initRole_start                  0000 R
+  0 ___main_end                        032B R
+  0 ___main_start                      0124 R
+    __moduchar_rrx_s                   **** GX
+    _background                        **** GX
+  0 _bkgpalette                        010C GR
+    _delay                             **** GX
+  1 _falsh_index                       0003 GR
+  1 _falsh_switch                      0002 GR
+    _get_sprite_prop                   **** GX
+  0 _initRole                          0000 GR
+    _joypad                            **** GX
+  0 _main                              0124 GR
+    _mario                             **** GX
+    _marioBGPLN0                       **** GX
+    _marioBGPLN1                       **** GX
+    _movegamecharacter                 **** GX
+  1 _role                              0004 GR
+  1 _run_index                         0001 GR
+    _set_bkg_data                      **** GX
+    _set_bkg_palette                   **** GX
+    _set_bkg_tiles                     **** GX
+    _set_sprite_data                   **** GX
+    _set_sprite_palette                **** GX
+    _set_sprite_prop                   **** GX
+    _set_sprite_tile                   **** GX
+  1 _sprite_size                       0000 GR
+  0 _spritepalette                     00F4 GR
+
+ASxxxx Assembler V01.75  (GameBoy Z80-like CPU), page 2.
+
+Area Table
+
+   0 _CODE                              size  32B   flags 0
+   1 _DATA                              size    D   flags 0
+   2 _OVERLAY                           size    0   flags 0
+   3 _ISEG                              size    0   flags 0
+   4 _BSEG                              size    0   flags 0
+   5 _XSEG                              size    0   flags 0
+   6 _GSINIT                            size   14   flags 0
+   7 _GSFINAL                           size    0   flags 0
+   8 _HOME                              size    0   flags 0
