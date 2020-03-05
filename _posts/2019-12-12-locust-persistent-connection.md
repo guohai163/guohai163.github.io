@@ -181,3 +181,9 @@ class SocketUser(SocketLocust):
 * [超快地球物理坐标服务器](https://github.com/guohai163/earth-server)
 * [Locust官网文档](https://docs.locust.io/en/stable/)
 * [Python2教程](https://docs.python.org/2/tutorial/index.html)
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

@@ -113,3 +113,10 @@ void mian()
 
 ### 资料
 * [源码下载](//blog.guohai.org/doc-pic/2020-02/gb4.zip)
+
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

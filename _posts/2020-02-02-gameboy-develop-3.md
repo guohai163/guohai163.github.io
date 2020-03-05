@@ -215,3 +215,9 @@ clean:
 ![mario](//blog.guohai.org/doc-pic/2020-02/ezgif-2-db476b78d9c8.gif)
 
 原计划本课还会讲到调色板，但因为咱们重构了一下角色类。内容有点多，怕吸收不好，调色板的内容我向后移动了。
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

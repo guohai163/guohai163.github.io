@@ -29,6 +29,7 @@ categories: gameboy game develop
 在我们上节课的例子里的main方法中加入如下代码,这里要注意因为上节课我们把ROM已经编译成了CGB的，所以 我们今天加背景的时候也要加上调色方案，否则背景不会显示出来。
 
 ~~~ c
+
     //设置背景数据源
     set_bkg_data(0,23,bg);
     //加载背景数据
@@ -37,6 +38,7 @@ categories: gameboy game develop
     set_bkg_palette(0, 1, bkgpalette);
     //调用显示背景方法
     SHOW_BKG;
+    
 ~~~
 
 `make run`
@@ -49,6 +51,7 @@ categories: gameboy game develop
 * [彩色背景源码](//blog.guohai.org/doc-pic/2020-03/gb5.zip)
 
 ---
+
 如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
 
 ![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)
