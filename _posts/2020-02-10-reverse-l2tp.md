@@ -2,7 +2,8 @@
 layout: post
 title:  "反向L2TP拨号，接入公司网络"
 date:   2020-02-10 10:02:02
-categories: 2019-nCov l2tp telecommuting routeros
+categories: [network, routeros, 2019-nCov] 
+tags: [telecommuting, 2019-nCov, china, routeros]
 ---
 
 2019肺炎还没有结束，今天第一天远程复工，前几天介绍了一个全局连回公司网络的方案。但有人私信我，公司没有为了临时办公搭建VPN的准备，大多公司的临时解决方案是用TeamViewer类软件来实现远程连接方案。这类方案基本都不是直连状态，都是需要去第三方公司绕一圈再连上，第一会卡顿特别是同一公司多人在使用的情况下，更关键的这绕了一圈安全性也不好说。那有没有其他的解决方案呢？

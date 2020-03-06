@@ -2,7 +2,8 @@
 layout: post
 title:  "Gameboy游戏开发-精灵高阶"
 date:   2020-02-04 04:02:02
-categories: gameboy game develop
+categories: [develop, gameboy]
+tags: [game, develop, gbdk, sprite]
 --- 
 上节课聊到了精灵的反向问题，GB因为卡带容量的限制不可能每个方向都单独制作，一般ACT类游戏只需要一个侧面，另一个方向是通过瓦块的镜像的来实现的。我们使用的gbdk类库提供了一个`set_sprite_prop`方法，看文档该方法会接收一个8位的值，其中第5位为1时对应的精灵会做水平翻转。我们来看一下例子。
 

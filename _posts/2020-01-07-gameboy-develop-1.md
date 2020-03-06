@@ -2,7 +2,8 @@
 layout: post
 title:  "Gameboy游戏开发-搭建环境"
 date:   2020-1-1 1:1:1
-categories: gameboy game develop
+categories: [develop, gameboy]
+tags: [game, develop, gbdk, environment]
 ---
 
 Gameboy是80、90后童年曾经陪伴过的掌上游戏机，给我们儿时带来了很多欢乐。我还记得我的GB是96年时用压岁钱买的，当时从父母那里收了200的压岁钱，自己用平时积攒的200块钱自己坐了2个小时的车去了大城市锦州买的这台游戏机。当时已经没有钱再买游戏卡了，还是从我们这叫老六那租的游戏卡一块钱一天。当时也想好奇过GB上的游戏是怎么做出来的？好奇归好奇那个年代信息闭塞不太可能知道答案。
@@ -13,7 +14,7 @@ Gameboy是80、90后童年曾经陪伴过的掌上游戏机，给我们儿时带
 
 ### 环境搭建
 
-#### Windows下环境搭建
+#### Windows下环境搭建e
 首先推荐大家下载[MinGW](https://osdn.net/projects/mingw/releases/)，可以让windows也支持Makefile文件方便项目的编译。默认下载完成后是一个MinGW的安装管理工具，我们只勾选下载mingw32-bas-bin即可
 ![MinGW Installation Manager](//blog.guohai.org/doc-pic/2020-01/mingw.png)
 安装完成后我们会在C:\MinGW\bin\下增加一个mingw32-make.exe我们这次主要使用这个（下面的所有操作都在命令行下完成）为了方便使用，我们可以先给mingw32-make创建一个符号链接。`mklink make.exe mingw32-make.exe`接下来我们把C:\MinGW\bin\目录下到系统Path下。然后咱们在命令行中试下`make -v`如果有如下输出代表第一步安装成功

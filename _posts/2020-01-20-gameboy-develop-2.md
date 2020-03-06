@@ -2,7 +2,8 @@
 layout: post
 title:  "Gameboy游戏开发-精灵入门"
 date:   2020-02-02 02:02:02
-categories: gameboy game develop
+categories: [develop, gameboy]
+tags: [game, develop, gbdk, sprite]
 ---
 上一节课我们展示了一个最简单的人物在屏幕内移动的例子，但人物移动时并没有配合的动画，这次我们来个高级版本的。在GB内我们管所有移动的物体都叫做精灵(Sprite)。组成精灵的瓦块(Tile)是一个8x8的像素组合。每个瓦块是一堆0或1位的组合，如果手工画这个肯定会疯掉。我们可以使用[Gameboy Tile Designer](http://www.devrs.com/gb/hmgd/gbtd.html)(以下简称gbtd)来进行瓦块的绘画。
 

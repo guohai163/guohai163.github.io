@@ -2,7 +2,8 @@
 layout: post
 title:  "Gameboy游戏开发-背景"
 date:   2020-02-20 10:02:02
-categories: gameboy game develop
+categories: [develop, gameboy]
+tags: [game, develop, gbdk, background]
 --- 
 前几节课已经把精灵部分讲的很详细了，接下来我们来讲下一个很重要的部分就是背景。首先我来先看一张原理图，在GB中我们共可以使用三个层。分别是最底层的背景层、之前我们一直在讲解的精灵层、和未来来讲解的窗体层。
 
