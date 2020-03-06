@@ -217,8 +217,3 @@ void main()
 * [程序中用到的马里奥文件](//blog.guohai.org/doc-pic/2020-02/mario.gbr)
 * 为了剪短文章的长度，每次示例代码只有新增部分有注释，实际开发中请写清所有注释。
 
----
-
-如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
-
-![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

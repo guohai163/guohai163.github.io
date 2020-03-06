@@ -57,8 +57,3 @@ iptables --append FORWARD --in-interface tun0 -j ACCEPT
 其他更多请看你的路由器说明书。
 
 
----
-
-如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
-
-![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

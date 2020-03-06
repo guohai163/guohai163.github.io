@@ -114,8 +114,3 @@ clean:
 * [gbdk官网](http://gbdk.sourceforge.net/)
 * [gbdk mac版本](http://static.guohai.org/gbdk-mac.zip)
 
----
-
-如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
-
-![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)
