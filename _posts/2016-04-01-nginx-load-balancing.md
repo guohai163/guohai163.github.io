@@ -2,7 +2,8 @@
 layout: post
 title: Nginx负载均衡系统引发的问题和分析过程
 author: guohai
-tags: nginx
+categories: [network]
+tags: [nginx, network]
 ---
 ### 过程描述
 

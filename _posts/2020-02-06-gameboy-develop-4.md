@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Gameboy游戏开发-调色板"
+title:  "Gameboy游戏开发④-调色板"
 date:   2020-02-06 10:02:02
 categories: [develop, gameboy]
 tags: [game, develop, gbdk, palette]

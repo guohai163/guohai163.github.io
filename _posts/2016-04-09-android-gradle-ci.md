@@ -3,6 +3,8 @@ layout: post
 title: Gradle架构Adnroid项目使用Jenkins的持续集成方法
 author: guohai
 tags: gradle android jenkins git
+categories: [continuous-integration]
+tags: [gradle, android, jenkins, git]
 ---
 
 ## 1.基础环境的搭建和准备 ##

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Gameboy游戏开发-精灵高阶"
+title:  "Gameboy游戏开发③-精灵高阶"
 date:   2020-02-04 04:02:02
 categories: [develop, gameboy]
 tags: [game, develop, gbdk, sprite]

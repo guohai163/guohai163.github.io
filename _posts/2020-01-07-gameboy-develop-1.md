@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Gameboy游戏开发-搭建环境"
+title:  "Gameboy游戏开发①-搭建环境"
 date:   2020-1-1 1:1:1
 categories: [develop, gameboy]
 tags: [game, develop, gbdk, environment]

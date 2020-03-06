@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Gameboy游戏开发-精灵入门"
+title:  "Gameboy游戏开发②-精灵入门"
 date:   2020-02-02 02:02:02
 categories: [develop, gameboy]
 tags: [game, develop, gbdk, sprite]
