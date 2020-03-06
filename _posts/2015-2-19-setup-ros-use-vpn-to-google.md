@@ -3,6 +3,7 @@ layout: post
 title:  "在ROS系统中使用VPN翻越围墙全局访问GOOGLE"
 date:   2015-2-19 20:59:06
 categories: setup ros use vpn to google
+tags: [routeros, vpn, gfw]
 ---
 墙真的越来越高了,之前跳墙一直在各自设备上使用VPN,但很麻烦 特别是有一些对PPTP或L2TP协议支持不好的设备.一直想全局跳墙,买了个routerboard.实现了全局跳墙。
 
@@ -77,3 +78,9 @@ echo "/ip firewall address-list" > address-list_`date +"%Y%m%d"`.rsc
 grep "|CN|ipv4" delegated-apnic-latest | awk -F'|' '{print "add address="$4"/"32-int(log(int($5))/log(2))" disabled=no list=china-ip"}' >> address-list_`date +"%Y%m%d"`.rsc
 rm delegated-apnic-latest
 ```
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

@@ -2,7 +2,8 @@
 layout: post
 title:  "pptp@DigitalOcean配置教程"
 date:   2014-07-23 21:59:06
-categories: linux pptp vpn
+categories: [network, vpn]
+tags: [linux, pptp, vpn]
 ---
 pptp是VPN协议的一种，对我来说和l2tp唯一的优点。当某些运营商不允许使用udp协议时pptp的tcp协议依然还能运行。另外相对l2tp来说pptp配置更简单。本次VPN使用的是[DigitalOCean](https://www.digitalocean.com/?refcode=77f588fecae6)的VPS主机。推荐纽约机房，相对北京网速快。另外如果你觉得此篇教程有用并想购买DigitalOcean主机请使用此推广链接购买，也算是对我的支持，谢谢。[https://www.digitalocean.com/?refcode=77f588fecae6](https://www.digitalocean.com/?refcode=77f588fecae6)
 
@@ -23,3 +24,9 @@ pptp是VPN协议的一种，对我来说和l2tp唯一的优点。当某些运营
 
 		iptables -t nat -A POSTROUTING -s 10.30.0.0/24 -o eth0 -j MASQUERADE
 		iptables -I FORWARD -s 10.30.0.0/24 -p tcp --syn -i ppp+ -j TCPMSS --set-mss 1300
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

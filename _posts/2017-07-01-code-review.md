@@ -2,7 +2,8 @@
 layout: post
 title: "如何提高团队代码质量"
 date: 2017-07-01 14:00
-categories: team code review
+categories: [agile-development]
+tags: [team, code, review]
 ---
 在 Wikipedia 上，对代码审查的定义是
 
@@ -47,3 +48,9 @@ categories: team code review
 
 ### 代码审查背后引申的好处 ###
 首先，代码审查的最大的功用是纯社会性的。如果你在编程，而且知道将会有同事检查你的代码，你编程态度就完全不一样了。你写出的代码将更加整洁，有更好的注释和程序结构。
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

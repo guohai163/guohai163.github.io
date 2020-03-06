@@ -2,7 +2,8 @@
 layout: post
 title: "带你做一个基于智能合约的项目"
 date: 2018-03-18 23:00
-categories: ethereum solidity demo
+categories: [blockchain]
+tags: [ethereum, solidity, demo]
 ---
 # 以太坊
 ![256px-Ethereum_logo_2014.png](http://guohai163.github.io/doc-pic/2018-03-18/256px-Ethereum_logo_2014.png)
@@ -339,3 +340,9 @@ export default App
 * [Solidity在线调试工具](https://remix.ethereum.org)
 * [一个简单的基于Dapp的投票](http://www.cnblogs.com/duhuo/p/7449778.html)
 * [去中心化应用(Dapp) - 宠物商店机遇unbox](https://juejin.im/post/5a5c04fd6fb9a01ca071cd86)
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)
