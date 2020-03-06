@@ -2,7 +2,8 @@
 layout: post
 title:  "今天我遇到了-网购退款诈骗"
 date:   2019-05-29 12:59:06
-categories: Online shopping refund fraud
+categories: [life]
+tags: [online, shopping, refund, fraud]
 ---
 
 ## 事件起末
@@ -98,3 +99,9 @@ categories: Online shopping refund fraud
 3. 没忍住，浏览器开了隐身模式，写了个假账号密码。看来人家并不想要我账密想要的是这个。
 
 ![20190529065329.png](http://blog.guohai.org/doc-pic/2019-05/20190529065329.png)
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

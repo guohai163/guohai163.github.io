@@ -2,7 +2,8 @@
 layout: post
 title:  "数据惊魂日"
 date:   2019-05-05 10:59:06
-categories: mysql data recovery innodb
+categories: [operations, develop]
+tags: [mysql, data, recovery, innodb]
 ---
 
 ### 事件起因
@@ -49,3 +50,9 @@ LOAD DATA INFILE '/root/mysql/percona-data-recovery-tool-for-innodb-0.5/dumps/de
 3. 一旦有误操作，请先锁表。
 4. 需要直接操作时的机器尽量不装中文输入法。
 4. $\color{red}{小心小心再小心}$
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

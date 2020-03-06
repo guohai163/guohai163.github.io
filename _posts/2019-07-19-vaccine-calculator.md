@@ -2,7 +2,8 @@
 layout: post
 title:  "哪些二类疫苗比较值得打？"
 date:   2019-07-19 22:59:06
-categories: vaccine calculator
+categories: [baby]
+tags: [vaccine, calculator, Java, spring]
 ---
 
 ## 二类疫苗擱建议
@@ -29,3 +30,9 @@ categories: vaccine calculator
 最终页面会按您选择的二类疫苗和一类疫苗进行整合出一个新的列表，列表中的绿色列为已过日期，红色列为当前月份需要接种的时间，蓝色列表为未来要接种的疫苗。
 
 整个程序使用Spring boot框架进行快速开发，源码已经放在github上。[https://github.com/guohai163/vaccine](https://github.com/guohai163/vaccine)
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

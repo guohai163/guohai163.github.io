@@ -2,7 +2,8 @@
 layout: post
 title:  "为了方便的查询疫苗批次号，我用了一个周末做了个小程序"
 date:   2019-09-09 22:59:06
-categories: wechat miniprogram vaccine batchno
+categories: [develop, wechatapp]
+tags: [wechat, miniprogram, vaccine, batchno]
 ---
 
 近期我家娃进入了频繁疫苗接种期，平均每半个月都需要接种一剂疫苗。每次接种我都会认真核对疫苗本上、疫苗系统里、疫苗上，三者的批次号一致。在此基础上还会去中食药检核对下批次号状态，但是中食药检的官方网站上关于疫苗号的批次状态只有半个月左右一次的一个HTML页面，只能用ctrl+f进行一页一页的搜索，很是麻烦。我又去微信里看了看确实有几个批次号查询的小程序，但大多数据就停留在18年不再向后更新了。作为程序员的我准备亲力亲为自己实现一套
@@ -31,3 +32,9 @@ categories: wechat miniprogram vaccine batchno
 整个项目一共用了两天的时间，不得不承认微信小程序确实把手机上的一些开发变的简单了，甚至初中生就可以开始进行一些简单功能的开发了。另外数据库里实际是所有的生物制品都可以进行批号的验证。
 
 整个项目的源码含Java的SpringBoot+小程序的客户端在这里可以查看参考使用[疫苗工具](https://github.com/guohai163/vaccine)
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

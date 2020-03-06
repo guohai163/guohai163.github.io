@@ -2,7 +2,8 @@
 layout: post
 title:  "快速组建Java项目持续集成环境"
 date:   2019-07-19 22:59:06
-categories: idea github jenkins debian CI Java
+categories: [continuous-integration, java]
+tags: [idea, github, jenkins, debian, CI, Java]
 ---
 2014年时在这里就写过一篇关于持续集成的文章[Jenkins 使用教程](/java/jenkins/2014/11/14/jenkins-use-tutorial.html)当时的Jenkins还是1.x版本，没想到5年过去了都9102年了，今天和朋友聊天还有团队在使用开发人员机器构建项目，人工ftp传到服务器上人工部署，累吗？也不安全啊。
 
@@ -101,3 +102,9 @@ Jenkins的部分到此结束。
 ## 结束语
 
 至此整个过程1个小时左右，就全部搞定了。奉劝各位团队们不要在手工部署了太不安全了。也真的累啊
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

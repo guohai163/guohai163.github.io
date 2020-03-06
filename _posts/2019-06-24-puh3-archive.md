@@ -2,7 +2,8 @@
 layout: post
 title:  "北医三院产妇建档攻略"
 date:   2019-06-24 14:59:06
-categories: puh3 archive 
+categories: [baby] 
+tags: [puh3, archive]
 ---
 
 
@@ -42,3 +43,9 @@ categories: puh3 archive
 看了以上环节只能说要想在三院挂上号真是一环套一环，哪个环节慢了就有可能建不上档了。当然如果你是多胎上面的环节就都不用操心了，直接去4039走绿色通道即可。
 
 还有像中间三院不管是交费还是预约B超队伍都比较长，可以产妇开始检查了，家属就开始排交费的队伍。或者机器自助交费，最后统一窗口打印收据。
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

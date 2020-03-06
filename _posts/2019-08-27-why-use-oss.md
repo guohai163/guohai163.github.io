@@ -2,7 +2,8 @@
 layout: post
 title:  "我的项目为什么要使用对象存储"
 date:   2019-08-27 22:59:59
-categories: spring aliyun oss
+categories: [operations, develop]
+tags: [spring, aliyun, oss]
 ---
 对象存储服务（Object Storage Service，OSS）是一种海量、安全、低成本、高可靠的云存储服务，适合存放任意类型的文件。容量和处理能力弹性扩展，多种存储类型供选择，全面优化存储成本。
 
@@ -37,3 +38,9 @@ categories: spring aliyun oss
 
 var uploader = new plupload.
 ~~~
+
+---
+
+如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
+
+![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)
