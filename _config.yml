@@ -10,3 +10,10 @@ github_username:  guohai163
 
 # Build settings
 markdown: kramdown
+
+plugins:
+  - jekyll-paginate
+  - jemoji
+
+paginate: 12
+paginate_path: "/page/:num"
