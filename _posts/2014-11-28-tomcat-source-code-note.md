@@ -2,7 +2,8 @@
 layout: post
 title:  "Tomcat源码学习笔记"
 date:   2014-11-28 14:59:06
-categories: tomcat source code
+categories: [operations]
+tags: [tomcat, source, code]
 ---
 
 ###好的习惯###

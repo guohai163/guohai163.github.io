@@ -2,7 +2,8 @@
 layout: post
 title: "使用Jenkins自动构建iOS项目"
 date: 2017-03-24 14:00
-categories: xcode oc ci
+categories: [continuous-integration]
+tags: [scode, oc, ci]
 ---
 
 ### 目的 ###

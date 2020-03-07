@@ -2,7 +2,8 @@
 layout: post
 title:  "自动构建Unity3D项目到二进制程序"
 date:   2015-12-22 22:22:2
-categories: build ci unity script shell
+categories: [continuous-integration]
+tags: [build, ci, unity, script, shell]
 ---
 ## Unity3D项目持续集成方案 ##
 

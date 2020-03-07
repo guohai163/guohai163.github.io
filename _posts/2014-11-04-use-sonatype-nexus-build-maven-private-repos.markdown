@@ -2,7 +2,8 @@
 layout: post
 title:  "使用Sonatype Nexus搭建Maven私有仓库"
 date:   2014-11-04 21:59:06
-categories: java maven
+categories: [develop, operations]
+tags: [java, maven]
 ---
 ###私有仓库的优点###
 

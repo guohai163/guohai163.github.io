@@ -2,7 +2,8 @@
 layout: post
 title:  "在WINDOWS系统下构建tomcat,并加载至eclipse中"
 date:   2014-11-28 11:59:06
-categories: tomcat source code eclipse
+categories: [operations]
+tags: [tomcat, source, code, eclipse]
 ---
 
 ###下载Java Development Kit (JDK) 7###

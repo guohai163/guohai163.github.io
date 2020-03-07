@@ -2,7 +2,8 @@
 layout: post
 title:  "开发中常见错误列表"
 date:   2016-02-23 16:59:06
-categories: java c# sonar
+categories: [develop]
+tags: [java, csharp, sonarqube]
 ---
 1. <font color="#DC143C">错误的使用&&进行空参数判断</font>
 

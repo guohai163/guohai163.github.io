@@ -11,14 +11,14 @@
       <div class="wrapper">
         <div class="post">
 
-
             <article class="post-content">
           
-                您所查看的内容可能因为某种原因已经被移除，您可以看看下面文章列表是否有感兴趣的内容。
-
+                您所查看的内容可能因为某种原因已经被移除，我帮您推荐了一些文章希望有你需要的。
+<br/><br/><br/>
                 <h1>
                 <i class="far fa-folder-open">Category:</i>&nbsp;Gameboy游戏开发&nbsp;&nbsp;
                 </h1>
+                Game Boy（简称GB，日语：ゲームボーイ）是任天堂公司在1989年发售的第一代便携式游戏机。Game Boy是任天堂Game&Watch的后续商品。GB拥有三个改版机型，分别是小尺寸的GBP，加入背光功能的GBL，及彩色的GBC。
                 <ul>
                 {% for post in site.categories.gameboy %}
                 
@@ -32,6 +32,24 @@
                 
                 {% endfor %}
                 </ul>
+
+                <h1>
+                  <i class="far fa-folder-open">Category:</i>&nbsp;Virtual Private Network&nbsp;&nbsp;
+                  </h1>
+                  虚拟私人网络（英语：Virtual Private Network，缩写：VPN）是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。它利用隧道协议（Tunneling Protocol）来达到保密、发送端认证、消息准确性消息依然有被窃取的危险。在中国大陆会有很多人利用这个技术来翻墙。
+                  <ul>
+                  {% for post in site.categories.vpn %}
+                  
+                  <li>
+                  <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+                      
+                  <h2>
+                  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                  </h2>
+                  </li>
+                  
+                  {% endfor %}
+                  </ul>
             </article>
           </div>
       </div>

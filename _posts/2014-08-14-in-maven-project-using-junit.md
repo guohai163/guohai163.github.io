@@ -2,7 +2,8 @@
 layout: post
 title:  "在maven项目中使用junit做单元测试"
 date:   2014-08-14 21:59:06
-categories: java maven junit
+categories: [develop]
+tags: [java, maven, junit]
 ---
 ###JUnit###
 JUnit是一个Java语言的单元测试框架。它由肯特·贝克和Erich Gamma建立，逐渐成为源于Kent Beck的sUnit的xUnit家族中为最成功的一个。 JUnit有它自己的JUnit扩展生态圈。

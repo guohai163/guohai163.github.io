@@ -2,7 +2,8 @@
 layout: post
 title:  "在RHEL系统上通过源码安装GITLAB"
 date:   2016-2-1 20:59:06
-categories: rhel gitlab source mysql
+categories: [operations]
+tags: [rhel, gitlab, source, mysql]
 ---
 # 从源码安装Gitlab
 

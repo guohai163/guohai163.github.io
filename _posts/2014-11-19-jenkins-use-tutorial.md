@@ -2,7 +2,8 @@
 layout: post
 title:  "Jenkins 使用教程"
 date:   2014-11-14 21:59:06
-categories: java jenkins
+categories: [continuous-integration 4]
+tags: [java, jenkins]
 ---
 
 ### Ubuntu上安装Oracle Java SDK ###

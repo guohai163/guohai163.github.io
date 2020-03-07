@@ -2,7 +2,8 @@
 layout: post
 title: 基于以太坊实际项目开发经验谈
 date: 2018-08-26 10:00
-categories: ethereum solidity cryptofox react web3
+categories: [blockchain, develop]
+tags: [ethereum, solidity, cryptofox, react, web3]
 ---
 # 项目简单介绍
 

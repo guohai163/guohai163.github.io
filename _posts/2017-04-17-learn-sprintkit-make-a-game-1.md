@@ -2,7 +2,8 @@
 layout: post
 title: "学习SpriteKit开发（1）"
 date: 2017-04-17 14:00
-categories: swift spritekit game developer xcode iOS
+categories: [develop, game]
+tags: [swift, spritekit, game, developer, xcode, iOS]
 ---
 开发一款单机RPG游戏是很多80后儿时的梦想，但因为盗版等原因，国内的PC、家用机单击市场已经彻底被毁掉。新的独立游戏人想在这两个平台上线已经非常困难，引擎学习成本偏高。机能强大更多的强调的是游戏界面而不仅仅是游戏情节。但手机市场就大不同，机能还不够强大基本等于SFC、N64这个水准，吸引用户更多的还要依靠玩法和剧情。
 
