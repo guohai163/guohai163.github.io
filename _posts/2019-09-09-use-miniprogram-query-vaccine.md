@@ -33,8 +33,3 @@ tags: [wechat, miniprogram, vaccine, batchno]
 
 整个项目的源码含Java的SpringBoot+小程序的客户端在这里可以查看参考使用[疫苗工具](https://github.com/guohai163/vaccine)
 
----
-
-如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
-
-![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

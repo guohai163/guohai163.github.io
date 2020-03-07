@@ -125,8 +125,3 @@ traversal(rootdir)
     4. 拷贝DB的备份文件到`$data-dir/restore-from-backup`下（3.10.0以前版本请拷贝到`$data-dir/backup`下）
     5. 重启你的服务就会恢复完成
 
----
-
-如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
-
-![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

@@ -78,9 +78,3 @@ echo "/ip firewall address-list" > address-list_`date +"%Y%m%d"`.rsc
 grep "|CN|ipv4" delegated-apnic-latest | awk -F'|' '{print "add address="$4"/"32-int(log(int($5))/log(2))" disabled=no list=china-ip"}' >> address-list_`date +"%Y%m%d"`.rsc
 rm delegated-apnic-latest
 ```
-
----
-
-如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
-
-![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)

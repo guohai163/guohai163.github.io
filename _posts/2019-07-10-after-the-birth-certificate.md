@@ -36,9 +36,3 @@ tags: [brith, idcard]
 ## 后记
 
 最近MikroTik系列文章可能要断更一阵子了，下一次可能会分享一下关于婴儿疫苗的攻略，要不要打二类疫苗。如果打应该选哪些为什么。
-
----
-
-如果觉得文章内容比较实用，获得后续更新通知请关注公众号：
-
-![guohaiqr.jpg](//blog.guohai.org/doc-pic/guohaiqr.jpg)
