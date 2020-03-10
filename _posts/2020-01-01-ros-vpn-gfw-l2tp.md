@@ -100,5 +100,15 @@ Setup VPN clients: https://git.io/vpnclients
 
 ### 让部分域名也可以通过隧道后进行解析
 
+这时我们使用浏览器打开 [ifconfig.io](https://ifconfig.io/) 可以看到检测页面的IP显示已经不是你宽带运营商的IP已经显示为VPS主机的IP了，到此证明我们的隧道已经打通。我们再次敲入[google.com](https://www.google.com)发现还是打不开，我们使用`nslookup www.google.com`查一下现在解析回来的IP并把此IP放在网上查了下发现这个解析出来的IP并不属于Google公司。看来是我们的运营商的DNS服务器有问题，但是如果我们直接把ROS里的DNS服务器改成8.8.8.8的话虽然google.com能解析回正确的IP地址，但国内的这些网站解析回来的不一定是最快的离你最近的机房了，可能你用的电信线路但帮你解析出来的是一个联通CDN机房的IP。怎么办？我们可以在ROS里做域名解析劫持。
 
-【未完】
+1. 为指定的域名的解析请求打上标记。幸好我们的ROS支持第7层协议，可以通过正则来解析包内的数据。首先在 `IP->Firewall->Layer7 Protocols`内增加一个新的规则。Regexp内填入你希望ROS来进行劫持的域名即可。
+![add-l7.png](/doc-pic/2020-03/ros-l2tp/add-l7.png)
+然后打开Mangle,添加一个新的mark规则。在General标签下：Chian选为prerouting,Protocol选为udp，dstport选为53,输入接口选为内网网桥。Advanced标签下：L7协议勾选为刚刚新建的规则。Action标签下：Action选为mark routing,再起一个名字即可。
+![dns-mangle.png](/doc-pic/2020-03/ros-l2tp/dns-mangle.png)
+
+2. 接下来打开NAT我们对打标记的数据包做一个劫持。General标签内:Chain选为dstnat,RoutingMark选为上一步打的标记。Action标签内：Action选为dst-nat，To Address是劫持后的目标服务器我们写为8.8.8.8，To Ports为目标端口我们写为53.
+![dns-nat.png](/doc-pic/2020-03/ros-l2tp/dns-nat.png)
+
+3. 好了，现在打开我们期盼的油管看看：
+![youtube.png](/doc-pic/2020-03/ros-l2tp/youtube.png)

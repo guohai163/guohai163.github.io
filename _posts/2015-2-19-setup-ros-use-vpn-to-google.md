@@ -4,6 +4,8 @@ title:  "在ROS系统中使用VPN翻越围墙全局访问GOOGLE"
 date:   2015-2-19 20:59:06
 categories: setup ros use vpn to google
 tags: [routeros, vpn, gfw]
+permalink: /setup/ros/use/vpn/to/google/2015/02/19/setup-ros-use-vpn-to-google.html
+newlink: 2020-01-01.md
 ---
 墙真的越来越高了,之前跳墙一直在各自设备上使用VPN,但很麻烦 特别是有一些对PPTP或L2TP协议支持不好的设备.一直想全局跳墙,买了个routerboard.实现了全局跳墙。
 
