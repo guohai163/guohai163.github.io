@@ -7,6 +7,13 @@ tags: [routeros, vpn, gfw]
 permalink: /setup/ros/use/vpn/to/google/2015/02/19/setup-ros-use-vpn-to-google.html
 newlink: 2020-01-01.md
 ---
+
+## 此文章写于2015年已经不太有实用性，请大家前往 [这里](/routeros/vpn/2020/01/01/ros-vpn-gfw-l2tp.html) 查看更新后的文章
+
+
+
+
+
 墙真的越来越高了,之前跳墙一直在各自设备上使用VPN,但很麻烦 特别是有一些对PPTP或L2TP协议支持不好的设备.一直想全局跳墙,买了个routerboard.实现了全局跳墙。
 
 ### 科学上网方法
