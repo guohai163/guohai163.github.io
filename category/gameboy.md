@@ -1,6 +1,6 @@
 ---
 layout: category
-title: gameboy
+title: gameboy 游戏开发教程
 category: gameboy
 image: /doc-pic/category/gameboy.jpg
 ---
