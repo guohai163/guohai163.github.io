@@ -4,6 +4,7 @@ title:  "Gameboy游戏开发④-调色板"
 date:   2020-02-06 10:02:02
 categories: [develop, gameboy]
 tags: [game, develop, gbdk, palette]
+image: /doc-pic/2020-02/2020-02-06-gameboy-develop-4.jpg
 --- 
 首先我们先看看如何告诉模拟器或真机，这个ROM是个纯GB卡还是GBC卡。查了一下文档需要在ROM的0x143这个地址修改为0x80。gbdk的修改方法是在链接目标文件到gbROM的时候增加参数`-Wl-yp0x143=0x80`，至于到我们的项目上需要修改Makefile文件。看一下修改后的文件内容
 ~~~ makefile

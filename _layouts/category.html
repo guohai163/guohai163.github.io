@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+{% if page.image.size > 0 %}
+<div class="wechat-share"><img src={{page.image}} /></div>
+{% endif %}
 <row>
     <div class="col-sm-12">
       <h1>
