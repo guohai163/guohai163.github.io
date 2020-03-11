@@ -56,9 +56,9 @@
     .table-left{border:1px solid #dedede; font-size: 14px;}
     .title{background-color: #f8f8f8;}
    </style>
-   <div style="z-index:999;display: block; position: fixed; right: 10px; top: 180px; background-color: white;">
+   <div id="pagead" style="z-index:999;display: block; position: fixed; right: 10px; top: 180px; background-color: white;">
    <div id="zxd_x">
-     <a title="点击关闭"><b>x</b></a></div>
+     <a title="点击关闭" href="#" onclick="closead()"><b>x</b></a></div>
      <div class="content">
         
          <table class="table-left">
@@ -83,6 +83,10 @@
     </div>
    </div>
   <script>
+    closead = function() {
+      document.getElementById( "pagead" ).style.display = "none";
+    }
+
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
