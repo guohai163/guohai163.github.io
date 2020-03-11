@@ -4,6 +4,7 @@ title:  "在家庭网络中使用RouterOS路由器全局翻墙"
 date:   2020-01-01 01:59:06
 categories: [routeros, vpn]
 tags: [routeros, vpn, gfw]
+image: /doc-pic/2020-03/ros-l2tp/youtube.png
 ---
 因我的BLOG托管在github上无法看到访问数据，这几天心血来潮给我的BLOG上挂了个站点统计脚本。发现被访问最多的文章是2015的[在ROS系统中使用VPN翻越围墙全局访问GOOGLE](/setup/ros/use/vpn/to/google/2015/02/19/setup-ros-use-vpn-to-google.html)相隔5年我再看这个文章觉得写的太粗，而且文章里有的地方在目前的网络情况下已经不可用了。所以我来更新文档来了。
 

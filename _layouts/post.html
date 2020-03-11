@@ -13,7 +13,9 @@ layout: default
       {% endif %}
       </p>
   </header>
-
+  {% if page.image.size > 0 %}
+    <div class="wechat-share"><img src={{page.image}} /></div>
+  {% endif %}
   <article class="post-content">
     {{ content }}
 <br/>
