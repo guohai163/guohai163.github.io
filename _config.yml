@@ -10,7 +10,8 @@ github_username:  guohai163
 
 # Build settings
 markdown: kramdown
-
+kramdown:
+  input:         GFM
 plugins:
   - jekyll-paginate
   - jemoji

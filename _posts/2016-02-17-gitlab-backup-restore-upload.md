@@ -4,6 +4,7 @@ title:  "Gitlab的备份迁移以及升级方法"
 date:   2016-02-17 22:59:06
 categories: [operations]
 tags: [java, gitlab, git, source-code-manage]
+permalink: /java/gitlab/git/source-code-manage/2016/02/17/gitlab-backup-restore-upload.html
 ---
 前几天讲完了Gitlab的安装，再来讲讲Gitlab的备份和异地机器恢复。
 
