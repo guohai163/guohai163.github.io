@@ -113,3 +113,17 @@ Setup VPN clients: https://git.io/vpnclients
 
 3. 好了，现在打开我们期盼的油管看看：
 ![youtube.png](/doc-pic/2020-03/ros-l2tp/youtube.png)
+
+---
+Q&A:
+1. 问题：做了一下实验在第一阶段结束后都没有什么问题，可以在ip138看到联通本地的ip地址，在ifconfig.io上看到梯子的ip。 让部分域名也可以通过隧道后进行解析这一步配置后。发现还是无法打开youtube在firfox里面有的时候会提示证书错误但是Mac下直接拨VPN的时候并没有这个问题，偶尔youtube可以加载出框架但是视频基本上跳过广告以后就加载不出来了。重启过路由和主机并且清空过了浏览器缓存。还是不行。 
+
+    答：应该是你的ROS或你的机器缓存了一个被污染后的IP，验证方法的浏览器[chrome为例子]报错时选择地址栏左侧的不安全点击证书，你会发现你明明访问的是youtube但证书确是facebook的。这种情况下就是你缓存了一个被污染的IP。
+    ![youtube-ss.png](/doc-pic/2020-03/youtube-ss.png)
+    解决方法是分别清空ROS和机器的缓存清空ROS内的DNS缓`IP->DNS->Cache->FlushCache`，操作系统内windows打一下`ipconfig /flushdns`，然后重开浏览器。另外你说的只能看广告到视频后无反应，你使用浏览器的开发者工具看一下网站实际访问的不止youtube.com一个域名，还有一个googlevideo.com也要加到L7里
+    ![googlevideo](/doc-pic/2020-03/googlevideo.png)
+
+2. 问题：我有个nas服务上面挂了 bt 和pt 发现有些流量还是会走梯子的流量，请问能强制 nas这个ip不走梯子那条线路么。
+
+    答：可以指定DHCP分配的IP地址范围，人为的把家庭中分为两个子网。如果你的内网网段是192.168.88.0/24，第一个子网是从1~126可以用192.168.88.0/25来表示此网段需要翻墙操作；第二个子网是从129~254可以用192.168.88.128/25来表示不需要进行翻墙操作，在DHCP里就可以把指定的机器设置为固定的IP。打开之前在Mangle下的新建的routemark规则在Src.Address里输入192.168.88.0/25即可
+    ![mangle-25](/doc-pic/2020-03/mangle-25.png)
