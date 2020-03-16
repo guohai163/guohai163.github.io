@@ -13,6 +13,10 @@ UINT8 falsh_index = 1;
 //定义角色
 struct GameRole role;
 
+//障碍
+struct GameRole goomba;
+
+
 const UWORD spritepalette[] = {
 
     marioCGBPal1c0,
@@ -71,6 +75,24 @@ void initRole(UINT8 x, UINT8 y)
     role.y = y;
 }
 
+void initGoomba(UINT8 x, UINT8 y)
+{
+    goomba.x = 0;
+    goomba.y = 0;
+    goomba.spritrun[0] = 20;
+    goomba.spite_run_status = 0;
+    goomba.spritids[0] = 2;
+    goomba.spritids[1] = 3;
+    set_sprite_tile(goomba.spritids[0], goomba.spritrun[goomba.spite_run_status]);
+    set_sprite_tile(goomba.spritids[1], goomba.spritrun[goomba.spite_run_status]+2);
+    movegameobstacle(&goomba,x,y);
+    set_sprite_prop(2,2);
+    set_sprite_prop(3,2);
+    goomba.x = x;
+    goomba.y = y;
+    goomba.direction = 2;
+}
+
 /**
  * 休眠指定次数
  */
@@ -87,10 +109,11 @@ void performantdelay(UINT8 numloops)
 void main()
 {
     SPRITES_8x16;
-    set_sprite_data(0, 20, mario);
+    set_sprite_data(0, 24, mario);
     //引入调色板数据
     set_sprite_palette(0, 3, spritepalette);
     initRole(28,112);
+    initGoomba(80, 112);
     SHOW_SPRITES;
 
     //设置背景数据源
@@ -116,9 +139,12 @@ void main()
             }
             else
             {
-                movegamecharacter(&role,role.x+2,role.y);
+                movegamecharacter(&role,role.x+4,role.y);
+                movegameobstacle(&goomba, role.x+14, role.y);
                 role.x +=4;
             }
+            movegameobstacle(&goomba, goomba.x-1, role.y);
+            goomba.x -=1 ;
         }
         else if(joypad()==J_LEFT)
         {
@@ -137,6 +163,7 @@ void main()
         {
             falsh_switch = falsh_switch?FALSE:TRUE;
         }
+
         if(falsh_switch)
         {
             UINT8 prop = get_sprite_prop(0);

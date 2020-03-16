@@ -28,3 +28,4 @@ UINT8 sprite_size = 8;
  * 移动精灵方法，我们要在.c文件中实现的
  */
 void movegamecharacter(struct GameRole* character, UINT8 x, UINT8 y);
+void movegameobstacle(struct GameRole* character, UINT8 x, UINT8 y);
