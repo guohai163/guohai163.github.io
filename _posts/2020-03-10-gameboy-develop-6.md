@@ -70,5 +70,49 @@ SHOW_BKG;
 对于第二类我们来看个例子，可以看到整个背景是一个32x32个瓦块的大背景，但同一时间可以展示的是一个20x18的部分。当人物向右移动到中间位置后再向前移动人物不会再次移动而改为背景进行滚动，当背景滚动到尽头后会从另一头重新开始滚动。同一时间在屏幕外不见部分会动态刷新背景的样子。
 ![all-background](/doc-pic/2020-03/ezgif.com-video-to-gif.gif)
 
+实现的原理就是判断主角在屏幕的位置，当主角移动到屏幕中间点后再向右移动，主角只播放动画不再移动位置，而是背景开始进行移动。我们来看下实现代码：
+~~~ c
+if(joypad()==J_RIGHT)
+{
+    // 当主角在屏幕中位置大于80时，不再移动主角只移动背景
+    if(role.x >80){
+        movegamecharacter(&role,role.x,role.y);
+        scroll_bkg(2,0);
+    }
+    else
+    {
+        movegamecharacter(&role,role.x+2,role.y);
+        role.x +=2;
+    }
+}
+else if(joypad()==J_LEFT)
+{
+    // 限制主角返回之前的位置，只有主角在屏幕位置小于16时才可以进行向左移动
+    if(role.x>16){
+        movegamecharacter(&role,role.x-2,role.y);
+        role.x -= 2 ;
+    }
+}
+~~~
 
-【未完】
+同时为了性能考虑，我们把之前的休眠方法进行了重构。把之前的直接休眠线程变成了等待vbl切换次数。
+
+~~~ c
+/**
+ * 休眠指定次数
+ */
+void performantdelay(UINT8 numloops)
+{
+    UINT8 i=0;
+    for (   ; i < numloops; i++)
+    {
+        wait_vbl_done();
+    }
+    
+}
+~~~
+`make run`
+
+![mario-run.gif](/doc-pic/2020-03/mario-run.gif)
+### 本课源码下载
+* [会移动的全彩背景](/doc-pic/2020-03/gb6.zip)

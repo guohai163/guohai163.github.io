@@ -71,6 +71,19 @@ void initRole(UINT8 x, UINT8 y)
     role.y = y;
 }
 
+/**
+ * 休眠指定次数
+ */
+void performantdelay(UINT8 numloops)
+{
+    UINT8 i=0;
+    for (   ; i < numloops; i++)
+    {
+        wait_vbl_done();
+    }
+    
+}
+
 void main()
 {
     SPRITES_8x16;
@@ -96,14 +109,24 @@ void main()
     {
         if(joypad()==J_RIGHT)
         {
-            movegamecharacter(&role,role.x+2,role.y);
-            role.x +=2;
-            
+            // 当主角在屏幕中位置大于80时，不再移动主角只移动背景
+            if(role.x >80){
+                movegamecharacter(&role,role.x,role.y);
+                scroll_bkg(4,0);
+            }
+            else
+            {
+                movegamecharacter(&role,role.x+2,role.y);
+                role.x +=4;
+            }
         }
         else if(joypad()==J_LEFT)
         {
-            movegamecharacter(&role,role.x-2,role.y);
-            role.x -= 2 ;
+            // 限制主角返回之前的位置，只有主角在屏幕位置小于16时才可以进行向左移动
+            if(role.x>16){
+                movegamecharacter(&role,role.x-2,role.y);
+                role.x -= 2 ;
+            }
         }
         else 
         {
@@ -132,7 +155,7 @@ void main()
             set_sprite_prop(1,prop );
         }
         
-        delay(80);
+        performantdelay(5);
     }
     
 }
