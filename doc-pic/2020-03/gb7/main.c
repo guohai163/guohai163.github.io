@@ -77,6 +77,9 @@ void initRole(UINT8 x, UINT8 y)
     role.y = y;
 }
 
+/**
+ * 初始化板栗仔
+ */
 void initGoomba(UINT8 x, UINT8 y)
 {
     goomba.x = 0;
@@ -117,7 +120,7 @@ void main()
     //引入调色板数据
     set_sprite_palette(0, 3, spritepalette);
     initRole(28,112);
-    initGoomba(80, 112);
+    initGoomba(180, 112);
     SHOW_SPRITES;
 
     //设置背景数据源
