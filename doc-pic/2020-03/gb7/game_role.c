@@ -73,3 +73,9 @@ void movegameobstacle(struct GameRole* character, UINT8 x, UINT8 y)
         }
 
 }
+
+
+UBYTE checkcollisions(struct GameRole* one, struct GameRole* two)
+{
+    return (one->x >= two->x && one->x <= two->x + two->width) && (one->y >= two->y && one->y <= two->y + two->height) || (two->x >= one->x && two->x <= one->x + one->width) && (two->y >= one->y && two->y <= one->y + one->height);
+}

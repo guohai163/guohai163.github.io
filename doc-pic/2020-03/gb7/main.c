@@ -59,6 +59,8 @@ void initRole(UINT8 x, UINT8 y)
 {
     role.x = 0;
     role.y = 0;
+    role.width = 10;
+    role.height = 16;
     role.spritrun[0] = 8;
     role.spritrun[1] = 12;
     role.spritrun[2] = 16;
@@ -79,6 +81,8 @@ void initGoomba(UINT8 x, UINT8 y)
 {
     goomba.x = 0;
     goomba.y = 0;
+    goomba.width = 10;
+    goomba.height = 16;
     goomba.spritrun[0] = 20;
     goomba.spite_run_status = 0;
     goomba.spritids[0] = 2;
@@ -128,7 +132,7 @@ void main()
     //调用显示背景方法
     SHOW_BKG;
     DISPLAY_ON;
-    while (1)
+    while (!checkcollisions(&role, &goomba))
     {
         movegameobstacle(&goomba, goomba.x-2, goomba.y);
         goomba.x -=2 ;
@@ -184,5 +188,6 @@ void main()
         
         performantdelay(5);
     }
+    printf("\n \n \n \n \n \n \n === GAME  OVER ===");
     
 }
