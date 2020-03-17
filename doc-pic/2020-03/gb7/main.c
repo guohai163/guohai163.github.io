@@ -130,7 +130,9 @@ void main()
     DISPLAY_ON;
     while (1)
     {
-        if(joypad()==J_RIGHT)
+        movegameobstacle(&goomba, goomba.x-2, goomba.y);
+        goomba.x -=2 ;
+        if(joypad() & J_RIGHT)
         {
             // 当主角在屏幕中位置大于80时，不再移动主角只移动背景
             if(role.x >80){
@@ -140,18 +142,16 @@ void main()
             else
             {
                 movegamecharacter(&role,role.x+4,role.y);
-                movegameobstacle(&goomba, role.x+14, role.y);
                 role.x +=4;
             }
-            movegameobstacle(&goomba, goomba.x-1, role.y);
-            goomba.x -=1 ;
+            
         }
-        else if(joypad()==J_LEFT)
+        else if(joypad() & J_LEFT)
         {
             // 限制主角返回之前的位置，只有主角在屏幕位置小于16时才可以进行向左移动
             if(role.x>16){
-                movegamecharacter(&role,role.x-2,role.y);
-                role.x -= 2 ;
+                movegamecharacter(&role,role.x-4,role.y);
+                role.x -= 4 ;
             }
         }
         else 

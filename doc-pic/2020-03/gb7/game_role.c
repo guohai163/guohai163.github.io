@@ -63,13 +63,13 @@ void movegameobstacle(struct GameRole* character, UINT8 x, UINT8 y)
     }
 
         if(character->direction ==2){
-            move_sprite(character->spritids[0], x-4, y);
-            move_sprite(character->spritids[1], x + sprite_size-4, y);
+            move_sprite(character->spritids[0], x , y);
+            move_sprite(character->spritids[1], x + sprite_size, y);
         }
         else if (character->direction == 4)
         {
-            move_sprite(character->spritids[0], x, y);
-            move_sprite(character->spritids[1], x - sprite_size, y);
+            move_sprite(character->spritids[0], x+sprite_size, y);
+            move_sprite(character->spritids[1], x , y);
         }
 
 }
