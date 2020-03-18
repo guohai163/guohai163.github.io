@@ -125,3 +125,8 @@ void main()
 ![goomba-2.gif](/doc-pic/2020-03/goomba-2.gif)
 
 主角就这么被杀了，不会跳怎么办？下节课我们会来讲精灵的跳跃方法。
+
+
+## 本课源码
+
+* [hashiru v0.7](https://github.com/guohai163/hashiru/releases/tag/v0.7)
