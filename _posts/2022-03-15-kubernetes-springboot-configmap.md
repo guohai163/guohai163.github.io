@@ -119,10 +119,41 @@ spring:
 ~~~
 
 ## 本地测试
+为便于演示configmap的加载效果，我们在项目中增加一个Controller
+~~~ java 
+package org.guohai.configmapdemo.controller;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author guohai
+ */
+@RestController
+public class HomeController {
 
-## 服务器测试
+    @Value("${setings.psss}")
+    String pass;
+    @Value("${setings.min}")
+    String min;
+
+    /**
+     * 首页
+     * @return
+     */
+    @GetMapping("/")
+    public String home() {
+        return pass;
+    }
+}
+~~~
+要在本地测试环境中使用k8s内的资源，主要需要通过第一步的kt connect来进行连接，给我们的Jvm增加socket的代理。在IDEA中可以修改项目启动参数来实现。
+同时还要增加K8S名称空间的环境变量。
+![idea settings](/doc-pic/2022/idea-k8s-setings.png)
+
+启动项目，看看效果
+
 
 ## 备注
 
