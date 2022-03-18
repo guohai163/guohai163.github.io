@@ -121,12 +121,6 @@ spring:
 ## 本地测试
 为便于演示configmap的加载效果，我们在项目中增加一个Controller
 ~~~ java 
-package org.guohai.configmapdemo.controller;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 /**
  * @author guohai
  */
@@ -140,13 +134,14 @@ public class HomeController {
 
     /**
      * 首页
-     * @return
+     * @return 返回读取到的值
      */
     @GetMapping("/")
     public String home() {
-        return pass;
+        return String.format("%s,%s", pass, min);
     }
 }
+
 ~~~
 要在本地测试环境中使用k8s内的资源，主要需要通过第一步的kt connect来进行连接，给我们的Jvm增加socket的代理。在IDEA中可以修改项目启动参数来实现。
 同时还要增加K8S名称空间的环境变量。
@@ -154,6 +149,12 @@ public class HomeController {
 
 启动项目，看看效果
 
+~~~ shell
+$ curl http://127.0.0.1:8081
+password,10
+~~~
+
+另外需要注意，当配置了bootstarp优先加载后，项目中的application不再生效。会优先去使用 confgimap中的application配置
 
 ## 备注
 
