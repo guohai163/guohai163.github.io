@@ -156,8 +156,26 @@ password,10
 
 另外需要注意，当配置了bootstarp优先加载后，项目中的application不再生效。会优先去使用 confgimap中的application配置
 
+## 服务器调试
+
+~~~ sh
+# 通过maven构建jar包
+$ mvn clean package
+# docker打包，因演示机为arm芯片，特在docker build加上了 paltform参数
+$ docker buildx build -t gyyx/config-map:1.0 --platform=linux/amd64 .
+# 推送镜像到 docker 仓库
+$ docker push gyyx/config-map:1.0
+# 创建 k8s pod
+$ kubectl apply -f k8s-script.yaml
+~~~
+
+## 避坑指南
+
+* 整个过程中 secret、configmap当中的key都不要出现下划线，否则会有异常
+* 注意SpringBoot和SpringCloud版本的组合，目前本地使用kt connect调试只有 SpringBoot 2.2.x/2.3.x + SpringCloud Hoxton.x 能正常运行，高版本会报 `Not running inside kubernetes. Skipping 'kubernetes' profile activation` 这样的错误。k8s环境内用高版本不会报错
+
 ## 备注
 
-* [参考项目](https://github.com/guohai163/configmap-demo)
+* [示例项目](https://github.com/guohai163/configmap-demo)
 * [KtConnect](https://alibaba.github.io/kt-connect/#/)
 * [使用k8s时bootstrap文件说明](https://docs.spring.io/spring-cloud-kubernetes/docs/current/reference/html/#kubernetes-propertysource-implementations)
