@@ -191,6 +191,9 @@ data:
         - source_labels: [__meta_kubernetes_namespace]
           action: replace
           target_label: k8s_namespace
+        - source_labels: [__meta_kubernetes_node_name]
+          action: replace
+          target_label: k8s_node
         - source_labels: [__meta_kubernetes_service_name]
           action: replace
           target_label: k8s_service
@@ -341,4 +344,4 @@ spec:
 
 1. 部署后我们使用浏览器打开 open http://grafana.monitoring:3000
 2. 然后增加我们的数据源，数据源的地址为上一步时的暴露服务 http://prometheus.monitoring:9090
-3. 增加Dashboards看板
+3. 增加Dashboards看板。不想自己做看板的，也可以直接通过 ID号 [16193](https://grafana.com/grafana/dashboards/16193)直接进行导入
