@@ -155,6 +155,16 @@ JsonObjectDecoder类的主要作用是可以帮我们处理json流的分包和�
 
 ~~~
 
+然后回到上一步的initChannel中增加一个 pipeline的channelHandler.
+
+~~~ java
+	@Override
+	public void initChannel(SocketChannel ch) {
+		ch.pipeline()
+			.addLast(new DecoderHandler());
+	}
+~~~
+
 再次运行我们的程序，并使用nc进行一下测试。可以看到服务端已经可以回写我们发送的字符串。
 
 ~~~ shell
