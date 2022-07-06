@@ -222,4 +222,4 @@ public class IdleCheckHandler extends ChannelDuplexHandler {
 
 
 1. 心跳协议包的处理
-2. main disruptor的工作
+2. main disruptor的工作,可以百万连接的最重要点
