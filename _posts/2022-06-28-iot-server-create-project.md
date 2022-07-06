@@ -142,7 +142,7 @@ image: /doc-pic/2022/iot.svg
             ByteBuf byteBuf = buffer.slice(index, length);
 
             // 把接收到的流转写成string字符串
-            String message = byteBuf.readSlice(length).toString(0, length, CharsetUtil.UTF_8);
+            String message = byteBuf.toString(CharsetUtil.UTF_8);
             logger.info(message);
             // 测试阶段直接回写数据
             ctx.writeAndFlush(Unpooled.copiedBuffer(message, CharsetUtil.UTF_8));
