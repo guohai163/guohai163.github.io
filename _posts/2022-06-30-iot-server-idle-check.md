@@ -14,7 +14,7 @@ image: /doc-pic/2022/iot.svg
 第二个channels对象是供下行数据包时可以通过设备ID查找到对应的channel对象。
 
 这里还要考虑一个Map的实现类的问题，如果你的SessionInfo是大量不可变数据，比如连接后就不再进行变动就用HashMap实现就行。如果你的SessionInfo会存储大量需要变更的数据，比如每次上报都要变更
-请使用ConcurrentHashMap来初始化。防止在多线程高并发操作时有脏数据的出现。另外HashMap的默认空间为16，当达到75%这个阈值时就会开始进行一次扩容。为了防止Map频繁扩容初始化时就要指定一个大小
+请使用 ConcurrentHashMap 来初始化。防止在多线程高并发操作时有脏数据的出现。另外HashMap的默认空间为16，当达到75%这个阈值时就会开始进行一次扩容。为了防止Map频繁扩容初始化时就要指定一个大小
 大小为预估的你单服务器可承载客户端数量。
 
 ~~~ java 
@@ -26,12 +26,12 @@ image: /doc-pic/2022/iot.svg
     /**
      * 存储会话,为了防止使用map时进行动态扩容，初始化时直接指定一个预估的单服务器连接数
      */
-    private final Map<Channel, SessionInfo> sessions = new HashMap<>(SERVER_CONNECT_NUM);
+    private final Map<Channel, SessionInfo> sessions = new ConcurrentHashMap<>(SERVER_CONNECT_NUM);
 
     /**
      * 存储管道
      */
-    private final Map<String, Channel> channels = new HashMap<>(SERVER_CONNECT_NUM);
+    private final Map<String, Channel> channels = new ConcurrentHashMap<>(SERVER_CONNECT_NUM);
 ~~~
 
 接下来增加两个比较简单的成员方法，addSession和removeSession。这里我们增加了一个设置，当终端连接上来就会增加session，当终端发送login数据包时再补全session和增加channel对象。
@@ -89,7 +89,7 @@ image: /doc-pic/2022/iot.svg
 2. 使用一个ApplicationContextHolder工具类，在handler中通过applicationContext.getBean来获取
 3. 如果能保证线程安全的情况下 给ChannelHandler增加@Sharable注解
 
-DecoderHandler 中我们采用第一种方案，后续的会话打印我们用第三种方案。
+DecoderHandler 因为涉及边包半包的解包问题，我们采用第一种方案，后续的代码重构时会展示另外一种解决方案。
 
 在 DecoderHandler 中我们覆写一下 channelRegistered 方法，当有新请求上来时会调用该方法。并在改方法内优化一下 ChannelConfig 
 ~~~ java

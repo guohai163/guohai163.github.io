@@ -119,11 +119,13 @@ image: /doc-pic/2022/iot.svg
 
 为了下一步json的解码准备我们起名叫 DecoderHandler 。需要继承自 JsonObjectDecoder 类，并覆写下 extractObject方法。
 
-JsonObjectDecoder类的主要作用是可以帮我们处理json流的分包和半包问题。保证每次送到extractObject方法里都是一个完整的json串
+这里推荐看下 JsonObjectDecoder 的实现，他也是继承自ByteToMessageDecoder 。通过对json当中 的{}或[]进行检查来区分数据包。为了解决连包半包问题 ByteToMessageDecoder 本身是线程不安全的，我们继承下来的DecoderHandler 肯定也是线程不安全的。目前先不解决这个问题，在后续的重构代码环节会进行实现的优化。
+
+看下 JsonObjectDecoder 的源码，如果想在 DecoderHandler 里直接继承处理json数据，覆写下extractObject方法即可。
 
 ~~~ java
     /**
-     * 识别到一个正确的json数据，进行处理
+     * 识别到一个正确的json数据，进行处理。
      * @param ctx channel
      * @param buffer bytebuff
      * @param index 此次包的开始点
@@ -135,22 +137,22 @@ JsonObjectDecoder类的主要作用是可以帮我们处理json流的分包和�
                                     int index, int length){
         try{
             // 首先按指定的位置标记从 buffer中读取数据到新的bytebuf中。
+			// 这里的 byteBuf 是基于零拷贝实现的，共用的是同一份内存区，性能更好。不要手动释放 byteBuf 对象
             // 这里的ByteBuf是netty重写的nio中的ByteBuffer性能更好
             ByteBuf byteBuf = buffer.slice(index, length);
 
             // 把接收到的流转写成string字符串
-            try (ByteBufInputStream inputStream = new ByteBufInputStream(byteBuf)) {
-
-                String message = byteBuf.readSlice(length).toString(0, length, CharsetUtil.UTF_8);
-                logger.info(message);
-                // 测试阶段直接回写数据
-                ctx.writeAndFlush(Unpooled.copiedBuffer(message, CharsetUtil.UTF_8));
-            }
+            String message = byteBuf.readSlice(length).toString(0, length, CharsetUtil.UTF_8);
+            logger.info(message);
+            // 测试阶段直接回写数据
+            ctx.writeAndFlush(Unpooled.copiedBuffer(message, CharsetUtil.UTF_8));
+            
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        return Unpooled.EMPTY_BUFFER;
+		// 已经处理完毕，不需要后续处理直接return null即可
+        return null;
     }
 
 ~~~
