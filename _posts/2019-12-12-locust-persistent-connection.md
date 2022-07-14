@@ -17,11 +17,13 @@ python get-pip.py
 ~~~
 
 2. 安装locust
+
 ~~~ shell
+
 pip install locustio
 # 如果是windows可能还需要安装gevent.whl,请去往 https://www.lfd.uci.edu/~gohlke/pythonlibs/#gevent 下载 相对应 版本
-
 pip install gevent‑1.4.0‑cp27‑cp27m‑win_amd64.whl
+
 ~~~
 
 >    如果进行真实性能测试请不要使用windows平台，在windows下gevent的性能会有问题。使用类linux平台时请一定要修改最大文件打开数量。 可以使用ulimit -n查看当前支持的文件句柄，并用ulimit -n xxxx来进行修改
