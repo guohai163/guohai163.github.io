@@ -4,7 +4,7 @@ title:  "物联网的服务端设计(二)"
 date:   2022-06-28 10:10:00
 categories: [netty]
 tags: [iot, java, netty]
-image: /doc-pic/2022/iot.svg
+image: /doc-pic/2022/iot.png
 ---
 
 引用Spring官方的一句话，让你简单的创建一个项目。

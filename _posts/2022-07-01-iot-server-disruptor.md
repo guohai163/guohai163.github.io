@@ -4,7 +4,7 @@ title:  "物联网的服务端设计(四)"
 date:   2022-07-01 10:10:00
 categories: [netty]
 tags: [iot, java, netty]
-image: /doc-pic/2022/iot.svg
+image: /doc-pic/2022/iot.png
 ---
 
 ## 重构项目
