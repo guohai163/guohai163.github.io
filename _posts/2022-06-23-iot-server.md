@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "物联网的服务端设计(一)"
+title:  "物联网的服务端设计(一)基础准备"
 date:   2022-06-23 10:10:00
 categories: [netty]
 tags: [iot, java, netty]
