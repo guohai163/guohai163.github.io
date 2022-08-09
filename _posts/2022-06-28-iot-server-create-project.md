@@ -8,8 +8,9 @@ image: /doc-pic/2022/iot.png
 ---
 
 引用Spring官方的一句话，让你简单的创建一个项目。
+
 >Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".
-这么好用的框架我们也要用起来，不要只做为web项目使用。让Spring帮我们管理对象多方便啊。
+这么好用的框架我们也要用起来，不要只做为web项目使用。让Spring帮我们管理创建对象多方便啊。
 
 ## 新建项目
 正常创建一个SpringBoot2.6.x的项目。在POM里引一下Netty。
